@@ -243,7 +243,9 @@ function exportCanvas(canvasName, dev) {
     } else {
         filename = fxhash + "_" + timestamp;
     }
-    save(canvasName, filename, 'png');
+    // save(canvasName, filename, 'png');
+    // save("mySVG.svg"); // give file name
+    save(filename, 'svg');
 }
 
 function getTimestamp() {
