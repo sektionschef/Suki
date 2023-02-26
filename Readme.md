@@ -11,3 +11,7 @@ Stefan Schwaha, @sektionschef, https://digitalitility.com/
 
 http://localhost:8080/ - to largest size
 http://localhost:8080/?senza=true - no resizing - inspecting details
+
+
+# SVG knowhow
+ https://editor.p5js.org/sojamo/sketches/4I_NltU3H

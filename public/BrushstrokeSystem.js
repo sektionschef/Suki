@@ -17,19 +17,30 @@ class BrushstrokeSystem {
         this.brushOpacityDistort = data.brushOpacityDistort;
         this.brushType = data.brushType;
 
-        if (this.orientation == "x") {
-            // starts from origin to target, A to B is direction of parallell strokes
-            this.originA = createVector(0, height);  // left, start of brushstrokes
-            this.targetA = createVector(width, height); // left, end of brusshtrokes
-            this.originB = createVector(0, 0); // right, start of brushstrokes
-            this.targetB = createVector(width, 0); // right, end of brushstrokes
-        } else {
-            // y
-            this.originA = createVector(width / 10 * 0, height / 10 * 0);  // left, start of brushstrokes
-            this.targetA = createVector(width / 10 * 0, height / 10 * 10); // left, end of brusshtrokes
-            this.originB = createVector(width / 10 * 10, height / 10 * 0); // right, start of brushstrokes
-            this.targetB = createVector(width / 10 * 10, height / 10 * 10); // right, end of brushstrokes
-        }
+        // if (this.orientation == "x") {
+        //     // starts from origin to target, A to B is direction of parallell strokes
+        //     this.originA = createVector(0, height);  // left, start of brushstrokes
+        //     this.targetA = createVector(width, height); // left, end of brusshtrokes
+        //     this.originB = createVector(0, 0); // right, start of brushstrokes
+        //     this.targetB = createVector(width, 0); // right, end of brushstrokes
+        // } else {
+        //     // y
+        //     this.originA = createVector(width / 10 * 0, height / 10 * 0);  // left, start of brushstrokes
+        //     this.targetA = createVector(width / 10 * 0, height / 10 * 10); // left, end of brusshtrokes
+        //     this.originB = createVector(width / 10 * 10, height / 10 * 0); // right, start of brushstrokes
+        //     this.targetB = createVector(width / 10 * 10, height / 10 * 10); // right, end of brushstrokes
+        // }
+
+        // starts from origin to target, A to B is direction of parallell strokes
+        // this.originA = createVector(width / 10 * 2, height / 10 * 4);  // left, start of brushstrokes
+        // this.targetA = createVector(width / 10 * 6, height / 10 * 4); // left, end of brusshtrokes
+        // this.originB = createVector(width / 10 * 2, height / 10 * 2); // right, start of brushstrokes
+        // this.targetB = createVector(width / 10 * 6, height / 10 * 2); // right, end of brushstrokes
+
+        this.originA = data.originA;
+        this.originB = data.originB;
+        this.targetA = data.targetA;
+        this.targetB = data.targetB;
 
         // calc for loop
         this.distanceAB = p5.Vector.dist(this.originA, this.originB);
@@ -37,7 +48,7 @@ class BrushstrokeSystem {
         this.loopGrow = p5.Vector.sub(this.originB, this.originA).normalize();  // in which the direction the loop grows
 
         this.allFinished = false;
-        this.buffer = createGraphics(width, height);
+        this.buffer = createGraphics(width, height, SVG);
         this.brushTemplates = [];
         this.brushstrokes = [];
 
@@ -62,6 +73,8 @@ class BrushstrokeSystem {
             // let what = Math.round(noise(increment) * this.brushTemplates.length);
             // data.sprite = this.brushTemplates[what];
 
+
+
             data.drawBuffer = this.buffer;
 
             increment = increment + this.noiseIncrement;
@@ -71,6 +84,8 @@ class BrushstrokeSystem {
             this.brushstrokes.push(new Brushstroke(data));
         }
 
+        // console.log(this.brushstrokes);
+
         // DISABLE for active drawing
         this.create();
     }
@@ -78,15 +93,14 @@ class BrushstrokeSystem {
     createBrushTemplates() {
 
         for (var i = 0; i < this.brushTemplateCount; i++) {
-            var BrushData = {
-                noiseColor: this.noiseColor,
+            let BrushData = {
+                // noiseColor: color("#585858"),
                 size: this.brushTemplateSize,
-                strokeSize: this.brushTemplateStrokeSize,
-                fillColor: distortColorSuperNew(this.brushTemplateFillColor, this.brushTemplateFillColorDistort),
-                strokeColor: distortColorSuperNew(this.brushTemplateStrokeColor, this.brushTemplateStrokeColorDistort),
-                curveSexyness: this.brushCurveSexyness,
+                // strokeSize: 1,
+                fillColor: this.brushTemplateFillColor,
+                // strokeColor: color("#5d84a8"),
+                // curveSexyness: 1,
                 pixelDistort: this.brushPixelDistort,
-                type: this.brushType,
             }
             this.brushTemplates.push(new Brush(BrushData).buffer);
         }

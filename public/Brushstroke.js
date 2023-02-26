@@ -87,17 +87,18 @@ class Brushstroke extends Vehicle {
         }
 
         this.buffer.push();
-        this.buffer.translate(this.pos.x, this.pos.y);
         this.buffer.noStroke();
+        // NON SVG
+        // this.buffer.translate(this.pos.x, this.pos.y);
         this.buffer.rotate(this.vel.heading())
 
         // BRUSH with circle
         /*         
-                this.buffer.stroke(170);
-                this.buffer.strokeWeight(1);
-                this.buffer.fill(color(Math.round(this.turningFactor * 75) + 180));
-                this.buffer.circle(0, 0, 50); 
-                */
+        this.buffer.stroke(170);
+        this.buffer.strokeWeight(1);
+        this.buffer.fill(color(Math.round(this.turningFactor * 75) + 180));
+        this.buffer.circle(0, 0, 50); 
+        */
 
         // BRUSH with image
         this.buffer.imageMode(CENTER);
@@ -108,9 +109,11 @@ class Brushstroke extends Vehicle {
         if (this.OVERLAY) {
             this.buffer.blendMode(OVERLAY);
         }
-        this.buffer.image(this.sprite, 0, 0, 0, this.basicSize);
+        // NON SVG
+        // this.buffer.image(this.sprite, 0, 0, 0, this.basicSize);
+        // SVG
+        this.buffer.image(this.sprite, this.pos.x, this.pos.y, 0, this.basicSize);
         // this.buffer.blendMode(BLEND);
-
 
         this.buffer.pop();
     }
