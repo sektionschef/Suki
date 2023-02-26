@@ -182,9 +182,10 @@ function setup() {
   //   grid = new Grid(gridProfile);
 
   //   // Paper
-  //   paper = new Paper();
-  //   corny = new Corny();
-  //   edgePixel = new PixelGradient();
+  // paper = new Paper();
+
+  // corny = new Corny();
+  // edgePixel = new PixelGradient();
 
 
   //   // FEATURES
@@ -207,6 +208,20 @@ function setup() {
   //   }
 
   //   console.log(window.$fxhashFeatures);
+
+
+  BrushData = {
+    noiseColor: color("#585858"),
+    size: 10,
+    strokeSize: 1,
+    fillColor: color("#a85d5d"),
+    strokeColor: color("#5d84a8"),
+    curveSexyness: 1,
+    pixelDistort: 10,
+    type: "NONO",
+  }
+
+  brush = new Brush(BrushData);
 }
 
 
@@ -216,23 +231,37 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("pink"));
-
-  beginShape();
-  vertex(30, 20);
-  bezierVertex(80, 0, 80, 75, 30, 75);
-  bezierVertex(50, 80, 60, 25, 30, 20);
-  endShape();
-
-
-
+  background(color("#ebebeb"));
 
   //   background(PALETTE.paper);
 
   //   // PAPER
-  //   paper.show();
-  //   corny.show();
-  //   edgePixel.show();
+  // paper.show();
+
+  // corny.show();
+  // edgePixel.show();
+
+
+  let offset = 10;
+
+  for (var i = 0; i < 5; i++) {
+    // console.log(i);
+
+    fill(200, 10);
+    stroke(100);
+    strokeWeight(1);
+    // noStroke();
+
+    beginShape();
+    vertex(30 + getRandomFromInterval(-offset, offset), 20 + getRandomFromInterval(-offset, offset));
+    bezierVertex(80 + getRandomFromInterval(-offset, offset), 0 + getRandomFromInterval(-offset, offset), 80 + getRandomFromInterval(-offset, offset), 75 + getRandomFromInterval(-offset, offset), 30 + getRandomFromInterval(-offset, offset), 75 + getRandomFromInterval(-offset, offset));
+    bezierVertex(50 + getRandomFromInterval(-offset, offset), 80 + getRandomFromInterval(-offset, offset), 60 + getRandomFromInterval(-offset, offset), 25 + getRandomFromInterval(-offset, offset), 30 + getRandomFromInterval(-offset, offset), 20 + getRandomFromInterval(-offset, offset));
+    endShape();
+  }
+
+
+  brush.show();
+
 
   //   // chosenPattern.show();
   //   // chosenPattern.showBrushTemplates();
@@ -287,8 +316,8 @@ function draw() {
   //   // showFxhashFeatures();
 
 
-  fxpreview();
-  noLoop();
+  // fxpreview();
+  // noLoop();
 
   //   if (BULK) {
   //     exportCanvas(canvas);

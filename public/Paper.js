@@ -1,26 +1,20 @@
 class Paper {
     constructor() {
-        this.width = SHORTSIDE * 0.2; // 800
-        this.height = SHORTSIDE * 0.2;  // 800
+        this.width = 200; // 800
+        this.height = 200;  // 800
 
-        // this.strokeColor = distortColorSuperNew(color("#8a8a8a"), 30);
-        this.strokeColorBase = color(PALETTE.paper);
-        // this.strokeColorBase = color(
-        //     red(PALETTE.paper) + 30,
-        //     green(PALETTE.paper) + 30,
-        //     blue(PALETTE.paper) + 30,
-        //     alpha(PALETTE.paper),
-        // );
+        this.strokeColorBase = color("#dadada");
+
         this.strokeColorOffset = 10;
-        this.strokeSize = 1; // 1;
-        this.lineLength = 25; // 25; // 5 +2
-        this.lineCount = 0.002 * TOTALPIXEL; // 10000
+        this.strokeSize = 0.3; // 1;
+        this.lineLength = 15; // 25; // 5 +2
+        this.lineCount = 7000;
 
         this.xCount = Math.ceil(width / this.width);
         this.yCount = Math.ceil(height / this.height);
 
-        this.buffer = createGraphics(this.width, this.height);
-        this.masterBuffer = createGraphics(width, height);
+        this.buffer = createGraphics(this.width, this.height, SVG);
+        this.masterBuffer = createGraphics(width, height, SVG);
         this.create();
 
         this.createMasterBuffer();
@@ -73,8 +67,9 @@ class Paper {
             for (var x = 0; x < this.xCount; x++) {
                 this.masterBuffer.push();
                 // this.masterBuffer.blendMode(OVERLAY);
-                this.masterBuffer.translate(x * this.buffer.width, y * this.buffer.height);
-                this.masterBuffer.image(this.buffer, 0, 0);
+                // this.masterBuffer.translate(x * this.buffer.width, y * this.buffer.height);
+                // this.masterBuffer.image(this.buffer, 0, 0);
+                this.masterBuffer.image(this.buffer, x * this.buffer.width, y * this.buffer.height);
                 this.masterBuffer.pop();
             }
         }
