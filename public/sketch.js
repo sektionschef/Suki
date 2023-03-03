@@ -127,71 +127,71 @@ function setup() {
     canvas.parent("canvasHolderPlain");
   }
 
-  sissi = new BrushstrokeSystem(
-    {
-      originA: createVector(width / 10 * 2, height / 10 * 4),  // left, start of brushstrokes
-      targetA: createVector(width / 10 * 6, height / 10 * 4), // left, end of brusshtrokes
-      originB: createVector(width / 10 * 2, height / 10 * 2), // right, start of brushstrokes
-      targetB: createVector(width / 10 * 6, height / 10 * 2), // right, end of brushstrokes
-      orientation: "x",
-      brushCount: 50,
-      noiseIncrement: getRandomFromList([0.01, 0.06, 0.6, 0.9]),
-      DEBUG: false,
-      maxSpeedMin: Math.round(getRandomFromInterval(5, 15)),
-      maxSpeedMax: Math.round(getRandomFromInterval(15, 30)),
-      minSpeed: 2,
-      maxForce: 2,
-      slowRadius: 50,
-      finishedRadius: 40,
-      targetBdistList: [13, 15, 17],
-      targetBDirectionList: getRandomFromList([[-1, 1]]),
-      basicSizeMin: 1,
-      basicSizeMax: 1.5,
-      noiseColor: [color(PALETTE.darkColor), color(PALETTE.lightColor)],
-      brushTemplateCount: 10,
-      brushTemplateSize: 50,
-      brushTemplateStrokeSize: 1,
-      brushTemplateFillColor: color("#8f0b0b1e"),
-      brushTemplateFillColorDistort: 20,
-      // brushTemplateStrokeColor: color(PALETTE.darkColor),
-      // brushTemplateStrokeColorDistort: 20,
-      brushCurveSexyness: 1,
-      brushPixelDistort: 50,
-    }
-  );
+  // sissi = new BrushstrokeSystem(
+  //   {
+  //     originA: createVector(width / 10 * 2, height / 10 * 4),  // left, start of brushstrokes
+  //     targetA: createVector(width / 10 * 6, height / 10 * 4), // left, end of brusshtrokes
+  //     originB: createVector(width / 10 * 2, height / 10 * 2), // right, start of brushstrokes
+  //     targetB: createVector(width / 10 * 6, height / 10 * 2), // right, end of brushstrokes
+  //     orientation: "x",
+  //     brushCount: 50,
+  //     noiseIncrement: getRandomFromList([0.01, 0.06, 0.6, 0.9]),
+  //     DEBUG: false,
+  //     maxSpeedMin: Math.round(getRandomFromInterval(5, 15)),
+  //     maxSpeedMax: Math.round(getRandomFromInterval(15, 30)),
+  //     minSpeed: 2,
+  //     maxForce: 2,
+  //     slowRadius: 50,
+  //     finishedRadius: 40,
+  //     targetBdistList: [13, 15, 17],
+  //     targetBDirectionList: getRandomFromList([[-1, 1]]),
+  //     basicSizeMin: 1,
+  //     basicSizeMax: 1.5,
+  //     noiseColor: [color(PALETTE.darkColor), color(PALETTE.lightColor)],
+  //     brushTemplateCount: 10,
+  //     brushTemplateSize: 50,
+  //     brushTemplateStrokeSize: 1,
+  //     brushTemplateFillColor: color("#8f0b0b1e"),
+  //     brushTemplateFillColorDistort: 20,
+  //     // brushTemplateStrokeColor: color(PALETTE.darkColor),
+  //     // brushTemplateStrokeColorDistort: 20,
+  //     brushCurveSexyness: 1,
+  //     brushPixelDistort: 50,
+  //   }
+  // );
 
-  franzl = new BrushstrokeSystem(
-    {
-      originA: createVector(width / 10 * 1, height / 10 * 6),  // left, start of brushstrokes
-      targetA: createVector(width / 10 * 5, height / 10 * 6), // left, end of brusshtrokes
-      originB: createVector(width / 10 * 1, height / 10 * 4), // right, start of brushstrokes
-      targetB: createVector(width / 10 * 5, height / 10 * 4), // right, end of brushstrokes
-      orientation: "x",
-      brushCount: 50,
-      noiseIncrement: getRandomFromList([0.01, 0.06, 0.6, 0.9]),
-      DEBUG: false,
-      maxSpeedMin: Math.round(getRandomFromInterval(5, 15)),
-      maxSpeedMax: Math.round(getRandomFromInterval(15, 30)),
-      minSpeed: 2,
-      maxForce: 2,
-      slowRadius: 50,
-      finishedRadius: 40,
-      targetBdistList: [5, 10, 13],
-      targetBDirectionList: getRandomFromList([[-1, 1]]),
-      basicSizeMin: 1,
-      basicSizeMax: 1.5,
-      noiseColor: [color(PALETTE.darkColor), color(PALETTE.lightColor)],
-      brushTemplateCount: 10,
-      brushTemplateSize: 50,
-      brushTemplateStrokeSize: 1,
-      brushTemplateFillColor: color("#230b8f1e"),
-      brushTemplateFillColorDistort: 20,
-      // brushTemplateStrokeColor: color(PALETTE.darkColor),
-      // brushTemplateStrokeColorDistort: 20,
-      brushCurveSexyness: 1,
-      brushPixelDistort: 50,
-    }
-  );
+  // franzl = new BrushstrokeSystem(
+  //   {
+  //     originA: createVector(width / 10 * 1, height / 10 * 6),  // left, start of brushstrokes
+  //     targetA: createVector(width / 10 * 5, height / 10 * 6), // left, end of brusshtrokes
+  //     originB: createVector(width / 10 * 1, height / 10 * 4), // right, start of brushstrokes
+  //     targetB: createVector(width / 10 * 5, height / 10 * 4), // right, end of brushstrokes
+  //     orientation: "x",
+  //     brushCount: 50,
+  //     noiseIncrement: getRandomFromList([0.01, 0.06, 0.6, 0.9]),
+  //     DEBUG: false,
+  //     maxSpeedMin: Math.round(getRandomFromInterval(5, 15)),
+  //     maxSpeedMax: Math.round(getRandomFromInterval(15, 30)),
+  //     minSpeed: 2,
+  //     maxForce: 2,
+  //     slowRadius: 50,
+  //     finishedRadius: 40,
+  //     targetBdistList: [5, 10, 13],
+  //     targetBDirectionList: getRandomFromList([[-1, 1]]),
+  //     basicSizeMin: 1,
+  //     basicSizeMax: 1.5,
+  //     noiseColor: [color(PALETTE.darkColor), color(PALETTE.lightColor)],
+  //     brushTemplateCount: 10,
+  //     brushTemplateSize: 50,
+  //     brushTemplateStrokeSize: 1,
+  //     brushTemplateFillColor: color("#230b8f1e"),
+  //     brushTemplateFillColorDistort: 20,
+  //     // brushTemplateStrokeColor: color(PALETTE.darkColor),
+  //     // brushTemplateStrokeColorDistort: 20,
+  //     brushCurveSexyness: 1,
+  //     brushPixelDistort: 50,
+  //   }
+  // );
 
   //   brushType = getRandomFromList(["Stroke Noise", "Gradient", "Noise", "Fill Noise", "Only Perlin", "Combined Perlin"]);
 
@@ -314,8 +314,8 @@ function draw() {
 
 
   // sissi.showBrushTemplates();
-  franzl.show();
-  sissi.show();
+  // franzl.show();
+  // sissi.show();
 
 
 

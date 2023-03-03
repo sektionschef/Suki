@@ -13,7 +13,7 @@ class Brush {
 
         this.fibres = [];
 
-        this.fillColor = getRandomFromList([color("#92151533"), color("#03136b33")])
+        this.fillColor = getRandomFromList([color("#92151533"), color("#74161633"), color("#860a0a33"), color("#aa121233")])
 
         for (var i = 0; i < this.fibreCount; i++) {
             this.fibres.push(new Fibre({
