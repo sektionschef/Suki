@@ -7,8 +7,8 @@ class Grid {
         this.spacing = data.spacing;
         this.countColumnOrRow = data.countColumnOrRow;
         this.bezierFactor = data.bezierFactor;
-        this.pattern = data.pattern.buffer;
-        this.pattern2 = data.pattern2.buffer;
+        // this.pattern = data.pattern.buffer;
+        // this.pattern2 = data.pattern2.buffer;
         this.backgroundNoise = data.backgroundNoise;
 
         if (data.whichLoopLevel == "last") {
@@ -65,22 +65,27 @@ class Grid {
         this.stripeLines = [];
 
 
-        this.buffer = createGraphics(width, height);
-        this.bufferNoise = createGraphics(width, height);
+        this.sInc = 0.1;
+        this.lInc = 0.03;
+
+
+        this.buffer = createGraphics(width, height, SVG);
+        this.bufferNoise = createGraphics(width, height, SVG);
 
         // dummy values for upper left and lower right corners
         this.totalA = createVector(this.buffer.width / 2, this.buffer.height / 2)
         this.totalC = createVector(this.buffer.width / 2, this.buffer.height / 2)
 
         this.createBoxes();
-        // this.showDebug();
-        this.createMask();
+        this.showDebug();
+
+        // this.createMask();
 
         // this.createBasicBase();
-        this.createComplexBase();
+        // this.createComplexBase();
 
-        this.drawNoise();
-        this.drawMask();
+        // this.drawNoise();
+        // this.drawMask();
 
         // extra loop outside of beginShape and endShape
         // this.createUpperLine();
@@ -90,7 +95,9 @@ class Grid {
     createBoxes() {
         var index = 0;
 
+        let loff = 0;
         for (var l = 0; l < (this.heightBoxCount); l++) {
+            let soff = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
 
                 // corners of the box
@@ -98,6 +105,8 @@ class Grid {
                 var B = p5.Vector.add(A, createVector(this.boxSize, 0));
                 var C = p5.Vector.add(A, createVector(this.boxSize, this.boxSize));
                 var D = p5.Vector.add(A, createVector(0, this.boxSize));
+
+                var noiseValue = noise(soff, loff);
 
                 // stops between corners
                 var ABStop1 = createVector(B.x + (A.x - B.x) / 4, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
@@ -126,9 +135,12 @@ class Grid {
                     "short": s,
                     "index": index,
                     "mask": false,
+                    "noiseValue": noiseValue,
                 })
                 index += 1;
+                soff += this.sInc;
             }
+            loff += this.lInc;
         }
         // console.log(this.heightBoxCount);
         // console.log(this.boxes);
@@ -147,23 +159,48 @@ class Grid {
         //     this.buffer.line(0, i * this.boxSize, width, i * this.boxSize);
         // }
 
+        let otto = 2;
 
         for (var i = 0; i < this.boxes.length; i++) {
             this.buffer.push();
             // this.buffer.noFill();
-            this.buffer.fill(random() * 255, 20)
+            // this.buffer.fill(random() * 255, 20)
+            // this.buffer.fill(this.boxes[i].noiseValue * 255, 255)
+
             // this.buffer.stroke(color("black"));
             // this.buffer.strokeWeight(1);
-            this.buffer.noStroke();
-            this.buffer.rectMode(CORNERS);
-            this.buffer.rect(
-                this.boxes[i].A.x,
-                this.boxes[i].A.y,
-                this.boxes[i].C.x,
-                this.boxes[i].C.y
-            );
+
+            // RECT
+            // this.buffer.noStroke();
+            // this.buffer.rectMode(CORNERS);
+            // this.buffer.rect(
+            //     this.boxes[i].A.x + getRandomFromInterval(-otto, otto),
+            //     this.boxes[i].A.y + getRandomFromInterval(-otto, otto),
+            //     this.boxes[i].C.x + getRandomFromInterval(-otto, otto),
+            //     this.boxes[i].C.y + getRandomFromInterval(-otto, otto)
+            // );
+
+            // CENTER INSTEAD OF A
+            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue * 30)
             this.buffer.pop();
         }
+    }
+
+    zigzag(centerX, centerY, loopCount) {
+
+        // this.buffer.noFill();
+        this.buffer.fill(getRandomFromList([color("#92151533"), color("#74161633"), color("#860a0a33"), color("#aa121233")]))
+        this.buffer.strokeWeight(0.5);
+        this.buffer.stroke(getRandomFromList([color("#921515"), color("#741616"), color("#860a0a"), color("#aa1212")]));
+
+        this.buffer.beginShape();
+        for (var i = 0; i < loopCount; i++) {
+
+            let otto = 10;
+            this.buffer.vertex(centerX + getRandomFromInterval(-otto, otto), centerY + getRandomFromInterval(-otto, otto));
+        }
+
+        this.buffer.endShape(CLOSE);
     }
 
     // select active boxes

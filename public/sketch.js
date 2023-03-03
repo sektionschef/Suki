@@ -233,19 +233,19 @@ function setup() {
   //   patternProfileY = { ...patternProfileX };
   //   patternProfileY.orientation = "y";
 
-  //   gridProfile = {
-  //     stripeOrientation: getRandomFromList(["x", "y"]),
-  //     countColumnOrRow: getRandomFromList([1, 2, 3, 4]),
-  //     bezierFactor: getRandomFromList([0.001, 0.005, 0.007]),
-  //     thickness: 1,
-  //     spacing: getRandomFromList([1, 2, 3]),
-  //     pattern: new BrushstrokeSystem(patternProfileX),
-  //     pattern2: new BrushstrokeSystem(patternProfileY),
-  //     backgroundNoise: new Noise(),
-  //     whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
-  //   }
+  gridProfile = {
+    stripeOrientation: getRandomFromList(["x", "y"]),
+    countColumnOrRow: getRandomFromList([1, 2, 3, 4]),
+    bezierFactor: getRandomFromList([0.001, 0.005, 0.007]),
+    thickness: 1,
+    spacing: getRandomFromList([1, 2, 3]),
+    // pattern: new BrushstrokeSystem(patternProfileX),
+    // pattern2: new BrushstrokeSystem(patternProfileY),
+    backgroundNoise: new Noise(),
+    whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
+  }
 
-  //   grid = new Grid(gridProfile);
+  grid = new Grid(gridProfile);
 
   //   // Paper
   // paper = new Paper();
@@ -316,6 +316,8 @@ function draw() {
   // sissi.showBrushTemplates();
   // franzl.show();
   // sissi.show();
+
+  grid.show();
 
 
 
