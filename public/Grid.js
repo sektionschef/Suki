@@ -188,19 +188,31 @@ class Grid {
 
     zigzag(centerX, centerY, loopCount) {
 
-        // this.buffer.noFill();
-        this.buffer.fill(getRandomFromList([color("#92151533"), color("#74161633"), color("#860a0a33"), color("#aa121233")]))
+        let center = createVector(centerX, centerY);
+
+        this.buffer.noFill();
+        // this.buffer.fill(getRandomFromList([color("#92151533"), color("#74161633"), color("#860a0a33"), color("#aa121233")]))
         this.buffer.strokeWeight(0.5);
         this.buffer.stroke(getRandomFromList([color("#921515"), color("#741616"), color("#860a0a"), color("#aa1212")]));
 
         this.buffer.beginShape();
         for (var i = 0; i < loopCount; i++) {
 
-            let otto = 10;
-            this.buffer.vertex(centerX + getRandomFromInterval(-otto, otto), centerY + getRandomFromInterval(-otto, otto));
+            let otto = 5;
+
+            // RANDOM Var
+            // this.buffer.vertex(centerX + getRandomFromInterval(-otto, otto), centerY + getRandomFromInterval(-otto, otto));
+
+            // ANGLE Var
+            let angle = getRandomFromInterval(0, 2);
+            let v = p5.Vector.fromAngle(angle);
+            v.setMag(10);
+
+            let adder = p5.Vector.add(center, v);
+            this.buffer.vertex(adder.x, adder.y);
         }
 
-        this.buffer.endShape(CLOSE);
+        this.buffer.endShape();
     }
 
     // select active boxes
