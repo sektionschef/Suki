@@ -162,8 +162,8 @@ class Grid {
 
     zigzag(centerX, centerY, noiseValue) {
 
-        let loopCountParam = 60;
-        let vertexLength = 50;
+        let loopCountParam = 40;
+        let vertexLength = 30;
         let strokeSize = 0.3;
         let angleMin = PI / 2;
         let angleMax = PI;

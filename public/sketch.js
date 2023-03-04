@@ -301,7 +301,7 @@ function draw() {
   // sissi.show();
 
   grid2.show();
-  // grid.show();
+  grid.show();
 
 
   //   // chosenPattern.show();
