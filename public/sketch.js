@@ -246,6 +246,7 @@ function setup() {
   }
 
   grid = new Grid(gridProfile);
+  grid2 = new Grid2(gridProfile);
 
   //   // Paper
   // paper = new Paper();
@@ -284,7 +285,8 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#ebebeb"));
+  // background(color("#ebebeb"));
+  background(color("#647279"));
 
   //   background(PALETTE.paper);
 
@@ -298,8 +300,8 @@ function draw() {
   // franzl.show();
   // sissi.show();
 
-  grid.show();
-
+  grid2.show();
+  // grid.show();
 
 
   //   // chosenPattern.show();

@@ -1,6 +1,6 @@
 // MARGIN IN BEIDE RICHTUNGEN, X UND Y
 
-class Grid {
+class Grid2 {
     constructor(data) {
         this.stripeOrientation = data.stripeOrientation;
         this.thickness = data.thickness;
@@ -162,13 +162,14 @@ class Grid {
 
     zigzag(centerX, centerY, noiseValue) {
 
-        let loopCountParam = 60;
-        let vertexLength = 50;
-        let strokeSize = 0.3;
-        let angleMin = PI / 2;
-        let angleMax = PI;
+        let loopCountParam = 10;
+        let vertexLength = 10;
+        let strokeSize = 3;
+        let angleMin = PI;
+        let angleMax = 2 * PI;
 
-        let colorList = [color("#bbd2c5"), color("#8fb3b4"), color("#8397a3"), color("#6b808b"), color("#536976"), color("#292e49")];
+        // let colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
+        let colorList = ["#90a4af", "#7e9099", "#6c7b83"];
 
         let center = createVector(centerX, centerY);
 
