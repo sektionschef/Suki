@@ -246,7 +246,7 @@ function setup() {
   }
 
   grid = new Grid(gridProfile);
-  grid2 = new Grid2(gridProfile);
+  // grid2 = new Grid2(gridProfile);
 
   //   // Paper
   // paper = new Paper();
@@ -286,7 +286,7 @@ function draw() {
   }
 
   // background(color("#ebebeb"));
-  background(color("#647279"));
+  background(color("#c0c0c0"));
 
   //   background(PALETTE.paper);
 
@@ -300,7 +300,7 @@ function draw() {
   // franzl.show();
   // sissi.show();
 
-  grid2.show();
+  // grid2.show();
   grid.show();
 
 

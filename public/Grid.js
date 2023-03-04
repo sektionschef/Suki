@@ -66,8 +66,8 @@ class Grid {
 
 
         this.sInc = 0.1;
-        this.lInc = 0.01;
-        this.zInc = 0.005;
+        this.lInc = 0.03;
+        this.zInc = 0.05;
 
 
         this.buffer = createGraphics(width, height, SVG);
@@ -150,25 +150,72 @@ class Grid {
     }
 
     draw() {
+
+        let offset = 0;
+        let loopCountParam = 0;
+        let vertexLength = 0;
+        let strokeSize = 0;
+        let angleMin = 0;
+        let angleMax = 0;
+        let colorList = [];
+
         for (var i = 0; i < this.boxes.length; i++) {
             this.buffer.push();
 
+            offset = getRandomFromInterval(-10, 10);
+            loopCountParam = 20;
+            vertexLength = 20;
+            strokeSize = 3;
+            angleMin = 0;
+            angleMax = 2 * PI;
 
-            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue)
+            // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
+            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2", "#ffffff00"];
+
+            this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+
+            this.buffer.pop();
+        }
+
+
+
+        for (var i = 0; i < this.boxes.length; i++) {
+            this.buffer.push();
+
+            offset = getRandomFromInterval(-5, 5);
+            loopCountParam = 10;
+            vertexLength = 10;
+            strokeSize = 2;
+            angleMin = 0;
+            angleMax = PI;
+
+            // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
+            colorList = ["#90a4af", "#7e9099", "#6c7b83", "#ffffff00"];
+
+            this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+
+            this.buffer.pop();
+        }
+
+        for (var i = 0; i < this.boxes.length; i++) {
+            this.buffer.push();
+
+            offset = getRandomFromInterval(-2, 2);  // 5
+            loopCountParam = 50;
+            vertexLength = 20;
+            strokeSize = 0.2;
+            angleMin = 0;
+            angleMax = PI;
+            // colorList = [color("#bbd2c5"), color("#8fb3b4"), color("#8397a3"), color("#6b808b"), color("#536976"), color("#292e49")];
+            colorList = ["#43525a", "#4b5a61", "#43555f", "#ffffff00"];
+
+            this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
             this.buffer.pop();
         }
     }
 
-    zigzag(centerX, centerY, noiseValue) {
-
-        let loopCountParam = 40;
-        let vertexLength = 30;
-        let strokeSize = 0.3;
-        let angleMin = PI / 2;
-        let angleMax = PI;
-
-        let colorList = [color("#bbd2c5"), color("#8fb3b4"), color("#8397a3"), color("#6b808b"), color("#536976"), color("#292e49")];
+    zigzag(centerX, centerY, noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList) {
 
         let center = createVector(centerX, centerY);
 
@@ -180,8 +227,8 @@ class Grid {
             // for (var i = 0; i < 20; i++) {
 
             let colorSelect = Math.round(noiseValue * (colorList.length - 1));
-            // console.log(colorSelect);
-            this.buffer.stroke(colorList[colorSelect]);
+            let strokeColor = distortColorSuperNew(colorList[colorSelect], 10);
+            this.buffer.stroke(strokeColor);
 
             let angle = getRandomFromInterval(angleMin, angleMax);
             let v = p5.Vector.fromAngle(angle);
