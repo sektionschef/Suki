@@ -100,6 +100,8 @@ class Grid {
             let soff = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
 
+                var center = createVector(this.widthMargin + s * this.boxSize + this.boxSize / 2, this.heightMargin + l * this.boxSize + this.boxSize / 2);
+
                 // corners of the box
                 var A = createVector(this.widthMargin + s * this.boxSize, this.heightMargin + l * this.boxSize);
                 var B = p5.Vector.add(A, createVector(this.boxSize, 0));
@@ -109,28 +111,29 @@ class Grid {
                 var noiseValue = noise(soff, loff);
 
                 // stops between corners
-                var ABStop1 = createVector(B.x + (A.x - B.x) / 4, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
-                var ABStop2 = createVector(B.x + (A.x - B.x) / 4 * 3, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
-                var BCStop1 = createVector(C.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), C.y + (B.y - C.y) / 4);
-                var BCStop2 = createVector(C.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), C.y + (B.y - C.y) / 4 * 3);
-                var CDStop1 = createVector(D.x + (C.x - D.x) / 4 * 3, D.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
-                var CDStop2 = createVector(D.x + (C.x - D.x) / 4, D.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
-                var DAStop1 = createVector(A.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), A.y + (D.y - A.y) / 4 * 3);
-                var DAStop2 = createVector(A.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), A.y + (D.y - A.y) / 4);
+                // var ABStop1 = createVector(B.x + (A.x - B.x) / 4, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
+                // var ABStop2 = createVector(B.x + (A.x - B.x) / 4 * 3, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
+                // var BCStop1 = createVector(C.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), C.y + (B.y - C.y) / 4);
+                // var BCStop2 = createVector(C.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), C.y + (B.y - C.y) / 4 * 3);
+                // var CDStop1 = createVector(D.x + (C.x - D.x) / 4 * 3, D.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
+                // var CDStop2 = createVector(D.x + (C.x - D.x) / 4, D.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
+                // var DAStop1 = createVector(A.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), A.y + (D.y - A.y) / 4 * 3);
+                // var DAStop2 = createVector(A.x + getRandomFromInterval(-this.bezierOffset, this.bezierOffset), A.y + (D.y - A.y) / 4);
 
                 this.boxes.push({
+                    "center": center,
                     "A": A,
                     "B": B,
                     "C": C,
                     "D": D,
-                    "ABStop1": ABStop1,
-                    "ABStop2": ABStop2,
-                    "BCStop1": BCStop1,
-                    "BCStop2": BCStop2,
-                    "CDStop1": CDStop1,
-                    "CDStop2": CDStop2,
-                    "DAStop1": DAStop1,
-                    "DAStop2": DAStop2,
+                    // "ABStop1": ABStop1,
+                    // "ABStop2": ABStop2,
+                    // "BCStop1": BCStop1,
+                    // "BCStop2": BCStop2,
+                    // "CDStop1": CDStop1,
+                    // "CDStop2": CDStop2,
+                    // "DAStop1": DAStop1,
+                    // "DAStop2": DAStop2,
                     "long": l,
                     "short": s,
                     "index": index,
@@ -180,13 +183,15 @@ class Grid {
             //     this.boxes[i].C.y + getRandomFromInterval(-otto, otto)
             // );
 
-            // CENTER INSTEAD OF A
-            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue * 30)
+            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue)
             this.buffer.pop();
         }
     }
 
     zigzag(centerX, centerY, loopCount) {
+
+        let loopCountParam = 20;
+        let vertexLength = 10;
 
         let center = createVector(centerX, centerY);
 
@@ -196,7 +201,7 @@ class Grid {
         this.buffer.stroke(getRandomFromList([color("#921515"), color("#741616"), color("#860a0a"), color("#aa1212")]));
 
         this.buffer.beginShape();
-        for (var i = 0; i < loopCount; i++) {
+        for (var i = 0; i < loopCount * loopCountParam; i++) {
 
             let otto = 5;
 
@@ -204,9 +209,9 @@ class Grid {
             // this.buffer.vertex(centerX + getRandomFromInterval(-otto, otto), centerY + getRandomFromInterval(-otto, otto));
 
             // ANGLE Var
-            let angle = getRandomFromInterval(0, 2);
+            let angle = getRandomFromInterval(0, 3);
             let v = p5.Vector.fromAngle(angle);
-            v.setMag(10);
+            v.setMag(vertexLength);
 
             let adder = p5.Vector.add(center, v);
             this.buffer.vertex(adder.x, adder.y);
