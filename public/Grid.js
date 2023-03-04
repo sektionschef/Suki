@@ -69,6 +69,10 @@ class Grid {
         this.lInc = 0.03;
         this.zInc = 0.05;
 
+        this.sInc2 = 0.01;
+        this.lInc2 = 0.01;
+        this.zInc2 = 0.5;
+
 
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
@@ -99,8 +103,11 @@ class Grid {
 
         let loff = 0;
         let zoff = 0;
+        let loff2 = 0;
+        let zoff2 = 0;
         for (var l = 0; l < (this.heightBoxCount); l++) {
             let soff = 0;
+            let soff2 = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
 
                 var center = createVector(this.widthMargin + s * this.boxSize + this.boxSize / 2, this.heightMargin + l * this.boxSize + this.boxSize / 2);
@@ -113,6 +120,7 @@ class Grid {
 
                 // var noiseValue = noise(soff, loff);
                 var noiseValue = noise(soff, loff, zoff);
+                var noiseValue2 = noise(soff2, loff2, zoff2);
 
                 this.boxes.push({
                     "center": center,
@@ -125,12 +133,16 @@ class Grid {
                     "index": index,
                     "mask": false,
                     "noiseValue": noiseValue,
+                    "noiseValue2": noiseValue2,
                 })
                 index += 1;
                 soff += this.sInc;
+                soff += this.sInc2;
             }
             loff += this.lInc;
             zoff += this.zInc;
+            loff2 += this.lInc2;
+            zoff2 += this.zInc2;
         }
 
     }
@@ -170,7 +182,7 @@ class Grid {
             angleMax = 2 * PI;
 
             // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
-            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2", "#ffffff00", "#ffffff00"];
+            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
@@ -190,7 +202,7 @@ class Grid {
             angleMax = PI;
 
             // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
-            colorList = ["#90a4af", "#7e9099", "#6c7b83", "#ffffff00", "#ffffff00"];
+            colorList = ["#90a4af", "#7e9099", "#6c7b83"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
@@ -207,7 +219,7 @@ class Grid {
             angleMin = 0;
             angleMax = PI;
             // colorList = [color("#bbd2c5"), color("#8fb3b4"), color("#8397a3"), color("#6b808b"), color("#536976"), color("#292e49")];
-            colorList = ["#43525a", "#4b5a61", "#43555f", "#ffffff00", "#ffffff00"];
+            colorList = ["#43525a", "#4b5a61", "#43555f"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
