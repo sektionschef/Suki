@@ -300,6 +300,15 @@ function draw() {
   // franzl.show();
   // sissi.show();
 
+  push();
+  strokeWeight(0.5);
+  stroke(color("#000000"));
+  let disty = 10
+  for (var s = 0; s < (width / disty + 1); s++) {
+    line(s * disty, 0, s * disty, height);
+  }
+  pop();
+
   // grid2.show();
   grid.show();
 
