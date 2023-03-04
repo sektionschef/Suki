@@ -170,7 +170,7 @@ class Grid {
             angleMax = 2 * PI;
 
             // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
-            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2", "#ffffff00"];
+            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2", "#ffffff00", "#ffffff00"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
@@ -190,7 +190,7 @@ class Grid {
             angleMax = PI;
 
             // colorList = ["#b4cddb", "#a2b9c5", "#90a4af", "#7e9099", "#6c7b83", "#5a676e", "#485258"];
-            colorList = ["#90a4af", "#7e9099", "#6c7b83", "#ffffff00"];
+            colorList = ["#90a4af", "#7e9099", "#6c7b83", "#ffffff00", "#ffffff00"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 
@@ -207,7 +207,7 @@ class Grid {
             angleMin = 0;
             angleMax = PI;
             // colorList = [color("#bbd2c5"), color("#8fb3b4"), color("#8397a3"), color("#6b808b"), color("#536976"), color("#292e49")];
-            colorList = ["#43525a", "#4b5a61", "#43555f", "#ffffff00"];
+            colorList = ["#43525a", "#4b5a61", "#43555f", "#ffffff00", "#ffffff00"];
 
             this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
 

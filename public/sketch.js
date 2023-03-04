@@ -302,7 +302,7 @@ function draw() {
 
   push();
   strokeWeight(0.5);
-  stroke(color("#000000"));
+  stroke(color("#4e4e4e"));
   let disty = 10
   for (var s = 0; s < (width / disty + 1); s++) {
     line(s * disty, 0, s * disty, height);
