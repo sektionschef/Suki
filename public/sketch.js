@@ -294,25 +294,6 @@ function draw() {
   // corny.show();
   // edgePixel.show();
 
-
-  let offset = 10;
-
-  for (var i = 0; i < 5; i++) {
-    // console.log(i);
-
-    fill(200, 10);
-    stroke(100);
-    strokeWeight(1);
-    // noStroke();
-
-    beginShape();
-    vertex(30 + getRandomFromInterval(-offset, offset), 20 + getRandomFromInterval(-offset, offset));
-    bezierVertex(80 + getRandomFromInterval(-offset, offset), 0 + getRandomFromInterval(-offset, offset), 80 + getRandomFromInterval(-offset, offset), 75 + getRandomFromInterval(-offset, offset), 30 + getRandomFromInterval(-offset, offset), 75 + getRandomFromInterval(-offset, offset));
-    bezierVertex(50 + getRandomFromInterval(-offset, offset), 80 + getRandomFromInterval(-offset, offset), 60 + getRandomFromInterval(-offset, offset), 25 + getRandomFromInterval(-offset, offset), 30 + getRandomFromInterval(-offset, offset), 20 + getRandomFromInterval(-offset, offset));
-    endShape();
-  }
-
-
   // sissi.showBrushTemplates();
   // franzl.show();
   // sissi.show();

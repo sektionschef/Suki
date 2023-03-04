@@ -67,6 +67,7 @@ class Grid {
 
         this.sInc = 0.1;
         this.lInc = 0.03;
+        this.zInc = 0.05;
 
 
         this.buffer = createGraphics(width, height, SVG);
@@ -96,6 +97,7 @@ class Grid {
         var index = 0;
 
         let loff = 0;
+        let zoff = 0;
         for (var l = 0; l < (this.heightBoxCount); l++) {
             let soff = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
@@ -109,6 +111,7 @@ class Grid {
                 var D = p5.Vector.add(A, createVector(0, this.boxSize));
 
                 var noiseValue = noise(soff, loff);
+                var noiseValue2 = noise(soff, loff, zoff);
 
                 // stops between corners
                 // var ABStop1 = createVector(B.x + (A.x - B.x) / 4, B.y + getRandomFromInterval(-this.bezierOffset, this.bezierOffset));
@@ -139,11 +142,13 @@ class Grid {
                     "index": index,
                     "mask": false,
                     "noiseValue": noiseValue,
+                    "noiseValue2": noiseValue2,
                 })
                 index += 1;
                 soff += this.sInc;
             }
             loff += this.lInc;
+            zoff += this.zInc;
         }
         // console.log(this.heightBoxCount);
         // console.log(this.boxes);
@@ -162,56 +167,43 @@ class Grid {
         //     this.buffer.line(0, i * this.boxSize, width, i * this.boxSize);
         // }
 
-        let otto = 2;
+
 
         for (var i = 0; i < this.boxes.length; i++) {
             this.buffer.push();
-            // this.buffer.noFill();
-            // this.buffer.fill(random() * 255, 20)
-            // this.buffer.fill(this.boxes[i].noiseValue * 255, 255)
 
-            // this.buffer.stroke(color("black"));
-            // this.buffer.strokeWeight(1);
 
-            // RECT
-            // this.buffer.noStroke();
-            // this.buffer.rectMode(CORNERS);
-            // this.buffer.rect(
-            //     this.boxes[i].A.x + getRandomFromInterval(-otto, otto),
-            //     this.boxes[i].A.y + getRandomFromInterval(-otto, otto),
-            //     this.boxes[i].C.x + getRandomFromInterval(-otto, otto),
-            //     this.boxes[i].C.y + getRandomFromInterval(-otto, otto)
-            // );
+            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue, this.boxes[i].noiseValue2)
 
-            this.zigzag(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].noiseValue)
             this.buffer.pop();
         }
     }
 
-    zigzag(centerX, centerY, loopCount) {
+    zigzag(centerX, centerY, noiseValue, noiseValue2) {
 
         let loopCountParam = 20;
-        let vertexLength = 10;
+        let vertexLength = 20;
+        let strokeSize = 0.5;
+        let angleMin = 0;
+        let angleMax = 3;
+
+        let colorList = [color("#bbd2c5"), color("#536976"), color("#292e49")];
 
         let center = createVector(centerX, centerY);
 
         this.buffer.noFill();
-        // this.buffer.fill(getRandomFromList([color("#92151533"), color("#74161633"), color("#860a0a33"), color("#aa121233")]))
-        this.buffer.strokeWeight(0.5);
-        this.buffer.stroke(getRandomFromList([color("#921515"), color("#741616"), color("#860a0a"), color("#aa1212")]));
+        this.buffer.strokeWeight(strokeSize);
 
         this.buffer.beginShape();
-        for (var i = 0; i < loopCount * loopCountParam; i++) {
+        for (var i = 0; i < noiseValue2 * loopCountParam; i++) {
 
-            let otto = 5;
+            let colorSelect = Math.round(noiseValue2 * (colorList.length - 1));
+            // console.log(colorSelect);
+            this.buffer.stroke(colorList[colorSelect]);
 
-            // RANDOM Var
-            // this.buffer.vertex(centerX + getRandomFromInterval(-otto, otto), centerY + getRandomFromInterval(-otto, otto));
-
-            // ANGLE Var
-            let angle = getRandomFromInterval(0, 3);
+            let angle = getRandomFromInterval(angleMin, angleMax);
             let v = p5.Vector.fromAngle(angle);
-            v.setMag(vertexLength);
+            v.setMag(noiseValue2 * vertexLength);
 
             let adder = p5.Vector.add(center, v);
             this.buffer.vertex(adder.x, adder.y);
