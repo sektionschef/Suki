@@ -3,7 +3,7 @@
 class Grid {
     constructor(data) {
 
-        this.DEBUG = true;
+        this.DEBUG = false;
         this.paperMargin = SHORTSIDE * 0.05;
 
         this.shortBoxCount = 80; // 80 boxes on the shorter side
@@ -56,8 +56,7 @@ class Grid {
         if (this.DEBUG) {
             this.showDebug();
         }
-        // this.draw();
-        this.drawFirstLoop();
+        this.draw();
 
     }
 
@@ -142,16 +141,17 @@ class Grid {
     }
 
     drawFirstLoop() {
-        let offset = 0; getRandomFromInterval(-10, 10);
+
         let loopCountParam = 20;
         let vertexLength = 20;
         let strokeSize = 3;
         let angleMin = 0;
         let angleMax = 2 * PI;
-        let colorList = ["#bec9cf", "#a3b6c0", "#9db5c2"];
+        let colorList = ["#a5afb4", "#8598a1", "#7e939e"];
         let colorList2 = ["#818a8f", "#728088", "#677a85"];
 
         for (var i = 0; i < this.boxes.length; i++) {
+            let offset = getRandomFromInterval(-10, 10);
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -162,105 +162,6 @@ class Grid {
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
             }
-        }
-
-    }
-
-    draw() {
-
-        let offset = 0;
-        let loopCountParam = 0;
-        let vertexLength = 0;
-        let strokeSize = 0;
-        let angleMin = 0;
-        let angleMax = 0;
-        let colorList = [];
-        let colorList2 = [];
-        let colorList3 = [];
-        let colorListA = [];
-
-        for (var i = 0; i < this.boxes.length; i++) {
-
-            offset = getRandomFromInterval(-10, 10);
-            loopCountParam = 20;
-            vertexLength = 20;
-            strokeSize = 3;
-            angleMin = 0;
-            angleMax = 2 * PI;
-            colorList = ["#bec9cf", "#a3b6c0", "#9db5c2"];
-            colorList2 = ["#818a8f", "#728088", "#677a85"];
-
-            // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.2) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
-            } else {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
-            }
-        }
-
-
-        // this.buffer.push();
-        // this.buffer.strokeWeight(2);
-        // this.buffer.stroke(color("#323c41"));
-        // let disty = 40
-        // for (var s = 0; s < (width / disty + 1); s++) {
-        //     this.buffer.line(s * disty, 0, s * disty, height);
-        // }
-        // this.buffer.pop();
-
-
-        for (var i = 0; i < this.boxes.length; i++) {
-            offset = getRandomFromInterval(-5, 5);
-            loopCountParam = 10;
-            vertexLength = 10;
-            strokeSize = 2;
-            angleMin = 0;
-            angleMax = PI;
-            colorList = ["#90a4af", "#7e9099", "#6c7b83"];
-            colorList2 = ["#6f7f88", "#627179", "#4d585e"];
-
-            // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.3) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
-            } else {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
-            }
-        }
-
-        for (var i = 0; i < this.boxes.length; i++) {
-
-            offset = getRandomFromInterval(-2, 2);  // 5
-            loopCountParam = 50;
-            vertexLength = 20;
-            strokeSize = 0.2;
-            angleMin = 0;
-            angleMax = PI;
-            colorList = ["#43525a", "#4b5a61", "#43555f"];
-            colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
-
-            // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
-            } else {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
-            }
-        }
-
-        for (var i = 0; i < this.boxes.length; i++) {
-
-            offset = getRandomFromInterval(-2, 2);  // 5
-            loopCountParam = 10;
-            vertexLength = 20;
-            strokeSize = 0.4;
-            angleMin = PI;
-            angleMax = 2 * PI;
-            colorList = ["#43525a", "#4b5a61", "#43555f"];
-            colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
-            colorList3 = ["#d9e9f3", "#c3dbe7", "#c5e3f3"];
-
-            if (this.boxes[i].noiseValue3 <= 0.4 && fxrand() > 0.5) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList3);
-            }
 
             if (this.boxes[i].polygonA) {
                 // this.buffer.push();
@@ -269,20 +170,103 @@ class Grid {
                 // this.buffer.point(this.boxes[i].A.x, this.boxes[i].A.y);
                 // this.buffer.pop();
 
-                offset = getRandomFromInterval(-10, 10);
-                loopCountParam = 20;
-                vertexLength = 10;
-                strokeSize = 2;
-                angleMin = 0;
-                angleMax = 2 * PI;
-                colorListA = ["#496370", "#608ba1", "#6f8591"];
+                let offset = getRandomFromInterval(-10, 10);
+                let loopCountParam = 30;
+                let vertexLength = 20;
+                let strokeSize = 3;
+                let angleMin = 0;
+                let angleMax = 2 * PI;
+                let colorListA = ["#496370", "#608ba1", "#6f8591"];
 
                 if (fxrand() > 0.25) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
                 }
             }
         }
+    }
 
+    drawSecondLoop() {
+        let loopCountParam = 10;
+        let vertexLength = 10;
+        let strokeSize = 2;
+        let angleMin = 0;
+        let angleMax = PI;
+        let colorList = ["#90a4af", "#7e9099", "#6c7b83"];
+        let colorList2 = ["#6f7f88", "#7a8a92", "#586a74"];
+
+        for (var i = 0; i < this.boxes.length; i++) {
+            let offset = getRandomFromInterval(-5, 5);
+
+            if (this.drawSkipMargin(this.boxes[i])) {
+                continue;
+            }
+
+            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.3) {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
+            } else {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+            }
+        }
+    }
+
+    drawThirdLoop() {
+        let loopCountParam = 50;
+        let vertexLength = 20;
+        let strokeSize = 0.2;
+        let angleMin = 0;
+        let angleMax = PI;
+        let colorList = ["#43525a", "#4b5a61", "#43555f"];
+        let colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
+
+        for (var i = 0; i < this.boxes.length; i++) {
+
+            let offset = getRandomFromInterval(-2, 2);
+
+            if (this.drawSkipMargin(this.boxes[i])) {
+                continue;
+            }
+
+            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
+            } else {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+            }
+        }
+    }
+
+    drawFourthLoop() {
+
+        let loopCountParam = 10;
+        let vertexLength = 20;
+        let strokeSize = 0.5;
+        let angleMin = PI;
+        let angleMax = 2 * PI;
+        let colorList = ["#43525a", "#4b5a61", "#43555f"];
+        let colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
+        let colorList3 = ["#d9e9f3", "#c3dbe7", "#c5e3f3"];
+
+        for (var i = 0; i < this.boxes.length; i++) {
+
+            let offset = getRandomFromInterval(-2, 2);
+
+            if (this.drawSkipMargin(this.boxes[i])) {
+                continue;
+            }
+
+            if (this.boxes[i].noiseValue3 <= 0.5 && fxrand() > 0.5) {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList3);
+            }
+
+        }
+    }
+
+    draw() {
+
+        this.drawFirstLoop();
+        this.drawSecondLoop();
+        this.drawThirdLoop();
+
+        // this.drawFourthLoop();
     }
 
     zigzag(centerX, centerY, noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList) {
