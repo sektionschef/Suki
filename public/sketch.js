@@ -138,15 +138,15 @@ function setup() {
   }
 
   gridProfile = {
-    stripeOrientation: getRandomFromList(["x", "y"]),
-    countColumnOrRow: getRandomFromList([1, 2, 3, 4]),
-    bezierFactor: getRandomFromList([0.001, 0.005, 0.007]),
-    thickness: 1,
-    spacing: getRandomFromList([1, 2, 3]),
-    // pattern: new BrushstrokeSystem(patternProfileX),
-    // pattern2: new BrushstrokeSystem(patternProfileY),
-    backgroundNoise: new Noise(),
-    whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
+    // stripeOrientation: getRandomFromList(["x", "y"]),
+    // countColumnOrRow: getRandomFromList([1, 2, 3, 4]),
+    // bezierFactor: getRandomFromList([0.001, 0.005, 0.007]),
+    // thickness: 1,
+    // spacing: getRandomFromList([1, 2, 3]),
+    // // pattern: new BrushstrokeSystem(patternProfileX),
+    // // pattern2: new BrushstrokeSystem(patternProfileY),
+    // backgroundNoise: new Noise(),
+    // whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
   }
 
   grid = new Grid(gridProfile);
@@ -182,7 +182,7 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#c0c0c0"));
+  background(color("#eeeeee"));
 
   // STRIPES
   // push();
