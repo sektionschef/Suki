@@ -73,10 +73,6 @@ class Grid {
         this.lInc2 = 0.06;
         this.zInc2 = 0.2;
 
-        this.sInc3 = 0.2;
-        this.lInc3 = 0.2;
-        this.zInc3 = 0.2;
-
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
 
@@ -97,12 +93,9 @@ class Grid {
         let zoff = 0;
         let loff2 = 0;
         let zoff2 = 0;
-        let loff3 = 0;
-        let zoff3 = 0;
         for (var l = 0; l < (this.heightBoxCount); l++) {
             let soff = 0;
             let soff2 = 0;
-            let soff3 = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
 
                 var center = createVector(this.widthMargin + s * this.boxSize + this.boxSize / 2, this.heightMargin + l * this.boxSize + this.boxSize / 2);
@@ -116,7 +109,6 @@ class Grid {
                 // var noiseValue = noise(soff, loff);
                 var noiseValue = noise(soff, loff, zoff);
                 var noiseValue2 = noise(soff2, loff2, zoff2);
-                var noiseValue3 = noise(soff3, loff3, zoff3);
 
                 this.boxes.push({
                     "center": center,
@@ -130,19 +122,15 @@ class Grid {
                     "mask": false,
                     "noiseValue": noiseValue,
                     "noiseValue2": noiseValue2,
-                    "noiseValue3": noiseValue3,
                 })
                 index += 1;
                 soff += this.sInc;
                 soff2 += this.sInc2;
-                soff3 += this.sInc3;
             }
             loff += this.lInc;
             zoff += this.zInc;
             loff2 += this.lInc2;
             zoff2 += this.zInc2;
-            loff3 += this.lInc3;
-            zoff3 += this.zInc3;
         }
 
     }
@@ -171,9 +159,10 @@ class Grid {
         let angleMax = 0;
         let colorList = [];
         let colorList2 = [];
-        let colorList3 = [];
 
         for (var i = 0; i < this.boxes.length; i++) {
+            this.buffer.push();
+
             offset = getRandomFromInterval(-10, 10);
             loopCountParam = 20;
             vertexLength = 20;
@@ -184,25 +173,20 @@ class Grid {
             colorList2 = ["#818a8f", "#728088", "#677a85"];
 
             // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.2) {
+            if (this.boxes[i].noiseValue2 >= 0.5) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
             }
+
+            this.buffer.pop();
         }
 
 
-        // this.buffer.push();
-        // this.buffer.strokeWeight(2);
-        // this.buffer.stroke(color("#323c41"));
-        // let disty = 40
-        // for (var s = 0; s < (width / disty + 1); s++) {
-        //     this.buffer.line(s * disty, 0, s * disty, height);
-        // }
-        // this.buffer.pop();
-
 
         for (var i = 0; i < this.boxes.length; i++) {
+            this.buffer.push();
+
             offset = getRandomFromInterval(-5, 5);
             loopCountParam = 10;
             vertexLength = 10;
@@ -213,14 +197,16 @@ class Grid {
             colorList2 = ["#6f7f88", "#627179", "#4d585e"];
 
             // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.3) {
+            if (this.boxes[i].noiseValue2 >= 0.5) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
             }
+            this.buffer.pop();
         }
 
         for (var i = 0; i < this.boxes.length; i++) {
+            this.buffer.push();
 
             offset = getRandomFromInterval(-2, 2);  // 5
             loopCountParam = 50;
@@ -232,38 +218,20 @@ class Grid {
             colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
 
             // if (this.boxes[i].long >= 30 && this.boxes[i].long <= 60) {
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
+            if (this.boxes[i].noiseValue2 >= 0.5) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
             }
+            this.buffer.pop();
+
         }
-
-        for (var i = 0; i < this.boxes.length; i++) {
-
-            offset = getRandomFromInterval(-2, 2);  // 5
-            loopCountParam = 10;
-            vertexLength = 20;
-            strokeSize = 0.4;
-            angleMin = PI;
-            angleMax = 2 * PI;
-            colorList = ["#43525a", "#4b5a61", "#43555f"];
-            colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
-            colorList3 = ["#d9e9f3", "#c3dbe7", "#c5e3f3"];
-
-            if (this.boxes[i].noiseValue3 <= 0.4 && fxrand() > 0.5) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList3);
-            }
-        }
-
     }
 
     zigzag(centerX, centerY, noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList) {
 
-
         let center = createVector(centerX, centerY);
 
-        this.buffer.push();
         this.buffer.noFill();
         this.buffer.strokeWeight(strokeSize);
 
@@ -284,7 +252,6 @@ class Grid {
         }
 
         this.buffer.endShape();
-        this.buffer.pop();
     }
 
     show() {
