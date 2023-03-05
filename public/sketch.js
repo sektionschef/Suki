@@ -16,6 +16,16 @@ let YEAR = "2023";
 let PRICE = "ꜩ 2";
 let EDITIONS = "50 editions";
 
+
+let polyPoints = [
+  [84, 91],
+  [568, 219],
+  [221, 217],
+  [32, 92]
+]
+
+
+
 let CURRENTPIXELDENS = 1;
 
 function preload() {
@@ -364,6 +374,21 @@ function draw() {
 
   //   // DEBUG
   //   // showFxhashFeatures();
+
+
+  // DEBUG
+  // push();
+  // fill("white");
+  // noStroke();
+  // beginShape();
+  // curveVertex(polyPoints[0][0], polyPoints[0][1]);
+  // curveVertex(polyPoints[0][0], polyPoints[0][1]);
+  // curveVertex(polyPoints[1][0], polyPoints[1][1]);
+  // curveVertex(polyPoints[2][0], polyPoints[2][1]);
+  // curveVertex(polyPoints[3][0], polyPoints[3][1]);
+  // curveVertex(polyPoints[3][0], polyPoints[3][1]);
+  // endShape();
+  // pop();
 
 
   fxpreview();

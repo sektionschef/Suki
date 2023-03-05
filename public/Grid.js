@@ -254,6 +254,14 @@ class Grid {
             if (this.boxes[i].noiseValue3 <= 0.4 && fxrand() > 0.5) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList3);
             }
+
+            if (insidePolygon([this.boxes[i].A.x, this.boxes[i].A.y], polyPoints)) {
+                this.buffer.push();
+                this.buffer.stroke("red");
+                this.buffer.strokeWeight(3);
+                this.buffer.point(this.boxes[i].A.x, this.boxes[i].A.y);
+                this.buffer.pop();
+            }
         }
 
     }
