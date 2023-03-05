@@ -2,13 +2,37 @@
 
 class Grid {
     constructor(data) {
+        this.stripeOrientation = data.stripeOrientation;
+        this.thickness = data.thickness;
+        this.spacing = data.spacing;
+        this.countColumnOrRow = data.countColumnOrRow;
+        this.bezierFactor = data.bezierFactor;
+        // this.pattern = data.pattern.buffer;
+        // this.pattern2 = data.pattern2.buffer;
+        this.backgroundNoise = data.backgroundNoise;
 
-        this.DEBUG = true;
+        if (data.whichLoopLevel == "last") {
+            this.whichLoopLevel = 1;
+        } else if (data.whichLoopLevel == "secondlast") {
+            this.whichLoopLevel = 2;
+        } else {
+            this.whichLoopLevel = 3;
+        }
+
+        this.DEBUG = false;
         this.paperMargin = SHORTSIDE * 0.05;
+        this.sizeStripeMin = 15;  // minimum length of stripe, in boxes
+        // for x
+        this.paddingHeightCountMin = 5;  // at least x boxes
+        this.paddingHeightCountMax = 5;
+        // for y
+        this.paddingWidthCountMin = 5;
+        this.paddingWidthCountMax = 5;
 
         this.shortBoxCount = 80; // 80 boxes on the shorter side
         this.boxSize = SHORTSIDE / this.shortBoxCount;
         this.longBoxCount = Math.floor(LONGSIDE / this.boxSize);
+        this.bezierOffset = this.bezierFactor * SHORTSIDE;
 
         // there should be no margin
         this.shortMargin = SHORTSIDE % this.boxSize;
@@ -31,6 +55,9 @@ class Grid {
             this.heightMargin = this.shortMargin;
         }
 
+        // length of stripe
+        this.sizeStripe = Math.floor(getRandomFromInterval(this.sizeStripeMin, this.shortBoxCount / this.countColumnOrRow - this.sizeStripeMin));
+
         this.columns = new Set();
         this.rows = new Set();
         this.boxes = [];
@@ -52,11 +79,13 @@ class Grid {
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
 
+        // dummy values for upper left and lower right corners
+        this.totalA = createVector(this.buffer.width / 2, this.buffer.height / 2)
+        this.totalC = createVector(this.buffer.width / 2, this.buffer.height / 2)
+
         this.createBoxes();
-        if (this.DEBUG) {
-            this.showDebug();
-        }
-        // this.draw();
+        // this.showDebug();
+        this.draw();
 
     }
 
@@ -69,7 +98,6 @@ class Grid {
         let zoff2 = 0;
         let loff3 = 0;
         let zoff3 = 0;
-
         for (var l = 0; l < (this.heightBoxCount); l++) {
             let soff = 0;
             let soff2 = 0;
@@ -122,17 +150,17 @@ class Grid {
     }
 
     showDebug() {
-        this.buffer.push();
-        this.buffer.noFill();
-        this.buffer.strokeWeight(0.1);
-        this.buffer.stroke("black");
-        this.buffer.rectMode(CORNERS);
 
-        for (var i = 0; i < this.boxes.length; i++) {
-            this.buffer.rect(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].C.x, this.boxes[i].C.y);
-        }
-        this.buffer.pop();
+        // view cols and rows
+        // for (var i = 0; i < (this.widthBoxCount + 1); i++) {
+        //     this.buffer.strokeWeight(5);
+        //     this.buffer.line(i * this.boxSize, 0, i * this.boxSize, height);
+        // }
 
+        // for (var i = 0; i < (this.heightBoxCount + 1); i++) {
+        //     this.buffer.strokeWeight(5);
+        //     this.buffer.line(0, i * this.boxSize, width, i * this.boxSize);
+        // }
     }
 
     draw() {
