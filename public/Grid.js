@@ -172,7 +172,8 @@ class Grid {
                 let strokeSize = 3;
                 let angleMin = 0;
                 let angleMax = 2 * PI;
-                let colorListA = ["#5a717c", "#4b6e81", "#436579"];
+                // let colorListA = ["#5a717c", "#4b6e81", "#436579"];
+                let colorListA = ["#bec9ce", "#9db3bd", "#93acb9"];
 
                 if (fxrand() > 0.05) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
@@ -186,7 +187,7 @@ class Grid {
                 let strokeSize = 3;
                 let angleMin = 0;
                 let angleMax = 2 * PI;
-                let colorListA = ["#7c685a"];
+                let colorListA = ["#808f97", "#667b85", "#5f7885"];
                 // let colorListA = ["#5a717c", "#4b6e81", "#436579"];
 
                 if (fxrand() > 0.05) {
@@ -226,7 +227,8 @@ class Grid {
                 let strokeSize = 1;
                 let angleMin = PI;
                 let angleMax = 2 * PI;
-                let colorListA = ["#39505c", "#4b768b", "#5c7583"];
+                // let colorListA = ["#39505c", "#4b768b", "#5c7583"];
+                let colorListA = ["#b2c1c9", "#8ca5b1", "#849fad"];
 
                 if (fxrand() > 0.05) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
@@ -238,7 +240,7 @@ class Grid {
                 let strokeSize = 1;
                 let angleMin = PI;
                 let angleMax = 2 * PI;
-                let colorListA = ["#775b46"];
+                let colorListA = ["#718792", "#5b6e77", "#4b5b64"];
                 // let colorListA = ["#39505c", "#4b768b", "#5c7583"];
 
                 if (fxrand() > 0.05) {
@@ -276,7 +278,8 @@ class Grid {
                 let strokeSize = 0.2;
                 let angleMin = 0;
                 let angleMax = PI;
-                let colorListA = ["#2f4149", "#34464e", "#243c4b"];
+                // let colorListA = ["#2f4149", "#34464e", "#243c4b"];
+                let colorListA = ["#889194", "#6c7e86", "#637580"];
 
                 if (fxrand() > 0.05) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
@@ -288,7 +291,7 @@ class Grid {
                 let strokeSize = 0.2;
                 let angleMin = 0;
                 let angleMax = PI;
-                let colorListA = ["#997961"];
+                let colorListA = ["#535d63", "#41525a", "#41525c"];
                 // let colorListA = ["#2f4149", "#34464e", "#243c4b"];
 
                 if (fxrand() > 0.05) {
