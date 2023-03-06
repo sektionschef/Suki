@@ -45,9 +45,9 @@ class Grid {
         this.lInc2 = 0.06;
         this.zInc2 = 0.2;
 
-        this.sInc3 = 0.2;
-        this.lInc3 = 0.2;
-        this.zInc3 = 0.2;
+        this.sInc3 = 0.3;
+        this.lInc3 = 0.5;
+        this.zInc3 = 0.6;
 
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
@@ -89,7 +89,8 @@ class Grid {
                 var noiseValue2 = noise(soff2, loff2, zoff2);
                 var noiseValue3 = noise(soff3, loff3, zoff3);
 
-                var polygonA = insidePolygon([A.x, A.y], polyPoints);
+                var polygonA = insidePolygon([center.x, center.y], polyPoints);
+                var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
 
                 this.boxes.push({
                     "center": center,
@@ -105,6 +106,7 @@ class Grid {
                     "noiseValue2": noiseValue2,
                     "noiseValue3": noiseValue3,
                     "polygonA": polygonA,
+                    "polygonLeft": polygonLeft,
                 })
                 index += 1;
                 soff += this.sInc;
@@ -157,12 +159,6 @@ class Grid {
                 continue;
             }
 
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.2) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
-            } else {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
-            }
-
             if (this.boxes[i].polygonA) {
                 // this.buffer.push();
                 // this.buffer.stroke("red");
@@ -176,12 +172,34 @@ class Grid {
                 let strokeSize = 3;
                 let angleMin = 0;
                 let angleMax = 2 * PI;
-                let colorListA = ["#496370", "#608ba1", "#6f8591"];
+                let colorListA = ["#5a717c", "#4b6e81", "#436579"];
 
-                if (fxrand() > 0.25) {
+                if (fxrand() > 0.05) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
                 }
+
+            } else if (this.boxes[i].polygonLeft) {
+
+                let offset = getRandomFromInterval(-10, 10);
+                let loopCountParam = 30;
+                let vertexLength = 20;
+                let strokeSize = 3;
+                let angleMin = 0;
+                let angleMax = 2 * PI;
+                let colorListA = ["#7c685a"];
+                // let colorListA = ["#5a717c", "#4b6e81", "#436579"];
+
+                if (fxrand() > 0.05) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
+                }
+
+
+            } else if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.2) {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
+            } else {
+                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
             }
+
         }
     }
 
@@ -201,7 +219,32 @@ class Grid {
                 continue;
             }
 
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.3) {
+            if (this.boxes[i].polygonA) {
+
+                let loopCountParam = 10;
+                let vertexLength = 10;
+                let strokeSize = 1;
+                let angleMin = PI;
+                let angleMax = 2 * PI;
+                let colorListA = ["#39505c", "#4b768b", "#5c7583"];
+
+                if (fxrand() > 0.05) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
+                }
+            } else if (this.boxes[i].polygonLeft) {
+
+                let loopCountParam = 10;
+                let vertexLength = 10;
+                let strokeSize = 1;
+                let angleMin = PI;
+                let angleMax = 2 * PI;
+                let colorListA = ["#775b46"];
+                // let colorListA = ["#39505c", "#4b768b", "#5c7583"];
+
+                if (fxrand() > 0.05) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
+                }
+            } else if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.3) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
@@ -226,7 +269,33 @@ class Grid {
                 continue;
             }
 
-            if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
+            if (this.boxes[i].polygonA) {
+
+                let loopCountParam = 40;
+                let vertexLength = 20;
+                let strokeSize = 0.2;
+                let angleMin = 0;
+                let angleMax = PI;
+                let colorListA = ["#2f4149", "#34464e", "#243c4b"];
+
+                if (fxrand() > 0.05) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
+                }
+            } else if (this.boxes[i].polygonLeft) {
+
+                let loopCountParam = 40;
+                let vertexLength = 20;
+                let strokeSize = 0.2;
+                let angleMin = 0;
+                let angleMax = PI;
+                let colorListA = ["#997961"];
+                // let colorListA = ["#2f4149", "#34464e", "#243c4b"];
+
+                if (fxrand() > 0.05) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
+                }
+            }
+            else if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
                 this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);

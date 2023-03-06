@@ -17,14 +17,6 @@ let PRICE = "ꜩ 2";
 let EDITIONS = "50 editions";
 
 
-let polyPoints = [
-  [84, 91],
-  [568, 219],
-  [221, 217],
-  [32, 92]
-]
-
-
 
 let CURRENTPIXELDENS = 1;
 
@@ -136,6 +128,21 @@ function setup() {
   } else {
     canvas.parent("canvasHolderPlain");
   }
+
+
+  polyPoints = [
+    [0, height / 6],
+    [width / 7 * 5, height / 4],
+    [width / 7 * 5, height / 4 * 3],
+    [0, height / 6 * 5]
+  ];
+
+  polyPointsLeft = [
+    [0, 0],
+    [width / 7 * 3, 0],
+    [width / 7 * 3, height],
+    [0, height]
+  ];
 
   gridProfile = {
     // stripeOrientation: getRandomFromList(["x", "y"]),
