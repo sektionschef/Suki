@@ -255,13 +255,6 @@ class Grid {
     }
 
     drawThirdLoop() {
-        let loopCountParam = 50;
-        let vertexLength = 20;
-        let strokeSize = 0.2;
-        let angleMin = 0;
-        let angleMax = PI;
-        let colorList = ["#43525a", "#4b5a61", "#43555f"];
-        let colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
 
         for (var i = 0; i < this.boxes.length; i++) {
 
@@ -297,11 +290,21 @@ class Grid {
                 if (fxrand() > 0.05) {
                     this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue3, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA);
                 }
-            }
-            else if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
             } else {
-                this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+
+                let loopCountParam = 50;
+                let vertexLength = 20;
+                let strokeSize = 0.2;
+                let angleMin = 0;
+                let angleMax = PI;
+                let colorList = ["#43525a", "#4b5a61", "#43555f"];
+                let colorList2 = ["#2f393f", "#323c41", "#2d3a41"];
+
+                if (this.boxes[i].noiseValue2 >= 0.5 && fxrand() > 0.5) {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue2, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList2);
+                } else {
+                    this.zigzag(this.boxes[i].A.x + offset, this.boxes[i].A.y + offset, this.boxes[i].noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList);
+                }
             }
         }
     }
@@ -342,6 +345,7 @@ class Grid {
     }
 
     zigzag(centerX, centerY, noiseValue, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorList) {
+
 
 
         let center = createVector(centerX, centerY);
