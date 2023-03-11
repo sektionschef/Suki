@@ -1,5 +1,7 @@
 // MARGIN IN BEIDE RICHTUNGEN, X UND Y
 
+let Paletti = ["#E22030", "#1E3A4B", "#136371", "#00AEAC"];
+
 class Grid {
     constructor(data) {
 
@@ -37,21 +39,37 @@ class Grid {
         this.stripes = [];
         this.stripeLines = [];
 
-        this.sInc = 0.1;
+        // this.sInc = 0.1;
+        // this.lInc = 0.03;
+        // this.zInc = 0.05;
+
+        // this.sInc2 = 0.06;
+        // this.lInc2 = 0.06;
+        // this.zInc2 = 0.2;
+
+        // this.sInc3 = 0.3;
+        // this.lInc3 = 0.5;
+        // this.zInc3 = 0.6;
+
+        // this.sInc4 = 0.1;
+        // this.lInc4 = 0.005;
+        // this.zInc4 = 0.06;
+
+        this.sInc = 0.01;
         this.lInc = 0.03;
-        this.zInc = 0.05;
+        this.zInc = 0.01;
 
-        this.sInc2 = 0.06;
-        this.lInc2 = 0.06;
-        this.zInc2 = 0.2;
+        this.sInc2 = 0.03;
+        this.lInc2 = 0.01;
+        this.zInc2 = 0.01;
 
-        this.sInc3 = 0.3;
+        this.sInc3 = 0.5;
         this.lInc3 = 0.5;
-        this.zInc3 = 0.6;
+        this.zInc3 = 0.5;
 
-        this.sInc4 = 0.1;
-        this.lInc4 = 0.005;
-        this.zInc4 = 0.06;
+        this.sInc4 = 0.05;
+        this.lInc4 = 0.05;
+        this.zInc4 = 0.05;
 
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
@@ -254,8 +272,10 @@ class Grid {
             this.strokeSize = 3;
             this.angleMin = 0;
             this.angleMax = 2 * PI;
-            this.colorListA = ["#a5afb4", "#8598a1", "#7e939e"];
-            this.colorListB = ["#818a8f", "#728088", "#677a85"];
+            // this.colorListA = ["#a5afb4", "#8598a1", "#7e939e"];
+            // this.colorListB = ["#818a8f", "#728088", "#677a85"];
+            this.colorListA = Paletti; // ["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
+            this.colorListB = Paletti; //["#223349", "#7697aa", "#b0c8c9", "#b34f36", "#11151b"];
             this.noiseValueA = this.boxes[i].noiseValue1;
             this.noiseValueB = this.boxes[i].noiseValue2;
             // }
@@ -317,13 +337,15 @@ class Grid {
 
             // } else {
 
-            this.loopCountParam = 10;
+            this.loopCountParam = 5;
             this.vertexLength = 10;
             this.strokeSize = 2;
             this.angleMin = 0;
             this.angleMax = PI;
-            this.colorListA = ["#9ea8ad", "#7e9099", "#6c8592"];
-            this.colorListB = ["#777d81", "#7a8a92", "#586a74"];
+            // this.colorListA = ["#9ea8ad", "#7e9099", "#6c8592"];
+            // this.colorListB = ["#777d81", "#7a8a92", "#586a74"];
+            this.colorListA = Paletti; //["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
+            this.colorListB = Paletti; //["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
             this.noiseValueA = this.boxes[i].noiseValue3;
             this.noiseValueB = this.boxes[i].noiseValue4;
             // }
@@ -390,7 +412,6 @@ class Grid {
             this.angleMin = 0;
             this.angleMax = PI;
             this.colorListA = ["#43525a", "#4b5a61", "#43555f"];
-            // this.colorListA = ["#43525a", "#4b5a61", "#43555f", "#20b1ff"];
             this.colorListB = ["#2f393f", "#323c41", "#2d3a41"];
             this.noiseValueA = this.boxes[i].noiseValue3;
             this.noiseValueB = this.boxes[i].noiseValue4;
@@ -444,7 +465,8 @@ class Grid {
         let colorSelect = Math.floor(noiseValue * (colorList.length));
         this.buffer.beginShape();
 
-        for (var i = 0; i < noiseValue * loopCountParam; i++) {
+        // for (var i = 0; i < noiseValue * loopCountParam; i++) {
+        for (var i = 0; i < loopCountParam; i++) {
 
             let strokeColor = distortColorSuperNew(colorList[colorSelect], 10);
             this.buffer.stroke(strokeColor);
