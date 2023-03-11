@@ -424,6 +424,12 @@ function insidePolygon(point, vs) {
     return inside;
 };
 
+function getRandomIndex(lengthy) {
+    let randomIndex = Array.from({ length: lengthy }, (x, i) => i);
+    randomIndex.sort(() => fxrand() - 0.5);
+    return randomIndex
+}
+
 
 /**
  * Performs the even-odd-rule Algorithm (a raycasting algorithm) to find out whether a point is in a given polygon.

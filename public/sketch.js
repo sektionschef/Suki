@@ -213,7 +213,6 @@ function draw() {
   //   if (BULK) {
   //     exportCanvas(canvas);
   //   }
-
 }
 
 function mousePressed() {
