@@ -15,8 +15,8 @@
 //     "#e7e7e7",
 // ]
 // let Paletti = ["#0d1b2a", "#1b263b", "#415a77", "#778da9", "#e0e1dd"]
-let PalettiA = ["#274c77", "#6096ba", "#a3cef1"];
-let PalettiB = ["#102135", "#3c5c72", "#6e8ba3"];
+let PalettiA = ["#193352", "#4a7592", "#97b2c9"];
+let PalettiB = ["#203f63", "#3c5c72", "#7e9eb9"];
 
 class Grid {
     constructor(data) {
@@ -415,9 +415,9 @@ class Grid {
 
             // } else {
 
-            this.loopCountParam = 10;
+            this.loopCountParam = 20;
             this.vertexLength = 10;
-            this.strokeSize = 2;
+            this.strokeSize = 1;
             this.angleMin = 0;
             this.angleMax = PI;
             // this.colorListA = ["#9ea8ad", "#7e9099", "#6c8592"];
@@ -489,8 +489,10 @@ class Grid {
             this.strokeSize = 0.2;
             this.angleMin = 0;
             this.angleMax = PI;
-            this.colorListA = ["#43525a", "#4b5a61", "#43555f"];
-            this.colorListB = ["#2f393f", "#323c41", "#2d3a41"];
+            // this.colorListA = ["#43525a", "#4b5a61", "#43555f"];
+            // this.colorListB = ["#2f393f", "#323c41", "#2d3a41"];
+            this.colorListA = ["#293236", "#283033", "#29353b"];
+            this.colorListB = ["#191e22", "#191f22", "#192125"];
             // this.colorListA = PalettiA;
             // this.colorListB = PalettiB;
             this.noiseValueA = this.boxes[i].noiseValue5;
