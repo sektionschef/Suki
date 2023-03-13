@@ -311,14 +311,20 @@ class Grid {
     drawFirstLoop() {
 
         let randomIndex = getRandomIndex(this.boxes.length);
+        let showTrigger = randomIndex.length / 4
 
         for (var i = 0; i < randomIndex.length; i++) {
 
             let offset = getRandomFromInterval(-10, 10);
 
+            if (i == showTrigger) {
+                this.drawShape();
+            }
+
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
             }
+
 
             // if (this.boxes[i].polygonA) {
 
@@ -629,6 +635,21 @@ class Grid {
         }
 
         this.buffer.endShape();
+        this.buffer.pop();
+    }
+
+    drawShape() {
+        this.buffer.push();
+        this.buffer.noFill();
+        // this.buffer.fill("#ffffff23");
+        this.buffer.stroke(color("white"));
+        this.buffer.strokeWeight(1);
+        this.buffer.beginShape();
+        this.buffer.vertex(110, 110);
+        this.buffer.vertex(190, 110);
+        this.buffer.vertex(160, 160);
+        this.buffer.vertex(110, 140);
+        this.buffer.endShape(CLOSE);
         this.buffer.pop();
     }
 
