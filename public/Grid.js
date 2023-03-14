@@ -108,19 +108,6 @@ class Grid {
         this.drawFourthLoop();
         this.drawFirstLoop();
 
-        // forms
-        // this.buffer.push();
-        // this.buffer.noFill();
-        // this.buffer.stroke(color("white"));
-        // this.buffer.strokeWeight(1);
-        // this.buffer.beginShape();
-        // this.buffer.vertex(110, 110);
-        // this.buffer.vertex(190, 110);
-        // this.buffer.vertex(160, 160);
-        // this.buffer.vertex(110, 140);
-        // this.buffer.endShape(CLOSE);
-        // this.buffer.pop();
-
         // STripes
         // this.buffer.push();
         // this.buffer.strokeWeight(0.5);
@@ -192,6 +179,7 @@ class Grid {
 
                 this.boxes.push({
                     "center": center,
+                    "offset": createVector(getRandomFromInterval(-10, 10), getRandomFromInterval(-10, 10)),
                     "A": A,
                     "B": B,
                     "C": C,
@@ -311,14 +299,15 @@ class Grid {
     drawFirstLoop() {
 
         let randomIndex = getRandomIndex(this.boxes.length);
-        let showTrigger = randomIndex.length / 4
+        let showTrigger = randomIndex.length / 4 * 3
+            ;
 
         for (var i = 0; i < randomIndex.length; i++) {
 
-            let offset = getRandomFromInterval(-10, 10);
+            // let offset = getRandomFromInterval(-10, 10);
 
             if (i == showTrigger) {
-                this.drawShape();
+                // this.drawShape();
             }
 
             if (this.drawSkipMargin(this.boxes[i])) {
@@ -367,8 +356,8 @@ class Grid {
 
             if (fxrand() > 0.05) {
                 this.zigzag(
-                    this.boxes[i].A.x + offset,
-                    this.boxes[i].A.y + offset,
+                    this.boxes[i].A.x + this.boxes[i].offset.x,
+                    this.boxes[i].A.y + this.boxes[i].offset.y,
                     this.noiseValueA,
                     this.noiseValueB,
                     this.loopCountParam,
@@ -389,7 +378,7 @@ class Grid {
 
         for (var i = 0; i < randomIndex.length; i++) {
 
-            let offset = getRandomFromInterval(-5, 5);
+            // let offset = getRandomFromInterval(-5, 5);
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -421,7 +410,7 @@ class Grid {
 
             // } else {
 
-            this.loopCountParam = 20;
+            this.loopCountParam = 10;
             this.vertexLength = 10;
             this.strokeSize = 1;
             this.angleMin = 0;
@@ -436,8 +425,8 @@ class Grid {
 
             if (fxrand() > 0.05) {
                 this.zigzag(
-                    this.boxes[i].A.x + offset,
-                    this.boxes[i].A.y + offset,
+                    this.boxes[i].A.x + this.boxes[i].offset.x,
+                    this.boxes[i].A.y + this.boxes[i].offset.y,
                     this.noiseValueA,
                     this.noiseValueB,
                     this.loopCountParam,
@@ -458,7 +447,7 @@ class Grid {
 
         for (var i = 0; i < randomIndex.length; i++) {
 
-            let offset = getRandomFromInterval(-2, 2);
+            // let offset = getRandomFromInterval(-2, 2);
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -507,8 +496,8 @@ class Grid {
 
             if (fxrand() > 0.05) {
                 this.zigzag(
-                    this.boxes[i].A.x + offset,
-                    this.boxes[i].A.y + offset,
+                    this.boxes[i].A.x + this.boxes[i].offset.x,
+                    this.boxes[i].A.y + this.boxes[i].offset.y,
                     this.noiseValueA,
                     this.noiseValueB,
                     this.loopCountParam,
@@ -529,7 +518,7 @@ class Grid {
 
         for (var i = 0; i < randomIndex.length; i++) {
 
-            let offset = getRandomFromInterval(-10, 10);
+            // let offset = getRandomFromInterval(-10, 10);
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -576,8 +565,8 @@ class Grid {
 
             if (fxrand() > 0.05) {
                 this.zigzag(
-                    this.boxes[i].A.x + offset,
-                    this.boxes[i].A.y + offset,
+                    this.boxes[i].A.x + this.boxes[i].offset.x,
+                    this.boxes[i].A.y + this.boxes[i].offset.y,
                     this.noiseValueA,
                     this.noiseValueB,
                     this.loopCountParam,
@@ -639,18 +628,45 @@ class Grid {
     }
 
     drawShape() {
-        this.buffer.push();
-        this.buffer.noFill();
-        // this.buffer.fill("#ffffff23");
-        this.buffer.stroke(color("white"));
-        this.buffer.strokeWeight(1);
-        this.buffer.beginShape();
-        this.buffer.vertex(110, 110);
-        this.buffer.vertex(190, 110);
-        this.buffer.vertex(160, 160);
-        this.buffer.vertex(110, 140);
-        this.buffer.endShape(CLOSE);
-        this.buffer.pop();
+        // this.buffer.push();
+        // this.buffer.noFill();
+        // // this.buffer.fill("#ffffff23");
+        // this.buffer.stroke(color("white"));
+        // this.buffer.strokeWeight(1);
+        // this.buffer.beginShape();
+        // this.buffer.vertex(110, 110);
+        // this.buffer.vertex(190, 110);
+        // this.buffer.vertex(160, 160);
+        // this.buffer.vertex(110, 140);
+        // this.buffer.endShape(CLOSE);
+        // this.buffer.pop();
+
+        let min = 10;
+        let max = 20;
+        let loopCount = 800;
+
+        for (var j = 0; j < loopCount; j++) {
+            let center = createVector(getRandomFromInterval(100, width - 100), getRandomFromInterval(100, height - 100));
+            let tempColor = PalettiA[Math.round(getRandomFromInterval(0, (PalettiA.length - 1)))];
+
+            // tempColor = color(red(tempColor), green(tempColor), blue(tempColor), 80);
+
+            this.buffer.push();
+            this.buffer.noFill();
+            // this.buffer.fill(tempColor);
+            // this.buffer.stroke(color("white"));
+            this.buffer.stroke(tempColor);
+            this.buffer.strokeWeight(1);
+            // this.buffer.noStroke();
+
+            this.buffer.beginShape();
+            this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
+            this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
+            this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
+            this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
+            this.buffer.endShape(CLOSE);
+            this.buffer.pop();
+        }
     }
 
     show() {

@@ -156,7 +156,7 @@ function setup() {
     // whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
   }
 
-  grid = new Grid(gridProfile);
+  // grid = new Grid(gridProfile);
 
 
   //   // FEATURES
@@ -202,7 +202,52 @@ function draw() {
   // pop();
 
 
-  grid.show();
+  // grid.show();
+
+
+  // let center = createVector(300, 300);
+  let vertexLength = 5;
+  // let angleMin = PI;
+  // let angleMax = PI / 8;
+  let angleMin = -PI / 3;
+  let angleMax = PI / 3;
+  let loopCount = 50;
+  let jLoopCount = 20;
+
+  let strokeColor = color("#51bbb286");
+
+
+  for (var j = 0; j < jLoopCount; j++) {
+
+    let center = createVector(300 + getRandomFromInterval(-50, 50), 300 + getRandomFromInterval(-50, 50));
+    let strokeColor_ = distortColorSuperNew(strokeColor, 5);
+
+    push();
+    noFill();
+    strokeWeight(30);
+    stroke(strokeColor_);
+
+    beginShape();
+
+    let oldAdder = center;
+    let newAdder = oldAdder;
+    vertex(oldAdder.x, oldAdder.y)
+
+    for (var i = 0; i < loopCount; i++) {
+      oldAdder = newAdder;
+
+      let angle = getRandomFromInterval(angleMin, angleMax);
+
+      let v = p5.Vector.fromAngle(angle, vertexLength);
+
+      newAdder = p5.Vector.add(oldAdder, v);
+      vertex(newAdder.x, newAdder.y);
+    }
+
+    endShape();
+    pop();
+  }
+
 
   //   // DEBUG
   //   // showFxhashFeatures();
