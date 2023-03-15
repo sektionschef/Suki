@@ -157,6 +157,11 @@ function setup() {
   }
 
   // grid = new Grid(gridProfile);
+  grid2 = new Grid2({
+    marginBoxCount: 1,
+    shortBoxCount: 20,
+    DEBUG: true,
+  });
 
 
   //   // FEATURES
@@ -203,6 +208,7 @@ function draw() {
 
 
   // grid.show();
+  grid2.show()
 
 
   // let center = createVector(300, 300);
