@@ -103,18 +103,8 @@ class Grid2 {
         // this.drawNoise(5);
         // this.drawNoise(6);
 
-        // this.drawFourthLoop();
+        this.drawFourthLoop();
         // this.drawFirstLoop();
-
-        // STripes
-        // this.buffer.push();
-        // this.buffer.strokeWeight(0.5);
-        // this.buffer.stroke(color("#0e0e0e"));
-        // let disty = 10
-        // for (var s = 17; s < (500 / disty + 1); s++) {
-        //     this.buffer.line(s * disty, getRandomFromInterval(250, 350), s * disty, getRandomFromInterval(450, 550));
-        // }
-        // this.buffer.pop();
 
         // this.drawSecondLoop();
         // this.drawThirdLoop();
@@ -544,16 +534,16 @@ class Grid2 {
             // }
 
             if (fxrand() > 0.05) {
-                this.zigzag(
+                this.digndag2(
                     this.boxes[i].A.x + this.boxes[i].offset.x,
                     this.boxes[i].A.y + this.boxes[i].offset.y,
                     this.noiseValueA,
                     this.noiseValueB,
-                    this.loopCountParam,
-                    this.vertexLength,
-                    this.strokeSize,
-                    this.angleMin,
-                    this.angleMax,
+                    // this.loopCountParam,
+                    // this.vertexLength,
+                    // this.strokeSize,
+                    // this.angleMin,
+                    // this.angleMax,
                     this.colorListA,
                     this.colorListB,
                 );
@@ -561,34 +551,38 @@ class Grid2 {
         }
     }
 
-    digndag() {
+    digndag(centerX, centerY) {
         // let center = createVector(300, 300);
+        let center = createVector(centerX, centerY);
+        let centerOffset = 50;
         let vertexLength = 5;
+        let strokeWeighty = 10;
         // let angleMin = PI;
         // let angleMax = PI / 8;
         let angleMin = -PI / 3;
         let angleMax = PI / 3;
-        let loopCount = 50;
-        let jLoopCount = 20;
+        let loopCount = 10;
+        let jLoopCount = 10;
 
         let strokeColor = color("#51bbb286");
 
 
         for (var j = 0; j < jLoopCount; j++) {
 
-            let center = createVector(300 + getRandomFromInterval(-50, 50), 300 + getRandomFromInterval(-50, 50));
+            // offset for center
+            let center_ = createVector(center.x + getRandomFromInterval(-centerOffset, centerOffset), center.y + getRandomFromInterval(-centerOffset, centerOffset));
             let strokeColor_ = distortColorSuperNew(strokeColor, 5);
 
-            push();
-            noFill();
-            strokeWeight(30);
-            stroke(strokeColor_);
+            this.buffer.push();
+            this.buffer.noFill();
+            this.buffer.strokeWeight(strokeWeighty);
+            this.buffer.stroke(strokeColor_);
 
-            beginShape();
+            this.buffer.beginShape();
 
-            let oldAdder = center;
+            let oldAdder = center_;
             let newAdder = oldAdder;
-            vertex(oldAdder.x, oldAdder.y)
+            this.buffer.vertex(oldAdder.x, oldAdder.y)
 
             for (var i = 0; i < loopCount; i++) {
                 oldAdder = newAdder;
@@ -598,12 +592,75 @@ class Grid2 {
                 let v = p5.Vector.fromAngle(angle, vertexLength);
 
                 newAdder = p5.Vector.add(oldAdder, v);
-                vertex(newAdder.x, newAdder.y);
+                this.buffer.vertex(newAdder.x, newAdder.y);
             }
 
-            endShape();
-            pop();
+            this.buffer.endShape();
+            this.buffer.pop();
         }
+
+    }
+
+    digndag2(centerX, centerY, noiseValueA, noiseValueB, colorListA, colorListB) {
+        let center = createVector(centerX, centerY);
+        let centerOffset = 50;
+        let vertexLength = 10;
+        let strokeWeighty = 20;
+        let angleMin = -PI / 3;
+        let angleMax = PI / 3;
+        let loopCount = 5;
+        // let jLoopCount = 10;
+
+        // let strokeColor = color("#51bbb286");
+
+
+        let noiseValue = 0;
+        let colorList = [];
+
+        if (noiseValueA >= 0.5 && fxrand() > 0.2) {
+            noiseValue = noiseValueA;
+            colorList = colorListA;
+        } else {
+            noiseValue = noiseValueB;
+            colorList = colorListB;
+        }
+
+        let colorSelect = Math.floor(noiseValue * (colorList.length));
+
+        // for (var j = 0; j < jLoopCount; j++) {
+
+        // offset for center
+        // let center_ = createVector(center.x + getRandomFromInterval(-centerOffset, centerOffset), center.y + getRandomFromInterval(-centerOffset, centerOffset));
+        // let strokeColor_ = distortColorSuperNew(strokeColor, 5);
+
+        this.buffer.push();
+        this.buffer.noFill();
+        this.buffer.strokeWeight(strokeWeighty);
+        this.buffer.strokeCap(SQUARE);
+
+        this.buffer.beginShape();
+
+        let oldAdder = center;
+        let newAdder = oldAdder;
+        let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
+        this.buffer.vertex(oldAdder.x, oldAdder.y)
+
+        for (var i = 0; i < loopCount; i++) {
+            oldAdder = newAdder;
+
+            let angle = getRandomFromInterval(angleMin, angleMax);
+
+            let v = p5.Vector.fromAngle(angle, vertexLength);
+
+            newAdder = p5.Vector.add(oldAdder, v);
+            strokeColor = distortColorSuperNew(colorList[colorSelect], 10);
+            this.buffer.stroke(strokeColor);
+            this.buffer.vertex(newAdder.x, newAdder.y);
+        }
+
+        this.buffer.endShape();
+        this.buffer.pop();
+        // }
 
     }
 
