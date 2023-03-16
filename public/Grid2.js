@@ -103,11 +103,10 @@ class Grid2 {
         // this.drawNoise(5);
         // this.drawNoise(6);
 
-        this.drawFourthLoop();
-        // this.drawFirstLoop();
-
-        // this.drawSecondLoop();
+        this.drawFirstLoop();
+        this.drawSecondLoop();
         // this.drawThirdLoop();
+        // this.drawFourthLoop();
 
     }
 
@@ -164,6 +163,7 @@ class Grid2 {
 
                 var polygonA = insidePolygon([center.x, center.y], polyPoints);
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
+                var horizon = l == Math.round(this.shortBoxCount / 2);
 
                 this.boxes.push({
                     "center": center,
@@ -186,6 +186,7 @@ class Grid2 {
                     "noiseValue8": noiseValue8,
                     "polygonA": polygonA,
                     "polygonLeft": polygonLeft,
+                    "horizon": horizon,
                 })
                 index += 1;
                 soff1 += this.sInc1;
@@ -284,61 +285,24 @@ class Grid2 {
                 continue;
             }
 
-
-            // if (this.boxes[i].polygonA) {
-
-            //     this.loopCountParam = 30;
-            //     this.vertexLength = 20;
-            //     this.strokeSize = 3;
-            //     this.angleMin = 0;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#c591a6ff", "#a86781ff", "#c7658cff"];
-            //     this.colorListB = ["#c293a6ff", "#c47a98ff", "#be5e85ff"];
-            //     this.noiseValueA = this.boxes[i].noiseValue3;
-            //     this.noiseValueB = this.boxes[i].noiseValue4;
-
-            // } else if (this.boxes[i].polygonLeft) {
-
-            //     this.loopCountParam = 30;
-            //     this.vertexLength = 20;
-            //     this.strokeSize = 3;
-            //     this.angleMin = 0;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#808f97", "#667b85", "#5f7885"];
-            //     this.colorListB = ["#5a717c", "#4b6e81", "#436579"];
-            //     this.noiseValueA = this.boxes[i].noiseValue3;
-            //     this.noiseValueB = this.boxes[i].noiseValue4;
-
-            // } else {
-
-            this.loopCountParam = 30;
-            this.vertexLength = 20;
-            this.strokeSize = 3;
-            this.angleMin = 0;
-            this.angleMax = 2 * PI;
-            // this.colorListA = ["#a5afb4", "#8598a1", "#7e939e"];
-            // this.colorListB = ["#818a8f", "#728088", "#677a85"];
-            this.colorListA = PalettiA; // ["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
-            this.colorListB = PalettiB; //["#223349", "#7697aa", "#b0c8c9", "#b34f36", "#11151b"];
-            this.noiseValueA = this.boxes[i].noiseValue1;
-            this.noiseValueB = this.boxes[i].noiseValue2;
-            // }
-
-            if (fxrand() > 0.05) {
-                this.zigzag(
-                    this.boxes[i].A.x + this.boxes[i].offset.x,
-                    this.boxes[i].A.y + this.boxes[i].offset.y,
-                    this.noiseValueA,
-                    this.noiseValueB,
-                    this.loopCountParam,
-                    this.vertexLength,
-                    this.strokeSize,
-                    this.angleMin,
-                    this.angleMax,
-                    this.colorListA,
-                    this.colorListB,
-                );
-            }
+            this.digndag2(
+                {
+                    centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                    centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                    noiseValueA: this.boxes[i].noiseValue7,
+                    noiseValueB: this.boxes[i].noiseValue8,
+                    vertexLength: 10,
+                    strokeWeighty: 2,
+                    // angleMin: -PI / 4,
+                    // angleMax: PI / 4,
+                    angleMin: -PI,
+                    angleMax: PI,
+                    revert: true,
+                    loopCount: 30,
+                    colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
+                    colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                }
+            );
         }
     }
 
@@ -348,64 +312,74 @@ class Grid2 {
 
         for (var i = 0; i < randomIndex.length; i++) {
 
-            // let offset = getRandomFromInterval(-5, 5);
+            // let offset = getRandomFromInterval(-10, 10);
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
             }
 
-            // if (this.boxes[i].polygonA) {
-
-            //     this.loopCountParam = 10;
-            //     this.vertexLength = 10;
-            //     this.strokeSize = 1;
-            //     this.angleMin = PI;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#997080ff", "#b96e8cff", "#914865ff"];
-            //     this.colorListB = ["#83606eff", "#92586fff", "#8a415eff"];
-            //     this.noiseValueA = this.boxes[i].noiseValue1;
-            //     this.noiseValueB = this.boxes[i].noiseValue2;
-
-            // } else if (this.boxes[i].polygonLeft) {
-
-            //     this.loopCountParam = 10;
-            //     this.vertexLength = 10;
-            //     this.strokeSize = 1;
-            //     this.angleMin = PI;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#718792", "#5b6e77", "#4b5b64"];
-            //     this.colorListB = ["#39505c", "#4b768b", "#5c7583"];
-            //     this.noiseValueA = this.boxes[i].noiseValue3;
-            //     this.noiseValueB = this.boxes[i].noiseValue4;
-
-            // } else {
-
-            this.loopCountParam = 10;
-            this.vertexLength = 10;
-            this.strokeSize = 1;
-            this.angleMin = 0;
-            this.angleMax = PI;
-            // this.colorListA = ["#9ea8ad", "#7e9099", "#6c8592"];
-            // this.colorListB = ["#777d81", "#7a8a92", "#586a74"];
-            this.colorListA = PalettiA; //["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
-            this.colorListB = PalettiB; //["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
-            this.noiseValueA = this.boxes[i].noiseValue3;
-            this.noiseValueB = this.boxes[i].noiseValue4;
-            // }
-
             if (fxrand() > 0.05) {
-                this.zigzag(
-                    this.boxes[i].A.x + this.boxes[i].offset.x,
-                    this.boxes[i].A.y + this.boxes[i].offset.y,
-                    this.noiseValueA,
-                    this.noiseValueB,
-                    this.loopCountParam,
-                    this.vertexLength,
-                    this.strokeSize,
-                    this.angleMin,
-                    this.angleMax,
-                    this.colorListA,
-                    this.colorListB,
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 10,
+                        strokeWeighty: 1,
+                        // angleMin: -PI / 3,
+                        // angleMax: PI / 3,
+                        angleMin: -PI,
+                        angleMax: PI,
+                        revert: true,
+                        loopCount: 20,
+                        colorListA: ["#6daac9", "#5b9ec0", "#4aa6d4"],
+                        colorListB: ["#79a4b9", "#518eaf", "#2685b4"],
+                    }
+                );
+            }
+
+            if (this.boxes[i].horizon) {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 20,
+                        strokeWeighty: 1,
+                        angleMin: -PI / 9,
+                        angleMax: PI / 9,
+                        revert: false,
+                        loopCount: 5,
+                        colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
+                        colorListB: ["#b97979", "#af5151", "#b42626"],
+                    }
+                );
+            } else {
+                let brightness = 0;
+                if (this.boxes[i].long < this.shortBoxCount / 2) {
+                    brightness = map(this.boxes[i].long, 0, this.shortBoxCount / 2, 100, 200)
+                } else {
+                    brightness = map(this.boxes[i].long, this.shortBoxCount / 2, this.shortBoxCount, 200, 100)
+                }
+
+                let colorTest = color(brightness);
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 20,
+                        strokeWeighty: 1,
+                        angleMin: -PI / 9,
+                        angleMax: PI / 9,
+                        revert: false,
+                        loopCount: 5,
+                        colorListA: [colorTest, colorTest, colorTest],
+                        colorListB: [colorTest, colorTest, colorTest],
+                    }
                 );
             }
         }
@@ -494,58 +468,23 @@ class Grid2 {
                 continue;
             }
 
-            // if (this.boxes[i].polygonA) {
-
-            //     this.loopCountParam = 30;
-            //     this.vertexLength = 20;
-            //     this.strokeSize = 3;
-            //     this.angleMin = 0;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#c591a6ff", "#a86781ff", "#c7658cff"];
-            //     this.colorListB = ["#c293a6ff", "#c47a98ff", "#be5e85ff"];
-            //     this.noiseValueA = this.boxes[i].noiseValue3;
-            //     this.noiseValueB = this.boxes[i].noiseValue4;
-
-            // } else if (this.boxes[i].polygonLeft) {
-
-            //     this.loopCountParam = 30;
-            //     this.vertexLength = 20;
-            //     this.strokeSize = 3;
-            //     this.angleMin = 0;
-            //     this.angleMax = 2 * PI;
-            //     this.colorListA = ["#808f97", "#667b85", "#5f7885"];
-            //     this.colorListB = ["#5a717c", "#4b6e81", "#436579"];
-            //     this.noiseValueA = this.boxes[i].noiseValue3;
-            //     this.noiseValueB = this.boxes[i].noiseValue4;
-
-            // } else {
-
-            this.loopCountParam = 30;
-            this.vertexLength = 20;
-            this.strokeSize = 5;
-            this.angleMin = 0;
-            this.angleMax = 2 * PI;
-            this.colorListA = ["#a5afb450", "#8598a150", "#7e939e50"];
-            this.colorListB = ["#818a8f50", "#72808850", "#677a8550"];
-            // this.colorListA = PalettiA; // ["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
-            // this.colorListB = PalettiB; //["#223349", "#7697aa", "#b0c8c9", "#b34f36", "#11151b"];
-            this.noiseValueA = this.boxes[i].noiseValue7;
-            this.noiseValueB = this.boxes[i].noiseValue8;
-            // }
-
             if (fxrand() > 0.05) {
                 this.digndag2(
-                    this.boxes[i].A.x + this.boxes[i].offset.x,
-                    this.boxes[i].A.y + this.boxes[i].offset.y,
-                    this.noiseValueA,
-                    this.noiseValueB,
-                    // this.loopCountParam,
-                    // this.vertexLength,
-                    // this.strokeSize,
-                    // this.angleMin,
-                    // this.angleMax,
-                    this.colorListA,
-                    this.colorListB,
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 10,
+                        strokeWeighty: 1,
+                        angleMin: -PI / 3,
+                        angleMax: PI / 3,
+                        angleMin: -PI / 3,
+                        angleMax: PI / 3,
+                        loopCount: 10,
+                        colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
+                        colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                    }
                 );
             }
         }
@@ -554,14 +493,14 @@ class Grid2 {
     digndag(centerX, centerY) {
         // let center = createVector(300, 300);
         let center = createVector(centerX, centerY);
-        let centerOffset = 50;
+        let centerOffset = 0; //50;
         let vertexLength = 5;
         let strokeWeighty = 10;
-        // let angleMin = PI;
-        // let angleMax = PI / 8;
-        let angleMin = -PI / 3;
-        let angleMax = PI / 3;
-        let loopCount = 10;
+        let angleMin = -PI / 8;
+        let angleMax = PI / 8;
+        // let angleMin = -PI / 3;
+        // let angleMax = PI / 3;
+        let loopCount = 1;
         let jLoopCount = 10;
 
         let strokeColor = color("#51bbb286");
@@ -601,29 +540,25 @@ class Grid2 {
 
     }
 
-    digndag2(centerX, centerY, noiseValueA, noiseValueB, colorListA, colorListB) {
-        let center = createVector(centerX, centerY);
-        let centerOffset = 50;
-        let vertexLength = 10;
-        let strokeWeighty = 20;
-        let angleMin = -PI / 3;
-        let angleMax = PI / 3;
-        let loopCount = 5;
-        // let jLoopCount = 10;
-
-        // let strokeColor = color("#51bbb286");
-
+    // centerX, centerY, noiseValueA, noiseValueB, colorListA, colorListB
+    digndag2(data) {
+        let center = createVector(data.centerX, data.centerY);
+        let vertexLength = data.vertexLength;
+        let strokeWeighty = data.strokeWeighty;
+        let angleMin = data.angleMin;
+        let angleMax = data.angleMax;
+        let loopCount = data.loopCount;
 
         let noiseValue = 0;
         let colorList = [];
 
         // if (noiseValueA >= 0.5 && fxrand() > 0.2) {
         if (fxrand() > 0.5) {
-            noiseValue = noiseValueA;
-            colorList = colorListA;
+            noiseValue = data.noiseValueA;
+            colorList = data.colorListA;
         } else {
-            noiseValue = noiseValueB;
-            colorList = colorListB;
+            noiseValue = data.noiseValueB;
+            colorList = data.colorListB;
         }
 
         let colorSelect = Math.floor(noiseValue * (colorList.length));
@@ -651,10 +586,17 @@ class Grid2 {
 
             let angle = getRandomFromInterval(angleMin, angleMax);
 
+            // make spots not lines
+            if (data.revert) {
+                if (i % 2 != 0) {
+                    angle = angle - PI;
+                }
+            }
+
             let v = p5.Vector.fromAngle(angle, vertexLength);
 
             newAdder = p5.Vector.add(oldAdder, v);
-            strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
+            strokeColor = distortColorSuperNew(colorList[colorSelect], 2);
             this.buffer.stroke(strokeColor);
             this.buffer.vertex(newAdder.x, newAdder.y);
         }

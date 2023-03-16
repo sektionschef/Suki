@@ -160,7 +160,7 @@ function setup() {
   grid2 = new Grid2({
     marginBoxCount: 0,
     shortBoxCount: 80,
-    DEBUG: true,
+    DEBUG: false,
   });
 
 
@@ -195,6 +195,7 @@ function draw() {
   }
 
   background(color("#ebebeb"));
+  // background(color("#4f8aa8"));
 
   // STRIPES
   // push();
