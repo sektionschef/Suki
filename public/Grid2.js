@@ -525,10 +525,10 @@ class Grid2 {
             this.strokeSize = 5;
             this.angleMin = 0;
             this.angleMax = 2 * PI;
-            // this.colorListA = ["#a5afb4", "#8598a1", "#7e939e"];
-            // this.colorListB = ["#818a8f", "#728088", "#677a85"];
-            this.colorListA = PalettiA; // ["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
-            this.colorListB = PalettiB; //["#223349", "#7697aa", "#b0c8c9", "#b34f36", "#11151b"];
+            this.colorListA = ["#a5afb450", "#8598a150", "#7e939e50"];
+            this.colorListB = ["#818a8f50", "#72808850", "#677a8550"];
+            // this.colorListA = PalettiA; // ["#3D5A80", "#98C1D9", "#E0FBFC", "#EE6C4D", "#293241"];
+            // this.colorListB = PalettiB; //["#223349", "#7697aa", "#b0c8c9", "#b34f36", "#11151b"];
             this.noiseValueA = this.boxes[i].noiseValue7;
             this.noiseValueB = this.boxes[i].noiseValue8;
             // }
@@ -617,7 +617,8 @@ class Grid2 {
         let noiseValue = 0;
         let colorList = [];
 
-        if (noiseValueA >= 0.5 && fxrand() > 0.2) {
+        // if (noiseValueA >= 0.5 && fxrand() > 0.2) {
+        if (fxrand() > 0.5) {
             noiseValue = noiseValueA;
             colorList = colorListA;
         } else {
@@ -653,7 +654,7 @@ class Grid2 {
             let v = p5.Vector.fromAngle(angle, vertexLength);
 
             newAdder = p5.Vector.add(oldAdder, v);
-            strokeColor = distortColorSuperNew(colorList[colorSelect], 10);
+            strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
             this.buffer.stroke(strokeColor);
             this.buffer.vertex(newAdder.x, newAdder.y);
         }
