@@ -318,71 +318,76 @@ class Grid2 {
                 continue;
             }
 
-            if (fxrand() > 0.05) {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseValueA: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: 10,
-                        strokeWeighty: 1,
-                        // angleMin: -PI / 3,
-                        // angleMax: PI / 3,
-                        angleMin: -PI,
-                        angleMax: PI,
-                        revert: true,
-                        loopCount: 20,
-                        colorListA: ["#6daac9", "#5b9ec0", "#4aa6d4"],
-                        colorListB: ["#79a4b9", "#518eaf", "#2685b4"],
-                    }
-                );
-            }
+            // if (fxrand() > 0.05) {
+            //     this.digndag2(
+            //         {
+            //             centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+            //             centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+            //             noiseValueA: this.boxes[i].noiseValue5,
+            //             noiseValueB: this.boxes[i].noiseValue6,
+            //             vertexLength: 10,
+            //             strokeWeighty: 1,
+            //             // angleMin: -PI / 3,
+            //             // angleMax: PI / 3,
+            //             angleMin: -PI,
+            //             angleMax: PI,
+            //             revert: true,
+            //             loopCount: 20,
+            //             colorListA: ["#6daac9", "#5b9ec0", "#4aa6d4"],
+            //             colorListB: ["#79a4b9", "#518eaf", "#2685b4"],
+            //         }
+            //     );
+            // }
 
-            if (this.boxes[i].horizon) {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseValueA: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: 20,
-                        strokeWeighty: 1,
-                        angleMin: -PI / 9,
-                        angleMax: PI / 9,
-                        revert: false,
-                        loopCount: 5,
-                        colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
-                        colorListB: ["#b97979", "#af5151", "#b42626"],
-                    }
-                );
+            // if (this.boxes[i].horizon) {
+            //     this.digndag2(
+            //         {
+            //             centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+            //             centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+            //             noiseValueA: this.boxes[i].noiseValue5,
+            //             noiseValueB: this.boxes[i].noiseValue6,
+            //             vertexLength: 20,
+            //             strokeWeighty: 1,
+            //             angleMin: -PI / 9,
+            //             angleMax: PI / 9,
+            //             revert: false,
+            //             loopCount: 5,
+            //             colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
+            //             colorListB: ["#b97979", "#af5151", "#b42626"],
+            //         }
+            //     );
+            // } else {
+
+            colorMode(HSB, 100);
+
+            let brightness = 0;
+            if (this.boxes[i].long < this.shortBoxCount / 2) {
+                brightness = map(this.boxes[i].long, 0, this.shortBoxCount / 2, 100, 50)
             } else {
-                let brightness = 0;
-                if (this.boxes[i].long < this.shortBoxCount / 2) {
-                    brightness = map(this.boxes[i].long, 0, this.shortBoxCount / 2, 100, 200)
-                } else {
-                    brightness = map(this.boxes[i].long, this.shortBoxCount / 2, this.shortBoxCount, 200, 100)
-                }
-
-                let colorTest = color(brightness);
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseValueA: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: 20,
-                        strokeWeighty: 1,
-                        angleMin: -PI / 9,
-                        angleMax: PI / 9,
-                        revert: false,
-                        loopCount: 5,
-                        colorListA: [colorTest, colorTest, colorTest],
-                        colorListB: [colorTest, colorTest, colorTest],
-                    }
-                );
+                brightness = map(this.boxes[i].long, this.shortBoxCount / 2, this.shortBoxCount, 50, 100)
             }
+
+            let colorTest = color(20, 70, brightness);
+            colorMode(RGB);
+
+            this.digndag2(
+                {
+                    centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                    centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                    noiseValueA: this.boxes[i].noiseValue5,
+                    noiseValueB: this.boxes[i].noiseValue6,
+                    vertexLength: 20,
+                    strokeWeighty: 1,
+                    angleMin: -PI / 9,
+                    angleMax: PI / 9,
+                    revert: false,
+                    loopCount: 5,
+                    colorListA: [colorTest, colorTest, colorTest],
+                    colorListB: [colorTest, colorTest, colorTest],
+                }
+            );
         }
+        // }
     }
 
     drawThirdLoop() {
