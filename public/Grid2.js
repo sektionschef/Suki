@@ -104,7 +104,7 @@ class Grid2 {
         // this.drawNoise(6);
 
         this.drawFirstLoop();
-        this.drawSecondLoop();
+        // this.drawSecondLoop();
         // this.drawThirdLoop();
         // this.drawFourthLoop();
 
@@ -339,55 +339,55 @@ class Grid2 {
             //     );
             // }
 
-            // if (this.boxes[i].horizon) {
-            //     this.digndag2(
-            //         {
-            //             centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-            //             centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-            //             noiseValueA: this.boxes[i].noiseValue5,
-            //             noiseValueB: this.boxes[i].noiseValue6,
-            //             vertexLength: 20,
-            //             strokeWeighty: 1,
-            //             angleMin: -PI / 9,
-            //             angleMax: PI / 9,
-            //             revert: false,
-            //             loopCount: 5,
-            //             colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
-            //             colorListB: ["#b97979", "#af5151", "#b42626"],
-            //         }
-            //     );
-            // } else {
-
-            colorMode(HSB, 100);
-
-            let brightness = 0;
-            if (this.boxes[i].long < this.shortBoxCount / 2) {
-                brightness = map(this.boxes[i].long, 0, this.shortBoxCount / 2, 100, 50)
+            if (this.boxes[i].horizon) {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 20,
+                        strokeWeighty: 1,
+                        angleMin: -PI / 9,
+                        angleMax: PI / 9,
+                        revert: false,
+                        loopCount: 5,
+                        colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
+                        colorListB: ["#b97979", "#af5151", "#b42626"],
+                    }
+                );
             } else {
-                brightness = map(this.boxes[i].long, this.shortBoxCount / 2, this.shortBoxCount, 50, 100)
-            }
 
-            let colorTest = color(20, 70, brightness);
-            colorMode(RGB);
+                colorMode(HSB, 100);
 
-            this.digndag2(
-                {
-                    centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                    centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                    noiseValueA: this.boxes[i].noiseValue5,
-                    noiseValueB: this.boxes[i].noiseValue6,
-                    vertexLength: 20,
-                    strokeWeighty: 1,
-                    angleMin: -PI / 9,
-                    angleMax: PI / 9,
-                    revert: false,
-                    loopCount: 5,
-                    colorListA: [colorTest, colorTest, colorTest],
-                    colorListB: [colorTest, colorTest, colorTest],
+                let brightness = 0;
+                if (this.boxes[i].long < this.shortBoxCount / 2) {
+                    brightness = map(this.boxes[i].long, 0, this.shortBoxCount / 2, 100, 50)
+                } else {
+                    brightness = map(this.boxes[i].long, this.shortBoxCount / 2, this.shortBoxCount, 50, 100)
                 }
-            );
+
+                let colorTest = color(20, 70, brightness);
+                colorMode(RGB);
+
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: 20,
+                        strokeWeighty: 1,
+                        angleMin: -PI / 9,
+                        angleMax: PI / 9,
+                        revert: false,
+                        loopCount: 5,
+                        colorListA: [colorTest, colorTest, colorTest],
+                        colorListB: [colorTest, colorTest, colorTest],
+                    }
+                );
+            }
         }
-        // }
     }
 
     drawThirdLoop() {

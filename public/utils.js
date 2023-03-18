@@ -94,9 +94,34 @@ function lessenColor(colorObject, diff) {
     return color(red, green, blue, opacity);
 }
 
-function fromHSBtoRGB(colorObject) {
+// change colors with HSB params
+function colorSpread(originColor, hueChange, saturationChange, brightnessChange) {
+    colorMode(HSB, 360, 100, 100, 1);  // needs to be here for the correct saturation function.
+    let startHue = hue(originColor);
+    let startSaturation = saturation(originColor);
+    let startBrightness = brightness(originColor);
+    let startOpacity = alpha(originColor);
+    // console.log(startHue + ", " + startSaturation + ", " + startBrightness + ", " + startOpacity);
+
+    let endHue = constrain(startHue + hueChange, 0, 360);
+    let endSaturation = constrain(startSaturation + saturationChange, 0, 100);
+    let endBrightness = constrain(startBrightness + brightnessChange, 0, 100);
+    let endOpacity = startOpacity
+
+    // console.log(endHue + ", " + endSaturation + ", " + endBrightness + ", " + endOpacity);
+    let targetColor = color(endHue, endSaturation, endBrightness, endOpacity);
     colorMode(RGB);
-    return color(red(colorObject), green(colorObject), blue(colorObject));
+    return targetColor;
+}
+
+// create a palette with 3 colors for a specific starting color with HSB params
+function triadicCreator(originColor, hA, sA, bA, hB, sB, bB, hC, sC, bC) {
+
+    let colorA = colorSpread(originColor, hA, sA, bA);
+    let colorB = colorSpread(originColor, hB, sB, bB);
+    let colorC = colorSpread(originColor, hC, sC, bC);
+
+    return [colorA, colorB, colorC];
 }
 
 // calculate the scaling params - choose the limiting factor either height or width
