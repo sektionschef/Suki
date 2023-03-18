@@ -26,8 +26,11 @@ class Grid2 {
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
 
-        this.palette1 = triadicCreator("#4f8aa8", 0, -13, 0, 0, 0, 0, 0, 13, 0);
-        this.palette2 = triadicCreator("#4f8aa8", 5, -13, 0, 5, 0, 0, 5, 13, 0);
+        this.palette1 = triadicCreator("#a3cce0", 0, -13, 0, 0, 0, 0, 0, 13, 0);
+        this.palette2 = triadicCreator("#a3cce0", 0, -13, -5, 0, 0, 5, 0, 13, 5);
+
+        this.paletteHorizon1 = triadicCreator("#35383a", 0, -13, -5, 0, 0, 0, 0, 13, 5);
+        this.paletteHorizon2 = triadicCreator("#35383a", 0, -13, -5, 0, 0, 5, 0, 13, 5);
 
         this.sInc1 = 0.03;
         this.lInc1 = 0.03;
@@ -106,9 +109,11 @@ class Grid2 {
         // this.drawNoise(4);
         // this.drawNoise(5);
         // this.drawNoise(6);
+        // this.drawNoise(7);
+        // this.drawNoise(8);
 
         this.drawFirstLoop();
-        // this.drawSecondLoop();
+        this.drawSecondLoop();
         // this.drawThirdLoop();
         // this.drawFourthLoop();
 
@@ -293,8 +298,8 @@ class Grid2 {
                 {
                     centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
                     centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                    noiseValueA: this.boxes[i].noiseValue7,
-                    noiseValueB: this.boxes[i].noiseValue8,
+                    noiseValueA: this.boxes[i].noiseValue1,
+                    noiseValueB: this.boxes[i].noiseValue2,
                     vertexLength: 10,
                     strokeWeighty: 2,
                     // angleMin: -PI / 4,
@@ -358,8 +363,8 @@ class Grid2 {
                         angleMax: PI / 9,
                         revert: false,
                         loopCount: 5,
-                        colorListA: ["#c96d6d", "#c05b5b", "#d44a4a"],
-                        colorListB: ["#b97979", "#af5151", "#b42626"],
+                        colorListA: this.paletteHorizon1,
+                        colorListB: this.paletteHorizon2,
                     }
                 );
             } else {
