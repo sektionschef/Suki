@@ -109,8 +109,11 @@ function colorSpread(originColor, hueChange, saturationChange, brightnessChange)
     let endOpacity = startOpacity
 
     // console.log(endHue + ", " + endSaturation + ", " + endBrightness + ", " + endOpacity);
-    let targetColor = color(endHue, endSaturation, endBrightness, endOpacity);
+    let targetColorHSB = color(endHue, endSaturation, endBrightness, endOpacity);
     colorMode(RGB);
+
+    let targetColor = color(red(targetColorHSB), green(targetColorHSB), blue(targetColorHSB));
+
     return targetColor;
 }
 

@@ -18,12 +18,16 @@
 // let PalettiA = ["#193352", "#4a7592", "#97b2c9"];
 // let PalettiB = ["#203f63", "#3c5c72", "#7e9eb9"];
 
+
 class Grid2 {
     constructor(data) {
 
         this.DEBUG = data.DEBUG;
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
+
+        this.palette1 = triadicCreator("#4f8aa8", 0, -13, 0, 0, 0, 0, 0, 13, 0);
+        this.palette2 = triadicCreator("#4f8aa8", 5, -13, 0, 5, 0, 0, 5, 13, 0);
 
         this.sInc1 = 0.03;
         this.lInc1 = 0.03;
@@ -299,8 +303,10 @@ class Grid2 {
                     angleMax: PI,
                     revert: true,
                     loopCount: 30,
-                    colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
-                    colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                    // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
+                    // colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                    colorListA: this.palette1,
+                    colorListB: this.palette2,
                 }
             );
         }
