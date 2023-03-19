@@ -127,6 +127,19 @@ function triadicCreator(originColor, hA, sA, bA, hB, sB, bB, hC, sC, bC) {
     return [colorA, colorB, colorC];
 }
 
+// create a palette with 10 colors for a specific starting color with HSB params
+function tenPaletter(originColor, paletteCount, hStep, sStep, bStep) {
+
+    let holder = []
+
+    for (var i = 0; i < paletteCount; i++) {
+
+        holder.push(colorSpread(originColor, hStep * i - hStep * paletteCount / 2, sStep * i - sStep * paletteCount / 2, bStep * i - bStep * paletteCount / 2));
+    }
+
+    return holder;
+}
+
 // calculate the scaling params - choose the limiting factor either height or width
 function scaleDynamicallyPaper() {
 

@@ -26,19 +26,27 @@ class Grid2 {
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
 
-        this.palette1 = triadicCreator("#a3cce0", 0, -13, 0, 0, 0, 0, 0, 13, 0);
+        // this.palette1 = triadicCreator("#a3cce0", 0, -13, 0, 0, 0, 0, 0, 13, 0);
+        this.palette1 = tenPaletter("#a3cce0", 10, 0, 10, 0);
+        // console.log(this.palette1);
         this.palette2 = triadicCreator("#a3cce0", 0, -13, -5, 0, 0, 5, 0, 13, 5);
 
         this.paletteHorizon1 = triadicCreator("#35383a", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = triadicCreator("#35383a", 0, -13, -5, 0, 0, 5, 0, 13, 5);
 
-        this.sInc1 = 0.03;
-        this.lInc1 = 0.03;
-        this.zInc1 = 0.03;
+        // this.sInc1 = 0.03;
+        // this.lInc1 = 0.03;
+        // this.zInc1 = 0.03;
+        this.sInc1 = 0.002;
+        this.lInc1 = 0.04;
+        this.zInc1 = 0;
 
-        this.sInc2 = 0.06;
-        this.lInc2 = 0.04;
-        this.zInc2 = 0.06;
+        // this.sInc2 = 0.06;
+        // this.lInc2 = 0.04;
+        // this.zInc2 = 0.06;
+        this.sInc2 = 0.006;
+        this.lInc2 = 0.05;
+        this.zInc2 = 0;
 
         this.sInc3 = 0.08;
         this.lInc3 = 0.07;
@@ -113,13 +121,17 @@ class Grid2 {
         // this.drawNoise(8);
 
         this.drawFirstLoop();
-        this.drawSecondLoop();
+        // this.drawSecondLoop();
         // this.drawThirdLoop();
         // this.drawFourthLoop();
 
     }
 
     createBoxes() {
+
+        this.noiseValue1Max = 0;
+        this.noiseValue1Min = 0;
+
         var index = 0;
 
         let loff1 = 0;
@@ -174,6 +186,13 @@ class Grid2 {
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
                 var horizon = l == Math.round(this.shortBoxCount / 2);
 
+                if (noiseValue1 > this.noiseValue1Max) {
+                    this.noiseValue1Max = noiseValue1;
+                }
+                if (noiseValue1 < this.noiseValue1Min) {
+                    this.noiseValue1Min = noiseValue1;
+                }
+
                 this.boxes.push({
                     "center": center,
                     "offset": createVector(getRandomFromInterval(-10, 10), getRandomFromInterval(-10, 10)),
@@ -225,6 +244,8 @@ class Grid2 {
             zoff8 += this.zInc8;
         }
 
+        // console.log(this.noiseValue1Max);
+        // console.log(this.noiseValue1Min);
     }
 
     showDebug() {
@@ -304,8 +325,8 @@ class Grid2 {
                     strokeWeighty: 2,
                     // angleMin: -PI / 4,
                     // angleMax: PI / 4,
-                    angleMin: -PI,
-                    angleMax: PI,
+                    angleMin: -PI / 8,
+                    angleMax: PI / 8,
                     revert: true,
                     loopCount: 30,
                     // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
@@ -569,15 +590,18 @@ class Grid2 {
         let colorList = [];
 
         // if (noiseValueA >= 0.5 && fxrand() > 0.2) {
-        if (fxrand() > 0.5) {
-            noiseValue = data.noiseValueA;
-            colorList = data.colorListA;
-        } else {
-            noiseValue = data.noiseValueB;
-            colorList = data.colorListB;
-        }
+        // if (fxrand() > 0.5) {
+        noiseValue = data.noiseValueA;
+        colorList = data.colorListA;
+        // } else {
+        //     noiseValue = data.noiseValueB;
+        //     colorList = data.colorListB;
+        // }
 
-        let colorSelect = Math.floor(noiseValue * (colorList.length));
+        // let colorSelect = Math.floor(noiseValue * (colorList.length));
+        // let colorSelect = Math.floor(noiseValue * (this.noiseValue1Max - this.noiseValue1Min) + this.noiseValue1Min);
+        let colorSelect = Math.round(map(noiseValue, this.noiseValue1Min, this.noiseValue1Max, 0, (colorList.length - 1)));
+        // console.log(colorSelect);
 
         // for (var j = 0; j < jLoopCount; j++) {
 
@@ -612,7 +636,7 @@ class Grid2 {
             let v = p5.Vector.fromAngle(angle, vertexLength);
 
             newAdder = p5.Vector.add(oldAdder, v);
-            strokeColor = distortColorSuperNew(colorList[colorSelect], 2);
+            // strokeColor = distortColorSuperNew(colorList[colorSelect], 2);
             this.buffer.stroke(strokeColor);
             this.buffer.vertex(newAdder.x, newAdder.y);
         }
