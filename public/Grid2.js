@@ -26,13 +26,13 @@ class Grid2 {
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
 
-        this.palette1 = tenPaletter("#9bb9c9", 10, 0, 10, 0);
-        this.palette2 = tenPaletter("#6c90a1", 10, 0, 15, 0);
+        this.palette1 = tenPaletter("#96a2a8", 10, 0, 5, 0);
+        this.palette2 = tenPaletter("#829097", 10, 0, 10, 0);
 
         this.palette3 = tenPaletter("#849ab9", 10, 0, 10, 0);
         this.palette4 = tenPaletter("#8c9aaf", 10, 0, 15, 0);
 
-        this.palette5 = tenPaletter("#7a7a97", 10, 0, 10, 0);
+        this.palette5 = tenPaletter("#5e778f", 10, 0, 10, 0);
         this.palette6 = tenPaletter("#a3bde0", 10, 0, 15, 0);
 
         this.paletteHorizon1 = triadicCreator("#4c5d6b", 0, -13, -5, 0, 0, 0, 0, 13, 5);
@@ -60,13 +60,13 @@ class Grid2 {
         this.lInc4 = 0.06;
         this.zInc4 = 0;
 
-        this.sInc5 = 0.1;
+        this.sInc5 = 0.009;
         this.lInc5 = 0.1;
-        this.zInc5 = 0.1;
+        this.zInc5 = 0;
 
-        this.sInc6 = 0.2;
-        this.lInc6 = 0.2;
-        this.zInc6 = 0.2;
+        this.sInc6 = 0.009;
+        this.lInc6 = 0.3;
+        this.zInc6 = 0;
 
         this.sInc7 = 0.02;
         this.lInc7 = 0.02;
@@ -126,7 +126,7 @@ class Grid2 {
 
         this.drawFirstLoop();
         this.drawSecondLoop();
-        // this.drawThirdLoop();
+        this.drawThirdLoop();
 
         // this.drawFourthLoop();
 
@@ -333,6 +333,7 @@ class Grid2 {
                     angleMin: -PI / 10,
                     angleMax: PI / 10,
                     revert: true,
+                    cutOutValue: 0,
                     loopCount: 10,
                     // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
                     // colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
@@ -355,27 +356,6 @@ class Grid2 {
                 continue;
             }
 
-            // if (fxrand() > 0.05) {
-            //     this.digndag2(
-            //         {
-            //             centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-            //             centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-            //             noiseValueA: this.boxes[i].noiseValue5,
-            //             noiseValueB: this.boxes[i].noiseValue6,
-            //             vertexLength: 10,
-            //             strokeWeighty: 1,
-            //             // angleMin: -PI / 3,
-            //             // angleMax: PI / 3,
-            //             angleMin: -PI,
-            //             angleMax: PI,
-            //             revert: true,
-            //             loopCount: 20,
-            //             colorListA: ["#6daac9", "#5b9ec0", "#4aa6d4"],
-            //             colorListB: ["#79a4b9", "#518eaf", "#2685b4"],
-            //         }
-            //     );
-            // }
-
             if (this.boxes[i].horizon) {
                 this.digndag2(
                     {
@@ -383,12 +363,13 @@ class Grid2 {
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
-                        vertexLength: 10,
-                        strokeWeighty: 0.5,
-                        angleMin: - PI / 12,
-                        angleMax: PI / 12,
-                        revert: false,
-                        loopCount: 20,
+                        vertexLength: 20,
+                        strokeWeighty: 1,
+                        angleMin: PI / 12 * 11,
+                        angleMax: PI / 12 * 13,
+                        revert: true,
+                        cutOutValue: 0,
+                        loopCount: 30,
                         colorListA: this.paletteHorizon1,
                         colorListB: this.paletteHorizon2,
                     }
@@ -414,13 +395,14 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
                         // vertexLength: 10,
-                        vertexLength: map(this.boxes[i].noiseValue5, 0, 1, 5, 10),
+                        vertexLength: map(this.boxes[i].noiseValue3, 0, 1, 5, 10),
                         strokeWeighty: 1,
-                        angleMin: PI / 6 * 3,
-                        angleMax: PI / 6 * 6,
+                        angleMin: PI / 6 * 4,
+                        angleMax: PI / 6 * 8,
                         // angleMin: map(this.boxes[i].noiseValue5, 0, 1, 0, -PI),
                         // angleMax: map(this.boxes[i].noiseValue5, 0, 1, 0, PI),
                         revert: true,
+                        cutOutValue: 0,
                         loopCount: 15,
                         colorListA: this.palette3,
                         colorListB: this.palette4,
@@ -451,13 +433,14 @@ class Grid2 {
                 {
                     centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
                     centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                    noiseValueA: this.boxes[i].noiseValue7,
-                    noiseValueB: this.boxes[i].noiseValue8,
+                    noiseValueA: this.boxes[i].noiseValue5,
+                    noiseValueB: this.boxes[i].noiseValue6,
                     vertexLength: 10,
                     strokeWeighty: 0.5,
                     angleMin: PI / 6,
                     angleMax: PI / 6 * 4,
                     revert: true,
+                    cutOutValue: 0.5,
                     loopCount: 10,
                     colorListA: this.palette5,
                     colorListB: this.palette6,
@@ -570,56 +553,61 @@ class Grid2 {
             noiseValue = data.noiseValueB;
             colorList = data.colorListB;
         }
+        if (noiseValue > data.cutOutValue) {
 
-        // let colorSelect = Math.floor(noiseValue * (colorList.length));
-        // let colorSelect = Math.floor(noiseValue * (this.noiseValue1Max - this.noiseValue1Min) + this.noiseValue1Min);
-        // let colorSelect = constrain(Math.round(map(noiseValue, this.noiseValue1Min, this.noiseValue1Max, 0, (colorList.length - 1))), 0, (colorList.length - 1));
-        let colorSelect = constrain(Math.round(map(noiseValue, 0, 1, 0, (colorList.length - 1))), 0, (colorList.length - 1));
-        // console.log(colorSelect);
+            // if (loopSensitive) {
+            loopCount = map(noiseValue, 0, 1, 5, 30);
+            // }
 
-        // for (var j = 0; j < jLoopCount; j++) {
+            // let colorSelect = Math.floor(noiseValue * (colorList.length));
+            // let colorSelect = Math.floor(noiseValue * (this.noiseValue1Max - this.noiseValue1Min) + this.noiseValue1Min);
+            // let colorSelect = constrain(Math.round(map(noiseValue, this.noiseValue1Min, this.noiseValue1Max, 0, (colorList.length - 1))), 0, (colorList.length - 1));
+            let colorSelect = constrain(Math.round(map(noiseValue, 0, 1, 0, (colorList.length - 1))), 0, (colorList.length - 1));
+            // console.log(colorSelect);
 
-        // offset for center
-        // let center_ = createVector(center.x + getRandomFromInterval(-centerOffset, centerOffset), center.y + getRandomFromInterval(-centerOffset, centerOffset));
-        // let strokeColor_ = distortColorSuperNew(strokeColor, 5);
+            // for (var j = 0; j < jLoopCount; j++) {
 
-        this.buffer.push();
-        this.buffer.noFill();
-        this.buffer.strokeWeight(strokeWeighty);
-        this.buffer.strokeCap(SQUARE);
+            // offset for center
+            // let center_ = createVector(center.x + getRandomFromInterval(-centerOffset, centerOffset), center.y + getRandomFromInterval(-centerOffset, centerOffset));
+            // let strokeColor_ = distortColorSuperNew(strokeColor, 5);
 
-        this.buffer.beginShape();
+            this.buffer.push();
+            this.buffer.noFill();
+            this.buffer.strokeWeight(strokeWeighty);
+            this.buffer.strokeCap(SQUARE);
 
-        let oldAdder = center;
-        let newAdder = oldAdder;
-        let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
-        this.buffer.vertex(oldAdder.x, oldAdder.y)
+            this.buffer.beginShape();
 
-        for (var i = 0; i < loopCount; i++) {
-            oldAdder = newAdder;
+            let oldAdder = center;
+            let newAdder = oldAdder;
+            let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
+            this.buffer.vertex(oldAdder.x, oldAdder.y)
 
-            let angle = getRandomFromInterval(angleMin, angleMax);
+            for (var i = 0; i < loopCount; i++) {
+                oldAdder = newAdder;
 
-            // make spots not lines
-            if (data.revert) {
-                if (i % 2 != 0) {
-                    angle = angle - PI;
+                let angle = getRandomFromInterval(angleMin, angleMax);
+
+                // make spots not lines
+                if (data.revert) {
+                    if (i % 2 != 0) {
+                        angle = angle - PI;
+                    }
                 }
+
+                let v = p5.Vector.fromAngle(angle, vertexLength);
+
+                newAdder = p5.Vector.add(oldAdder, v);
+                strokeColor = distortColorSuperNew(colorList[colorSelect], 15);
+                this.buffer.stroke(strokeColor);
+                this.buffer.vertex(newAdder.x, newAdder.y);
             }
 
-            let v = p5.Vector.fromAngle(angle, vertexLength);
+            this.buffer.endShape();
+            this.buffer.pop();
+            // }
 
-            newAdder = p5.Vector.add(oldAdder, v);
-            strokeColor = distortColorSuperNew(colorList[colorSelect], 15);
-            this.buffer.stroke(strokeColor);
-            this.buffer.vertex(newAdder.x, newAdder.y);
         }
-
-        this.buffer.endShape();
-        this.buffer.pop();
-        // }
-
-        // }
     }
 
 
