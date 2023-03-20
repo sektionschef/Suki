@@ -26,13 +26,11 @@ class Grid2 {
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
 
-        // this.palette1 = triadicCreator("#a3cce0", 0, -13, 0, 0, 0, 0, 0, 13, 0);
-        this.palette1 = tenPaletter("#a3cce0", 10, 0, 10, 0);
-        // this.palette2 = triadicCreator("#a3cce0", 0, -13, -5, 0, 0, 5, 0, 13, 5);
-        this.palette2 = tenPaletter("#a3cce0", 10, 0, 15, 0);
+        this.palette1 = tenPaletter("#9bb9c9", 10, 0, 10, 0);
+        this.palette2 = tenPaletter("#6c90a1", 10, 0, 15, 0);
 
-        this.palette3 = tenPaletter("#a3bbe0", 10, 0, 10, 0);
-        this.palette4 = tenPaletter("#a3bbe0", 10, 0, 15, 0);
+        this.palette3 = tenPaletter("#849ab9", 10, 0, 10, 0);
+        this.palette4 = tenPaletter("#8c9aaf", 10, 0, 15, 0);
 
         this.palette5 = tenPaletter("#7a7a97", 10, 0, 10, 0);
         this.palette6 = tenPaletter("#a3bde0", 10, 0, 15, 0);
@@ -128,7 +126,7 @@ class Grid2 {
 
         this.drawFirstLoop();
         this.drawSecondLoop();
-        this.drawThirdLoop();
+        // this.drawThirdLoop();
 
         // this.drawFourthLoop();
 
@@ -416,7 +414,7 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
                         // vertexLength: 10,
-                        vertexLength: map(this.boxes[i].noiseValue5, 0, 1, 5, 15),
+                        vertexLength: map(this.boxes[i].noiseValue5, 0, 1, 5, 10),
                         strokeWeighty: 1,
                         angleMin: PI / 6 * 3,
                         angleMax: PI / 6 * 6,
@@ -564,7 +562,7 @@ class Grid2 {
         let noiseValue = 0;
         let colorList = [];
 
-        // if (noiseValueA >= 0.5 && fxrand() > 0.2) {
+        // if (data.noiseValueA > 0.5) {
         if (fxrand() > 0.5) {
             noiseValue = data.noiseValueA;
             colorList = data.colorListA;
@@ -621,6 +619,7 @@ class Grid2 {
         this.buffer.pop();
         // }
 
+        // }
     }
 
 
