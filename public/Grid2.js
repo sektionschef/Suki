@@ -26,8 +26,10 @@ class Grid2 {
         this.marginBoxCount = data.marginBoxCount;
         this.shortBoxCount = data.shortBoxCount; // boxes on the shorter side
 
-        this.palette1 = tenPaletter("#8eaebe", 10, 0, 5, 0);
-        this.palette2 = tenPaletter("#668392", 10, 0, 10, 0);
+        this.palette1a = tenPaletter("#8eaebe", 10, 0, 5, 0);
+        this.palette2a = tenPaletter("#668392", 10, 0, 10, 0);
+        this.palette1b = tenPaletter("#b9be8e", 10, 0, 5, 0);
+        this.palette2b = tenPaletter("#669268", 10, 0, 10, 0);
 
         this.palette3 = tenPaletter("#51a7c2", 10, 0, 10, 0);
         this.palette4 = tenPaletter("#6dccd8", 10, 0, 15, 0);
@@ -128,8 +130,8 @@ class Grid2 {
         // this.drawNoise(8);
 
         this.drawFirstLoop();
-        this.drawSecondLoop();
-        this.drawThirdLoop();
+        // this.drawSecondLoop();
+        // this.drawThirdLoop();
 
         // this.drawFourthLoop();
 
@@ -193,6 +195,7 @@ class Grid2 {
                 var polygonA = insidePolygon([center.x, center.y], polyPoints);
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
                 var horizon = l == Math.round(this.shortBoxCount / 2);
+                var aboveHorizon = l < Math.round(this.shortBoxCount / 2);
 
                 if (noiseValue1 > this.noiseValue1Max) {
                     this.noiseValue1Max = noiseValue1;
@@ -223,6 +226,7 @@ class Grid2 {
                     "polygonA": polygonA,
                     "polygonLeft": polygonLeft,
                     "horizon": horizon,
+                    "aboveHorizon": aboveHorizon,
                 })
                 index += 1;
                 soff1 += this.sInc1;
@@ -323,27 +327,51 @@ class Grid2 {
                 continue;
             }
 
-            this.digndag2(
-                {
-                    centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                    centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                    noiseValueA: this.boxes[i].noiseValue1,
-                    noiseValueB: this.boxes[i].noiseValue2,
-                    vertexLength: 20,
-                    strokeWeighty: 2,
-                    // angleMin: -PI / 4,
-                    // angleMax: PI / 4,
-                    angleMin: -PI / 6,
-                    angleMax: PI / 6,
-                    revert: true,
-                    cutOutValue: 0,
-                    loopCount: 10,
-                    // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
-                    // colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
-                    colorListA: this.palette1,
-                    colorListB: this.palette2,
-                }
-            );
+            if (this.boxes[i].aboveHorizon) {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue1,
+                        noiseValueB: this.boxes[i].noiseValue2,
+                        vertexLength: 20,
+                        strokeWeighty: 2,
+                        // angleMin: -PI / 4,
+                        // angleMax: PI / 4,
+                        angleMin: -PI / 6,
+                        angleMax: PI / 6,
+                        revert: true,
+                        cutOutValue: 0,
+                        loopCount: 10,
+                        // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
+                        // colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                        colorListA: this.palette1a,
+                        colorListB: this.palette2a,
+                    }
+                );
+            } else {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseValueA: this.boxes[i].noiseValue1,
+                        noiseValueB: this.boxes[i].noiseValue2,
+                        vertexLength: 20,
+                        strokeWeighty: 2,
+                        // angleMin: -PI / 4,
+                        // angleMax: PI / 4,
+                        angleMin: -PI / 6,
+                        angleMax: PI / 6,
+                        revert: true,
+                        cutOutValue: 0,
+                        loopCount: 10,
+                        // colorListA: ["#6192aa", "#4f8aa8", "#3e81a3"],
+                        // colorListB: ["#6ca1bb", "#5495b6", "#4590b6"],
+                        colorListA: this.palette1b,
+                        colorListB: this.palette2b,
+                    }
+                );
+            }
         }
     }
 
@@ -559,6 +587,7 @@ class Grid2 {
             noiseValue = data.noiseValueB;
             colorList = data.colorListB;
         }
+
         if (noiseValue > data.cutOutValue) {
 
             // if (loopSensitive) {
