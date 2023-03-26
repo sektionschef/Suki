@@ -194,8 +194,19 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#ebebeb"));
+  background(color("#a0a0a0"));
   // background(color("#4f8aa8"));
+
+  // push();
+  // noStroke();
+  // fill("#6dc5dd")
+  // rect(0, 0, width, height / 2);
+  // pop();
+  // push();
+  // noStroke();
+  // fill("#79a07a")
+  // rect(0, height / 2, width, height / 2);
+  // pop();
 
   // STRIPES
   // push();
