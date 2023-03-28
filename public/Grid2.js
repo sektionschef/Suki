@@ -29,10 +29,10 @@ class Grid2 {
         // cool but strong colors
         // this.palette1a = tenPaletter("#6dc5dd", 10, 5, 5, 0);
         // this.palette2a = tenPaletter("#a0cae2", 10, 5, 10, 0);
-        this.palette1a = tenPaletter("#b1deeb", 10, 5, 5, 0);
-        this.palette2a = tenPaletter("#a9beca", 10, 5, 10, 0);
-        this.palette1b = tenPaletter("#aacfa0", 10, 5, 5, 0);
-        this.palette2b = tenPaletter("#7ea37a", 10, 5, 10, 0);
+        this.palette1a = tenPaletter("#b1deeb", 10, 0, 2, 1);
+        this.palette2a = tenPaletter("#a9beca", 10, 2, 2, 3);
+        this.palette1b = tenPaletter("#aacfa0", 10, 0, 2, 1);
+        this.palette2b = tenPaletter("#7ea37a", 10, 2, 2, 3);
 
         this.palette3a = tenPaletter("#91d2e5", 10, 5, 20, 0);
         this.palette4a = tenPaletter("#d0f9ff", 10, 5, 25, 0);
