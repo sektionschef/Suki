@@ -55,8 +55,8 @@ class Grid2 {
         // this.sInc1 = 0.03;
         // this.lInc1 = 0.03;
         // this.zInc1 = 0.03;
-        this.sInc1 = 0.002;
-        this.lInc1 = 0.001;
+        this.sInc1 = 0.01;
+        this.lInc1 = 0.005;
         this.zInc1 = 0;
 
         // this.sInc2 = 0.06;
@@ -129,7 +129,7 @@ class Grid2 {
         }
 
         // DEBUG NOISE
-        // this.drawNoise(1);
+        this.drawNoise(1);
         // this.drawNoise(2);
         // this.drawNoise(3);
         // this.drawNoise(4);
@@ -142,26 +142,26 @@ class Grid2 {
         // this.drawSecondLoop();
         // this.drawThirdLoop();
 
-        this.drawFourthLoop();
+        // this.drawFourthLoop();
     }
 
     createBoxes() {
 
         this.noiseValue1Max = 0;
-        this.noiseValue1Min = 0;
+        this.noiseValue1Min = 1;
         this.noiseValue2Max = 0;
-        this.noiseValue2Min = 0;
-        this.noiseValue3Max = 0;
+        this.noiseValue2Min = 1;
+        this.noiseValue3Max = 1;
         this.noiseValue3Min = 0;
-        this.noiseValue4Max = 0;
+        this.noiseValue4Max = 1;
         this.noiseValue4Min = 0;
-        this.noiseValue5Max = 0;
+        this.noiseValue5Max = 1;
         this.noiseValue5Min = 0;
-        this.noiseValue6Max = 0;
+        this.noiseValue6Max = 1;
         this.noiseValue6Min = 0;
-        this.noiseValue7Max = 0;
+        this.noiseValue7Max = 1;
         this.noiseValue7Min = 0;
-        this.noiseValue8Max = 0;
+        this.noiseValue8Max = 1;
         this.noiseValue8Min = 0;
 
         var index = 0;
@@ -288,22 +288,6 @@ class Grid2 {
                     "noiseValue6": noiseValue6,
                     "noiseValue7": noiseValue7,
                     "noiseValue8": noiseValue8,
-                    "noiseValue1Min": this.noiseValue1Min,
-                    "noiseValue2Min": this.noiseValue2Min,
-                    "noiseValue3Min": this.noiseValue3Min,
-                    "noiseValue4Min": this.noiseValue4Min,
-                    "noiseValue5Min": this.noiseValue5Min,
-                    "noiseValue6Min": this.noiseValue6Min,
-                    "noiseValue7Min": this.noiseValue7Min,
-                    "noiseValue8Min": this.noiseValue8Min,
-                    "noiseValue1Max": this.noiseValue1Max,
-                    "noiseValue2Max": this.noiseValue2Max,
-                    "noiseValue3Max": this.noiseValue3Max,
-                    "noiseValue4Max": this.noiseValue4Max,
-                    "noiseValue5Max": this.noiseValue5Max,
-                    "noiseValue6Max": this.noiseValue6Max,
-                    "noiseValue7Max": this.noiseValue7Max,
-                    "noiseValue8Max": this.noiseValue8Max,
                     "polygonA": polygonA,
                     "polygonLeft": polygonLeft,
                     "horizon": horizon,
@@ -361,20 +345,10 @@ class Grid2 {
     // for DEBUGGING Noise
     drawNoise(number) {
 
-        let noiseValue = "";
-        if (number == 1) {
-            noiseValue = "noiseValue1";
-        } else if (number == 2) {
-            noiseValue = "noiseValue2";
-        } else if (number == 3) {
-            noiseValue = "noiseValue3";
-        } else if (number == 4) {
-            noiseValue = "noiseValue4";
-        } else if (number == 5) {
-            noiseValue = "noiseValue5";
-        } else {
-            noiseValue = "noiseValue6";
-        }
+        let noiseVars = this.getNoiseVars(number);
+        console.log(noiseVars.noiseValueName);
+        console.log(noiseVars.noiseValueMin);
+        console.log(noiseVars.noiseValueMax);
 
         this.buffer.push();
         this.buffer.noStroke();
@@ -384,7 +358,13 @@ class Grid2 {
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
             }
-            this.buffer.fill(this.boxes[i][noiseValue] * 255);
+
+            let noiseValueLoop = this.boxes[i][noiseValue];
+            let noiseValueNorm = map(noiseValueLoop, noiseValueMin, noiseValueMax, 0, 1);
+            let noiseValueColor = Math.round(map(noiseValueLoop, noiseValueMin, noiseValueMax, 0, 255));
+
+            // console.log(noiseValueColor);
+            this.buffer.fill(noiseValueColor);
             this.buffer.rect(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].C.x, this.boxes[i].C.y);
         }
         this.buffer.pop();
@@ -923,5 +903,55 @@ class Grid2 {
         // blendMode(OVERLAY);
         image(this.buffer, 0, 0);
         pop();
+    }
+
+    getNoiseVars(number) {
+
+        let noiseValueName = "";
+        let noiseValueMin = 0;
+        let noiseValueMax = 0;
+
+        if (number == 1) {
+            noiseValueName = "noiseValue1";
+            noiseValueMin = this.noiseValue1Min;
+            noiseValueMax = this.noiseValue1Max;
+        } else if (number == 2) {
+            noiseValueName = "noiseValue2";
+            noiseValueMin = this.noiseValue2Min;
+            noiseValueMax = this.noiseValue2Max;
+        } else if (number == 3) {
+            noiseValueName = "noiseValue3";
+            noiseValueMin = this.noiseValue3Min;
+            noiseValueMax = this.noiseValue3Max;
+        } else if (number == 4) {
+            noiseValueName = "noiseValue4";
+            noiseValueMin = this.noiseValue4Min;
+            noiseValueMax = this.noiseValue4Max;
+        } else if (number == 5) {
+            noiseValueName = "noiseValue5";
+            noiseValueMin = this.noiseValue5Min;
+            noiseValueMax = this.noiseValue5Max;
+        } else if (number == 6) {
+            noiseValueName = "noiseValue6";
+            noiseValueMin = this.noiseValue6Min;
+            noiseValueMax = this.noiseValue6Max;
+        } else if (number == 7) {
+            noiseValueName = "noiseValue7";
+            noiseValueMin = this.noiseValue7Min;
+            noiseValueMax = this.noiseValue7Max;
+        } else {
+            noiseValueName = "noiseValue8";
+            noiseValueMin = this.noiseValue8Min;
+            noiseValueMax = this.noiseValue8Max;
+        }
+
+        // console.log("Min: " + noiseValueMin);
+        // console.log("Max: " + noiseValueMax);
+
+        return {
+            noiseValueName: noiseValueName,
+            noiseValueMin: noiseValueMin,
+            noiseValueMax: noiseValueMax,
+        }
     }
 }
