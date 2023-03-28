@@ -129,7 +129,7 @@ class Grid2 {
         }
 
         // DEBUG NOISE
-        this.drawNoise(1);
+        // this.drawNoise(1);
         // this.drawNoise(2);
         // this.drawNoise(3);
         // this.drawNoise(4);
@@ -138,7 +138,7 @@ class Grid2 {
         // this.drawNoise(7);
         // this.drawNoise(8);
 
-        // this.drawFirstLoop();
+        this.drawFirstLoop();
         // this.drawSecondLoop();
         // this.drawThirdLoop();
 
@@ -346,9 +346,9 @@ class Grid2 {
     drawNoise(number) {
 
         let noiseVars = this.getNoiseVars(number);
-        console.log(noiseVars.noiseValueName);
-        console.log(noiseVars.noiseValueMin);
-        console.log(noiseVars.noiseValueMax);
+        // console.log(noiseVars.noiseValueName);
+        // console.log(noiseVars.noiseValueMin);
+        // console.log(noiseVars.noiseValueMax);
 
         this.buffer.push();
         this.buffer.noStroke();
@@ -359,9 +359,9 @@ class Grid2 {
                 continue;
             }
 
-            let noiseValueLoop = this.boxes[i][noiseValue];
-            let noiseValueNorm = map(noiseValueLoop, noiseValueMin, noiseValueMax, 0, 1);
-            let noiseValueColor = Math.round(map(noiseValueLoop, noiseValueMin, noiseValueMax, 0, 255));
+            let noiseValueLoop = this.boxes[i][noiseVars.noiseValueName];
+            // let noiseValueNorm = map(noiseValueLoop, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, 1);
+            let noiseValueColor = Math.round(map(noiseValueLoop, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, 255));
 
             // console.log(noiseValueColor);
             this.buffer.fill(noiseValueColor);
@@ -393,12 +393,14 @@ class Grid2 {
                     {
                         centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 1,
+                        noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 0, 1),
                         noiseValueB: this.boxes[i].noiseValue2, // map(this.boxes[i].noiseValue2, this.noiseValue2Min, this.noiseValue2Max, 0, 1),
-                        noiseValueAMin: this.boxes[i].noiseValue1Min,
-                        noiseValueAMax: this.boxes[i].noiseValue1Max,
-                        noiseValueBMin: this.boxes[i].noiseValue2Min,
-                        noiseValueBMax: this.boxes[i].noiseValue2Max,
+                        // noiseValueAMin: this.boxes[i].noiseValue1Min,
+                        // noiseValueAMax: this.boxes[i].noiseValue1Max,
+                        // noiseValueBMin: this.boxes[i].noiseValue2Min,
+                        // noiseValueBMax: this.boxes[i].noiseValue2Max,
                         vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 10, 20), // 15,
                         strokeWeighty: 7,
                         angleMin: 0,
@@ -417,12 +419,14 @@ class Grid2 {
                     {
                         centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 1,
+                        noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 0, 1),
                         noiseValueB: this.boxes[i].noiseValue2, // map(this.boxes[i].noiseValue2, this.noiseValue2Min, this.noiseValue2Max, 0, 1),
-                        noiseValueAMin: this.boxes[i].noiseValue1Min,
-                        noiseValueAMax: this.boxes[i].noiseValue1Max,
-                        noiseValueBMin: this.boxes[i].noiseValue2Min,
-                        noiseValueBMax: this.boxes[i].noiseValue2Max,
+                        // noiseValueAMin: this.boxes[i].noiseValue1Min,
+                        // noiseValueAMax: this.boxes[i].noiseValue1Max,
+                        // noiseValueBMin: this.boxes[i].noiseValue2Min,
+                        // noiseValueBMax: this.boxes[i].noiseValue2Max,
                         vertexLength: 15,
                         strokeWeighty: 7,
                         // angleMin: -PI / 6,
@@ -737,24 +741,23 @@ class Grid2 {
 
 
         let noiseValue = 0;
-        let noiseValueMin = 0;
-        let noiseValueMax = 0;
         let noiseValueNorm = 0;
         let colorList = [];
+        let noiseVars = {};
 
         if (fxrand() > 0.5) {
+            noiseVars = this.getNoiseVars(data.noiseNumberA);
             noiseValue = data.noiseValueA;
             colorList = data.colorListA;
-            noiseValueMin = data.noiseValueAMin;
-            noiseValueMax = data.noiseValueAMax;
+            // console.log("case A");
         } else {
+            noiseVars = this.getNoiseVars(data.noiseNumberB);
             noiseValue = data.noiseValueB;
             colorList = data.colorListB;
-            noiseValueMin = data.noiseValueBMin;
-            noiseValueMax = data.noiseValueBMax;
+            // console.log("case B");
         }
 
-        noiseValueNorm = map(noiseValue, noiseValueMin, noiseValueMax, 0, 1);
+        noiseValueNorm = map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, 1);
 
         if (noiseValueNorm > data.cutOutValue) {
 
@@ -767,7 +770,9 @@ class Grid2 {
             // let colorSelect = Math.floor(noiseValue * (this.noiseValue1Max - this.noiseValue1Min) + this.noiseValue1Min);
             // let colorSelect = constrain(Math.round(map(noiseValue, this.noiseValue1Min, this.noiseValue1Max, 0, (colorList.length - 1))), 0, (colorList.length - 1));
             // let colorSelect = constrain(Math.round(map(noiseValue, 0, 1, 0, (colorList.length - 1))), 0, (colorList.length - 1));
-            let colorSelect = Math.round(map(noiseValue, noiseValueMin, noiseValueMax, 0, (colorList.length - 1)));
+            let colorSelect = Math.round(map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, (colorList.length - 1)));
+            // console.log(noiseVars.noiseValueMin);
+            // console.log(noiseVars.noiseValueMax);
             // console.log(colorList.length - 1);
             // console.log(colorSelect);
 
