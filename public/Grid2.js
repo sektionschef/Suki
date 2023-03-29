@@ -127,7 +127,7 @@ class Grid2 {
         this.drawFirstLoop();
         this.drawSecondLoop();
         this.drawThirdLoop();
-        // this.drawFourthLoop();
+        this.drawFourthLoop();
     }
 
     createBoxes() {
@@ -621,15 +621,15 @@ class Grid2 {
                         noiseNumberB: 8,
                         noiseValueA: this.boxes[i].noiseValue7,
                         noiseValueB: this.boxes[i].noiseValue8,
-                        vertexLength: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 5, 15),
-                        strokeWeighty: 0.1, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
+                        vertexLength: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 5, 25),
+                        strokeWeighty: 0.2, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
                         angleMin: 2 * PI / 12 * 1,
                         angleMax: 2 * PI / 12 * 1,
                         // angleMin: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 0, 2 * PI),
                         // angleMax: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 0, 2 * PI),
                         revert: true,
                         blendNoises: 0.5,
-                        cutOutValue: 0,
+                        cutOutValue: 0.5,
                         loopCount: 5,
                         colorListA: this.palette7a,
                         colorListB: this.palette8a,
@@ -645,15 +645,15 @@ class Grid2 {
                         noiseNumberB: 8,
                         noiseValueA: this.boxes[i].noiseValue7,
                         noiseValueB: this.boxes[i].noiseValue8,
-                        vertexLength: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 5, 15),
-                        strokeWeighty: 0.1, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
+                        vertexLength: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 5, 25),
+                        strokeWeighty: 0.2, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
                         angleMin: PI / 6 * 1,
                         angleMax: PI / 6 * 3,
                         // angleMin: map(this.boxes[i].noiseValue7, 0, 1, -PI, -PI * 1),
                         // angleMax: map(this.boxes[i].noiseValue7, 0, 1, -PI, -PI * 1.8),
                         revert: true,
                         blendNoises: 0.5,
-                        cutOutValue: 0,
+                        cutOutValue: 0.5,
                         loopCount: 5,
                         colorListA: this.palette7b,
                         colorListB: this.palette8b,
