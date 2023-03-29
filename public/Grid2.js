@@ -13,26 +13,26 @@ class Grid2 {
         this.horizonRow = Math.round(this.shortBoxCount * this.horizonRatio);
 
 
-        this.paletteBackgrounda = color("#3f9fb9");
-        this.paletteBackgroundb = color("#607a61");
+        this.paletteBackgrounda = color("#a2c1ca");
+        this.paletteBackgroundb = color("#5b7466");
 
         // cool but strong colors
         // this.palette1a = tenPaletter("#6dc5dd", 10, 5, 5, 0);
         // this.palette2a = tenPaletter("#a0cae2", 10, 5, 10, 0);
-        this.palette1a = tenPaletter("#b1deeb", 10, 0, 5, 1);
-        this.palette2a = tenPaletter("#81b5d3", 10, 2, 5, 3);
-        this.palette1b = tenPaletter("#aacfa0", 10, 0, 5, 1);
-        this.palette2b = tenPaletter("#7ea37a", 10, 2, 5, 3);
+        this.palette1a = tenPaletter("#9dc5db", 10, 2, 2, 5);
+        this.palette2a = tenPaletter("#7c99aa", 10, 1, 2, 5);
+        this.palette1b = tenPaletter("#abccb3", 10, 2, 2, 4);
+        this.palette2b = tenPaletter("#7aa38e", 10, 1, 2, 4);
 
-        this.palette3a = tenPaletter("#91d2e5", 10, 5, 2, 0);
-        this.palette4a = tenPaletter("#9ad1da", 10, 5, 2, 0);
-        this.palette3b = tenPaletter("#a7d7df", 10, 5, 2, 0);
-        this.palette4b = tenPaletter("#92a7b8", 10, 5, 2, 0);
+        this.palette3a = tenPaletter("#c7dee6", 10, 5, 5, 5);
+        this.palette4a = tenPaletter("#9ad1da", 10, 5, 5, 5);
+        this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
+        this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
 
-        this.palette5a = tenPaletter("#4973aa", 10, 1, 12, 0);
-        this.palette6a = tenPaletter("#6387a8", 10, 1, 12, 0);
-        this.palette5b = tenPaletter("#9dc1cf", 10, 1, 12, 0);
-        this.palette6b = tenPaletter("#bddae6", 10, 1, 12, 0);
+        this.palette5a = tenPaletter("#7a96a3", 10, 5, 5, 5);
+        this.palette6a = tenPaletter("#acbfd1", 10, 5, 5, 5);
+        this.palette5b = tenPaletter("#597760", 10, 5, 5, 5);
+        this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
         this.palette7a = tenPaletter("#5f6b75", 10, 0, 0, 0);
         this.palette8a = tenPaletter("#46465c", 10, 0, 0, 0);
@@ -42,42 +42,28 @@ class Grid2 {
         this.paletteHorizon1 = triadicCreator("#4c5d6b", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = triadicCreator("#30393d", 0, -13, -5, 0, 0, 5, 0, 13, 5);
 
-        // this.sInc1 = 0.03;
-        // this.lInc1 = 0.03;
-        // this.zInc1 = 0.03;
-        this.sInc1 = 0.01;
-        this.lInc1 = 0.005;
+        this.sInc1 = 0.03;
+        this.lInc1 = 0.05;
         this.zInc1 = 0;
 
-        // this.sInc2 = 0.06;
-        // this.lInc2 = 0.04;
-        // this.zInc2 = 0.06;
-        this.sInc2 = 0.001;
-        this.lInc2 = 0.001;
+        this.sInc2 = 0.06;
+        this.lInc2 = 0.06;
         this.zInc2 = 0;
 
-        this.sInc3 = 0.02;
-        this.lInc3 = 0.01;
+        this.sInc3 = 0.6;
+        this.lInc3 = 0.4;
         this.zInc3 = 0;
 
-        this.sInc4 = 0.01;
-        this.lInc4 = 0.03;
+        this.sInc4 = 0.7;
+        this.lInc4 = 0.8;
         this.zInc4 = 0;
 
-        // this.sInc5 = 0.9;
-        // this.lInc5 = 0.6;
-        // this.zInc5 = 0;
-
-        // this.sInc6 = 0.9;
-        // this.lInc6 = 0.3;
-        // this.zInc6 = 0;
-
-        this.sInc5 = 0.001;
-        this.lInc5 = 0.02;
+        this.sInc5 = 0.01;
+        this.lInc5 = 0.2;
         this.zInc5 = 0;
 
-        this.sInc6 = 0.002;
-        this.lInc6 = 0.03;
+        this.sInc6 = 0.02;
+        this.lInc6 = 0.3;
         this.zInc6 = 0;
 
         this.sInc7 = 0.2;
@@ -141,7 +127,7 @@ class Grid2 {
         this.drawFirstLoop();
         this.drawSecondLoop();
         this.drawThirdLoop();
-        this.drawFourthLoop();
+        // this.drawFourthLoop();
     }
 
     createBoxes() {
@@ -412,13 +398,14 @@ class Grid2 {
                         noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1,
                         noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15), // 15,
-                        strokeWeighty: 2,
+                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15), // 15,
+                        strokeWeighty: 1,
                         // angleMin: 0,
                         // angleMax: 2 * PI,
-                        angleMin: -PI / 16,
-                        angleMax: PI / 16,
+                        angleMin: -PI / 12,
+                        angleMax: PI / 12,
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
                         loopCount: 10,
                         colorListA: this.palette1a,
@@ -435,13 +422,14 @@ class Grid2 {
                         noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1,
                         noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15),
-                        strokeWeighty: 2,
-                        // angleMin: -PI / 6,
-                        // angleMax: PI / 6,
-                        angleMin: 0,
-                        angleMax: 2 * PI,
+                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15),
+                        strokeWeighty: 1,
+                        angleMin: -PI / 12,
+                        angleMax: PI / 12,
+                        // angleMin: 0,
+                        // angleMax: 2 * PI,
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
                         loopCount: 10,
                         colorListA: this.palette1b,
@@ -476,9 +464,10 @@ class Grid2 {
                         noiseValueB: this.boxes[i].noiseValue4,
                         vertexLength: 25, // 15,
                         strokeWeighty: 2,
-                        angleMin: PI / 12 * 5,
-                        angleMax: PI / 12 * 8,
+                        angleMin: 2 * PI / 12 * 0,
+                        angleMax: 2 * PI / 12 * 1,
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
                         loopCount: 10,
                         colorListA: this.paletteHorizon1,
@@ -499,15 +488,16 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
                         // vertexLength: 5,
-                        vertexLength: map(this.boxes[i].noiseValue3, this.noiseValue3Min, this.noiseValue3Max, 5, 25),
+                        vertexLength: map(this.boxes[i].noiseValue3, this.noiseValue3Min, this.noiseValue3Max, 3, 15),
                         strokeWeighty: 1,
-                        angleMin: PI / 6 * 4,
-                        angleMax: PI / 6 * 8,
+                        angleMin: 2 * PI / 16 * 4,
+                        angleMax: 2 * PI / 16 * 8,
                         // angleMin: map(this.boxes[i].noiseValue5, 0, 1, 0, -PI),
                         // angleMax: map(this.boxes[i].noiseValue5, 0, 1, 0, PI),
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
-                        loopCount: 15,
+                        loopCount: 10,
                         colorListA: this.palette1a, // 3
                         colorListB: this.palette2a,  // 4
                         noiseAngle: false,
@@ -524,15 +514,17 @@ class Grid2 {
                         noiseNumberB: 4,
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
-                        vertexLength: map(this.boxes[i].noiseValue3, this.noiseValue3Min, this.noiseValue3Max, 5, 25),
+                        vertexLength: map(this.boxes[i].noiseValue3, this.noiseValue3Min, this.noiseValue3Max, 3, 15),
                         strokeWeighty: 1,
                         angleMin: PI / 6 * 4,
-                        angleMax: PI / 6 * 8,
+                        angleMin: 2 * PI / 16 * 4,
+                        angleMax: 2 * PI / 16 * 8,
                         // angleMin: map(this.boxes[i].noiseValue5, 0, 1, 0, -PI),
                         // angleMax: map(this.boxes[i].noiseValue5, 0, 1, 0, PI),
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
-                        loopCount: 15,
+                        loopCount: 10,
                         colorListA: this.palette1b,
                         colorListB: this.palette2b,
                         noiseAngle: false,
@@ -569,15 +561,16 @@ class Grid2 {
                         noiseNumberB: 6,
                         noiseValueA: this.boxes[i].noiseValue5,
                         noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 25),
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
                         strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 11,
+                        angleMin: 2 * PI / 12 * 10,
                         angleMax: 2 * PI / 12 * 12,
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0.5,
                         loopCount: 10,
-                        colorListA: this.palette1a,  // 5
-                        colorListB: this.palette2a, // 6
+                        colorListA: this.palette5a,  // 5
+                        colorListB: this.palette5a, // 6
                         noiseAngle: false,
                     }
                 );
@@ -590,15 +583,16 @@ class Grid2 {
                         noiseNumberB: 6,
                         noiseValueA: this.boxes[i].noiseValue5,
                         noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 25),
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
                         strokeWeighty: 0.5,
-                        angleMin: PI / 6,
-                        angleMax: PI / 6 * 4,
+                        angleMin: 2 * PI / 12 * 1,
+                        angleMax: 2 * PI / 12 * 4,
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0.5,
                         loopCount: 10,
-                        colorListA: this.palette1b,
-                        colorListB: this.palette2b,
+                        colorListA: this.palette5b,
+                        colorListB: this.palette5b,
                         noiseAngle: false,
                     }
                 );
@@ -634,6 +628,7 @@ class Grid2 {
                         // angleMin: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 0, 2 * PI),
                         // angleMax: map(this.boxes[i].noiseValue7, this.noiseValue7Min, this.noiseValue7Max, 0, 2 * PI),
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
                         loopCount: 5,
                         colorListA: this.palette7a,
@@ -657,6 +652,7 @@ class Grid2 {
                         // angleMin: map(this.boxes[i].noiseValue7, 0, 1, -PI, -PI * 1),
                         // angleMax: map(this.boxes[i].noiseValue7, 0, 1, -PI, -PI * 1.8),
                         revert: true,
+                        blendNoises: 0.5,
                         cutOutValue: 0,
                         loopCount: 5,
                         colorListA: this.palette7b,
@@ -727,6 +723,7 @@ class Grid2 {
         let angleMax = data.angleMax;
         let loopCount = data.loopCount;
         let vertexColorDistort = 2;
+        let blendNoises = data.blendNoises; // 0.5
 
         let noiseValue = 0;
         let noiseValueNorm = 0;
@@ -734,7 +731,7 @@ class Grid2 {
         let colorList = [];
         let noiseVars = {};
 
-        if (fxrand() > 0.5) {
+        if (fxrand() > blendNoises) {
             noiseVars = this.getNoiseVars(data.noiseNumberA);
             noiseValue = data.noiseValueA;
             colorList = data.colorListA;
