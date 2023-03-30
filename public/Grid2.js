@@ -125,6 +125,7 @@ class Grid2 {
         this.drawBackdrop();
 
         this.drawFirstLoop();
+        // this.drawShape();
         this.drawSecondLoop();
         this.drawThirdLoop();
         this.drawFourthLoop();
@@ -381,9 +382,9 @@ class Grid2 {
 
             // let offset = getRandomFromInterval(-10, 10);
 
-            if (i == showTrigger) {
-                // this.drawShape();
-            }
+            // if (i == showTrigger) {
+            // this.drawShape();
+            // }
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -448,6 +449,10 @@ class Grid2 {
         for (var i = 0; i < randomIndex.length; i++) {
 
             // let offset = getRandomFromInterval(-10, 10);
+
+            // if (i == showTrigger) {
+            // this.drawShape();
+            // }
 
             if (this.drawSkipMargin(this.boxes[i])) {
                 continue;
@@ -851,45 +856,38 @@ class Grid2 {
     }
 
     drawShape() {
-        // this.buffer.push();
-        // this.buffer.noFill();
-        // // this.buffer.fill("#ffffff23");
-        // this.buffer.stroke(color("white"));
-        // this.buffer.strokeWeight(1);
-        // this.buffer.beginShape();
-        // this.buffer.vertex(110, 110);
-        // this.buffer.vertex(190, 110);
-        // this.buffer.vertex(160, 160);
-        // this.buffer.vertex(110, 140);
-        // this.buffer.endShape(CLOSE);
-        // this.buffer.pop();
 
-        let min = 10;
-        let max = 20;
-        // let loopCount = 800;
-        let loopCount = 1200;
+        if (fxrand() > 0.9) {
 
-        for (var j = 0; j < loopCount; j++) {
-            let center = createVector(getRandomFromInterval(100, width - 100), getRandomFromInterval(100, height - 100));
-            let tempColor = PalettiA[Math.round(getRandomFromInterval(0, (PalettiA.length - 1)))];
+            let min = 30;
+            let max = 50;
+            // let loopCount = 800;
+            // let loopCount = 1200;
+            let loopCount = 300;
 
-            // tempColor = color(red(tempColor), green(tempColor), blue(tempColor), 80);
+            for (var j = 0; j < loopCount; j++) {
+                let center = createVector(getRandomFromInterval(0, this.buffer.width), getRandomFromInterval(0, this.buffer.height));
+                let tempColor = color("#96dddd");
+                // let tempColor = PalettiA[Math.round(getRandomFromInterval(0, (PalettiA.length - 1)))];
+                // tempColor = color(red(tempColor), green(tempColor), blue(tempColor), 80);
 
-            this.buffer.push();
-            this.buffer.noFill();
-            // this.buffer.fill(tempColor);
-            // this.buffer.stroke(color("white"));
-            this.buffer.stroke(tempColor);
-            this.buffer.strokeWeight(1);
-            // this.buffer.noStroke();
+                this.buffer.push();
+                this.buffer.noFill();
+                // this.buffer.fill(tempColor);
+                // this.buffer.stroke(color("white"));
+                this.buffer.stroke(tempColor);
+                this.buffer.strokeWeight(1);
+                // this.buffer.noStroke();
 
-            this.buffer.beginShape();
-            this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
-            this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
-            this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
-            this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
-            this.buffer.endShape(CLOSE);
-            this.buffer.pop();
+                this.buffer.beginShape();
+                this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
+                this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));
+                this.buffer.vertex(center.x + getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
+                this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y + getRandomFromInterval(min, max));
+                this.buffer.endShape(CLOSE);
+                this.buffer.pop();
+            }
+
         }
     }
 
