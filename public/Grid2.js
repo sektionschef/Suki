@@ -39,6 +39,11 @@ class Grid2 {
         this.palette7b = tenPaletter("#44503c", 10, 0, 0, 0);
         this.palette8b = tenPaletter("#424b3f", 10, 0, 0, 0);
 
+        this.palette9a = tenPaletter("#d1d072", 10, 0, 0, 0);
+        this.palette10a = tenPaletter("#d1a572", 10, 0, 0, 0);
+        this.palette9b = tenPaletter("#c3cf55", 10, 0, 0, 0);
+        this.palette10b = tenPaletter("#cf8255", 10, 0, 0, 0);
+
         this.paletteHorizon1 = triadicCreator("#4c5d6b", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = triadicCreator("#30393d", 0, -13, -5, 0, 0, 5, 0, 13, 5);
 
@@ -73,6 +78,14 @@ class Grid2 {
         this.sInc8 = 0.2;
         this.lInc8 = 0.2;
         this.zInc8 = 0;
+
+        this.sInc9 = 0.1;
+        this.lInc9 = 0.1;
+        this.zInc9 = 0;
+
+        this.sInc10 = 0.1;
+        this.lInc10 = 0.1;
+        this.zInc10 = 0;
 
         this.boxSize = SHORTSIDE / this.shortBoxCount;
         this.longBoxCount = Math.floor(LONGSIDE / this.boxSize);
@@ -121,6 +134,8 @@ class Grid2 {
         // this.drawNoise(6);
         // this.drawNoise(7);
         // this.drawNoise(8);
+        // this.drawNoise(9);
+        // this.drawNoise(10);
 
         this.drawBackdrop();
 
@@ -149,6 +164,10 @@ class Grid2 {
         this.noiseValue7Min = 1;
         this.noiseValue8Max = 0;
         this.noiseValue8Min = 1;
+        this.noiseValue9Max = 0;
+        this.noiseValue9Min = 1;
+        this.noiseValue10Max = 0;
+        this.noiseValue10Min = 1;
 
         var index = 0;
 
@@ -172,6 +191,11 @@ class Grid2 {
         let loff8 = 0;
         let zoff8 = 0;
 
+        let loff9 = 0;
+        let zoff9 = 0;
+        let loff10 = 0;
+        let zoff10 = 0;
+
         for (var l = 0; l < (this.heightBoxCount); l++) {
             let soff1 = 0;
             let soff2 = 0;
@@ -181,6 +205,8 @@ class Grid2 {
             let soff6 = 0;
             let soff7 = 0;
             let soff8 = 0;
+            let soff9 = 0;
+            let soff10 = 0;
             for (var s = 0; s < (this.widthBoxCount); s++) {
 
                 var center = createVector(this.widthMargin + s * this.boxSize + this.boxSize / 2, this.heightMargin + l * this.boxSize + this.boxSize / 2);
@@ -199,6 +225,8 @@ class Grid2 {
                 var noiseValue6 = noise(soff6, loff6, zoff6);
                 var noiseValue7 = noise(soff7, loff7, zoff7);
                 var noiseValue8 = noise(soff8, loff8, zoff8);
+                var noiseValue9 = noise(soff9, loff9, zoff9);
+                var noiseValue10 = noise(soff10, loff10, zoff10);
 
                 var polygonA = insidePolygon([center.x, center.y], polyPoints);
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
@@ -253,6 +281,18 @@ class Grid2 {
                 if (noiseValue8 < this.noiseValue8Min) {
                     this.noiseValue8Min = noiseValue8;
                 }
+                if (noiseValue9 > this.noiseValue9Max) {
+                    this.noiseValue9Max = noiseValue9;
+                }
+                if (noiseValue9 < this.noiseValue9Min) {
+                    this.noiseValue9Min = noiseValue9;
+                }
+                if (noiseValue10 > this.noiseValue10Max) {
+                    this.noiseValue10Max = noiseValue10;
+                }
+                if (noiseValue10 < this.noiseValue10Min) {
+                    this.noiseValue10Min = noiseValue10;
+                }
 
                 this.boxes.push({
                     "center": center,
@@ -273,6 +313,8 @@ class Grid2 {
                     "noiseValue6": noiseValue6,
                     "noiseValue7": noiseValue7,
                     "noiseValue8": noiseValue8,
+                    "noiseValue9": noiseValue9,
+                    "noiseValue10": noiseValue10,
                     "polygonA": polygonA,
                     "polygonLeft": polygonLeft,
                     "horizon": horizon,
@@ -287,6 +329,8 @@ class Grid2 {
                 soff6 += this.sInc6;
                 soff7 += this.sInc7;
                 soff8 += this.sInc8;
+                soff9 += this.sInc9;
+                soff10 += this.sInc10;
             }
             loff1 += this.lInc1;
             zoff1 += this.zInc1;
@@ -304,6 +348,10 @@ class Grid2 {
             zoff7 += this.zInc7;
             loff8 += this.lInc8;
             zoff8 += this.zInc8;
+            loff9 += this.lInc9;
+            zoff9 += this.zInc9;
+            loff10 += this.lInc10;
+            zoff10 += this.zInc10;
         }
 
         // console.log(this.noiseValue1Max);
@@ -536,6 +584,53 @@ class Grid2 {
                     }
                 );
             }
+
+            if (this.boxes[i].aboveHorizon) {
+
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 9,
+                        noiseNumberB: 10,
+                        noiseValueA: this.boxes[i].noiseValue9,
+                        noiseValueB: this.boxes[i].noiseValue10,
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
+                        strokeWeighty: 0.5,
+                        angleMin: 2 * PI / 12 * 10,
+                        angleMax: 2 * PI / 12 * 12,
+                        revert: true,
+                        blendNoises: 0,
+                        cutOutValue: 0.5,
+                        loopCount: 60,
+                        colorListA: this.palette9a,  // 5
+                        colorListB: this.palette10a, // 6
+                        noiseAngle: false,
+                    }
+                );
+            } else {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 9,
+                        noiseNumberB: 10,
+                        noiseValueA: this.boxes[i].noiseValue9,
+                        noiseValueB: this.boxes[i].noiseValue10,
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
+                        strokeWeighty: 0.5,
+                        angleMin: 2 * PI / 12 * 1,
+                        angleMax: 2 * PI / 12 * 4,
+                        revert: true,
+                        blendNoises: 0,
+                        cutOutValue: 0.5,
+                        loopCount: 60,
+                        colorListA: this.palette9b,
+                        colorListB: this.palette10b,
+                        noiseAngle: false,
+                    }
+                );
+            }
         }
     }
 
@@ -575,7 +670,7 @@ class Grid2 {
                         cutOutValue: 0.5,
                         loopCount: 10,
                         colorListA: this.palette5a,  // 5
-                        colorListB: this.palette5a, // 6
+                        colorListB: this.palette6a, // 6
                         noiseAngle: false,
                     }
                 );
@@ -597,11 +692,12 @@ class Grid2 {
                         cutOutValue: 0.5,
                         loopCount: 10,
                         colorListA: this.palette5b,
-                        colorListB: this.palette5b,
+                        colorListB: this.palette6b,
                         noiseAngle: false,
                     }
                 );
             }
+
         }
     }
 
