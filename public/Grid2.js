@@ -29,20 +29,20 @@ class Grid2 {
         this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
         this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
 
-        this.palette5a = tenPaletter("#7a96a3", 10, 5, 5, 5);
+        this.palette5a = tenPaletter("#95aeb9", 10, 5, 5, 5);
         this.palette6a = tenPaletter("#acbfd1", 10, 5, 5, 5);
-        this.palette5b = tenPaletter("#597760", 10, 5, 5, 5);
+        this.palette5b = tenPaletter("#8aac92", 10, 5, 5, 5);
         this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
-        this.palette7a = tenPaletter("#6a7f91", 10, 0, 0, 0);
-        this.palette8a = tenPaletter("#46465c", 10, 0, 0, 0);
-        this.palette7b = tenPaletter("#44503c", 10, 0, 0, 0);
-        this.palette8b = tenPaletter("#424b3f", 10, 0, 0, 0);
+        this.palette7a = tenPaletter("#889eb1", 10, 0, 0, 0);
+        this.palette8a = tenPaletter("#7b7b92", 10, 0, 0, 0);
+        this.palette7b = tenPaletter("#6a7a60", 10, 0, 0, 0);
+        this.palette8b = tenPaletter("#879482", 10, 0, 0, 0);
 
-        this.palette9a = tenPaletter("#6c7385", 10, 0, 0, 0);
-        this.palette10a = tenPaletter("#8188ac", 10, 0, 0, 0);
-        this.palette9b = tenPaletter("#94b6b0", 10, 0, 0, 0);
-        this.palette10b = tenPaletter("#6d8d8a", 10, 0, 0, 0);
+        this.palette9a = tenPaletter("#858ea5", 5, 0, 0, 0);
+        this.palette10a = tenPaletter("#a3aacc", 5, 0, 0, 0);
+        this.palette9b = tenPaletter("#94b6b0", 5, 0, 0, 0);
+        this.palette10b = tenPaletter("#8d9b99", 5, 0, 0, 0);
 
         this.paletteHorizon1 = triadicCreator("#4c5d6b", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = triadicCreator("#30393d", 0, -13, -5, 0, 0, 5, 0, 13, 5);
@@ -140,12 +140,12 @@ class Grid2 {
         // LAYER
         this.drawBackdrop();
 
-        this.drawFirstLoop();
-
-        // // this.drawShape();
+        // this.drawFirstLoop();
+        // this.drawShape();
 
         this.drawSecondLoop();
-        this.drawThirdLoop();
+        // this.drawThirdLoop();
+
         this.drawFourthLoop();
     }
 
@@ -511,6 +511,60 @@ class Grid2 {
                 continue;
             }
 
+            // FIRST LOOP
+            if (this.boxes[i].aboveHorizon) {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 1,
+                        noiseNumberB: 2,
+                        noiseValueA: this.boxes[i].noiseValue1,
+                        noiseValueB: this.boxes[i].noiseValue2,
+                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15), // 15,
+                        strokeWeighty: 1,
+                        // angleMin: 0,
+                        // angleMax: 2 * PI,
+                        angleMin: -PI / 12,
+                        angleMax: PI / 12,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0,
+                        loopCount: 10,
+                        colorListA: this.palette1a,
+                        colorListB: this.palette2a,
+                        noiseAngle: false,
+                        normIt: true,
+                    }
+                );
+            } else {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 1,
+                        noiseNumberB: 2,
+                        noiseValueA: this.boxes[i].noiseValue1,
+                        noiseValueB: this.boxes[i].noiseValue2,
+                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15),
+                        strokeWeighty: 1,
+                        angleMin: -PI / 12,
+                        angleMax: PI / 12,
+                        // angleMin: 0,
+                        // angleMax: 2 * PI,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0,
+                        loopCount: 10,
+                        colorListA: this.palette1b,
+                        colorListB: this.palette2b,
+                        noiseAngle: false,
+                        normIt: true,
+                    }
+                );
+            }
+
+
             if (this.boxes[i].horizon) {
                 this.digndag2(
                     {
@@ -689,6 +743,56 @@ class Grid2 {
                         colorListB: this.palette9b, // 6
                         noiseAngle: true,
                         normIt: false,
+                    }
+                );
+            }
+
+            // THIRD LOOP
+            if (this.boxes[i].aboveHorizon) {
+
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 5,
+                        noiseNumberB: 6,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
+                        strokeWeighty: 0.5,
+                        angleMin: 2 * PI / 12 * 10,
+                        angleMax: 2 * PI / 12 * 12,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.5,
+                        loopCount: 10,
+                        colorListA: this.palette5a,  // 5
+                        colorListB: this.palette6a, // 6
+                        noiseAngle: false,
+                        normIt: true,
+                    }
+                );
+            } else {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 5,
+                        noiseNumberB: 6,
+                        noiseValueA: this.boxes[i].noiseValue5,
+                        noiseValueB: this.boxes[i].noiseValue6,
+                        vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
+                        strokeWeighty: 0.5,
+                        angleMin: 2 * PI / 12 * 1,
+                        angleMax: 2 * PI / 12 * 4,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.5,
+                        loopCount: 10,
+                        colorListA: this.palette5b,
+                        colorListB: this.palette6b,
+                        noiseAngle: false,
+                        normIt: true,
                     }
                 );
             }
@@ -1023,27 +1127,27 @@ class Grid2 {
 
     drawShape() {
 
-        if (fxrand() > 0.9) {
+        if (fxrand() > 0) {
 
             let min = 30;
             let max = 50;
             // let loopCount = 800;
             // let loopCount = 1200;
-            let loopCount = 300;
+            let loopCount = 30;
 
             for (var j = 0; j < loopCount; j++) {
                 let center = createVector(getRandomFromInterval(0, this.buffer.width), getRandomFromInterval(0, this.buffer.height));
-                let tempColor = color("#96dddd");
+                let tempColor = color("#3b5e5e");
                 // let tempColor = PalettiA[Math.round(getRandomFromInterval(0, (PalettiA.length - 1)))];
                 // tempColor = color(red(tempColor), green(tempColor), blue(tempColor), 80);
 
                 this.buffer.push();
-                this.buffer.noFill();
-                // this.buffer.fill(tempColor);
+                // this.buffer.noFill();
+                this.buffer.fill(tempColor);
                 // this.buffer.stroke(color("white"));
-                this.buffer.stroke(tempColor);
-                this.buffer.strokeWeight(1);
-                // this.buffer.noStroke();
+                // this.buffer.stroke(tempColor);
+                // this.buffer.strokeWeight(1);
+                this.buffer.noStroke();
 
                 this.buffer.beginShape();
                 this.buffer.vertex(center.x - getRandomFromInterval(min, max), center.y - getRandomFromInterval(min, max));

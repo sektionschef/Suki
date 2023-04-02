@@ -36,8 +36,9 @@
 // "Element types": PICKER_LABEL,
 // }
 
-// console.info(`fxhash: %c${fxhash}`, 'font-weight: bold');
-// console.log('');
+console.log('');
+console.info(`fxhash: %c${fxhash}`, 'font-weight: bold');
+console.log('');
 // console.group(`Palette: %c${PALETTE_LABEL} `, 'font-weight: bold');
 // console.log(`background: %c   `, `background: ${PALETTESYSTEM[PALETTE_LABEL]['background']}; `);
 // console.log(`primaries: %c   `, `background: ${PALETTESYSTEM[PALETTE_LABEL]['primaries'][0]}; `);

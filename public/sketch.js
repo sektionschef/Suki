@@ -8,13 +8,13 @@ let canvas;
 // let rescaling_width;
 // let rescaling_height;
 
-let TITLE = "Suki";
+let TITLE = "afraid to fry";
 let ARTIST = "Stefan Schwaha, @sektionschef";
 let DESCRIPTION = "Javascript on html canvas";
 let URL = "https://digitalitility.com";
 let YEAR = "2023";
-let PRICE = "ꜩ 2";
-let EDITIONS = "50 editions";
+let PRICE = "ꜩ 4";
+let EDITIONS = "100 editions";
 
 
 
