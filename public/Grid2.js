@@ -140,7 +140,7 @@ class Grid2 {
         // this.drawNoise(10);
 
         // LAYER
-        this.drawBackdrop();
+        // this.drawBackdrop();
 
         this.drawFirstLoop();
         // this.drawShape();

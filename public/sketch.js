@@ -158,7 +158,7 @@ function setup() {
 
   // grid = new Grid(gridProfile);
   grid2 = new Grid2({
-    marginBoxCount: 0,
+    marginBoxCount: 5,
     shortBoxCount: 80,
     DEBUG: false,
   });
@@ -194,7 +194,7 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#a0a0a0"));
+  background(color("#f0f0f0"));
   // background(color("#4f8aa8"));
 
   // STRIPES
