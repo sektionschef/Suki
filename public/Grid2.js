@@ -142,14 +142,38 @@ class Grid2 {
         // LAYER
         // this.drawBackdrop();
 
-        this.drawFirstLoop();
+        // this.drawFirstLoop();
         // this.drawShape();
 
+        console.log(this.palette10b);
+        color(this.palette9b[0]);
+        color(this.palette9b[1]);
+        color(this.palette9b[2]);
+        color(this.palette9b[3]);
+        color(this.palette9b[4]);
+        color(this.palette10b[0]);
+        color(this.palette10b[1]);
+        color(this.palette10b[2]);
+        color(this.palette10b[3]);
+        color(this.palette10b[4]);
+
+        color(this.palette9a[0]);
+        color(this.palette9a[1]);
+        color(this.palette9a[2]);
+        color(this.palette9a[3]);
+        color(this.palette9a[4]);
+        color(this.palette10a[0]);
+        color(this.palette10a[1]);
+        color(this.palette10a[2]);
+        color(this.palette10a[3]);
+        color(this.palette10a[4]);
+
+
         this.drawSecondLoop();
-        this.drawThirdLoop();
+        // this.drawThirdLoop();
 
 
-        this.drawFourthLoop();
+        // this.drawFourthLoop();
     }
 
     createBoxes() {
@@ -1231,7 +1255,7 @@ class Grid2 {
         let angleMin = data.angleMin;
         let angleMax = data.angleMax;
         let loopCount = data.loopCount;
-        let vertexColorDistort = 2;
+        let vertexColorDistort = 0;  // may lead to errors
         let blendNoises = data.blendNoises; // 0.5
         let normIt = data.normIt;
 
@@ -1270,7 +1294,7 @@ class Grid2 {
             // let colorSelect = Math.floor(noiseValue * (this.noiseValue1Max - this.noiseValue1Min) + this.noiseValue1Min);
             // let colorSelect = constrain(Math.round(map(noiseValue, this.noiseValue1Min, this.noiseValue1Max, 0, (colorList.length - 1))), 0, (colorList.length - 1));
             // let colorSelect = constrain(Math.round(map(noiseValue, 0, 1, 0, (colorList.length - 1))), 0, (colorList.length - 1));
-            let colorSelect = Math.round(map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, (colorList.length - 1)));
+            let colorSelect = constrain(Math.round(map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, (colorList.length - 1))), 0, (colorList.length - 1));
             // console.log(noiseVars.noiseValueMin);
             // console.log(noiseVars.noiseValueMax);
             // console.log(colorList.length - 1);
