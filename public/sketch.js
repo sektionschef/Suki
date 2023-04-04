@@ -194,7 +194,7 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#f0f0f0"));
+  background(color("#dfe7eb"));
   // background(color("#4f8aa8"));
 
   // STRIPES

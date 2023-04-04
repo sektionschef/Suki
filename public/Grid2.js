@@ -41,10 +41,10 @@ class Grid2 {
         this.palette7b = tenPaletter("#6a7a60", 10, 1, 10, 1);
         this.palette8b = tenPaletter("#707a7c", 10, 1, 10, 1);
 
-        this.palette9a = tenPaletter("#677c88", 5, 1, 10, 1);
-        this.palette10a = tenPaletter("#93b6b1", 5, 1, 10, 1);
-        this.palette9b = tenPaletter("#94b6b0", 5, 1, 10, 1);
-        this.palette10b = tenPaletter("#82a0b4", 5, 1, 10, 1);
+        this.palette9a = tenPaletter("#789cb3", 5, 1, 10, 1);
+        this.palette10a = tenPaletter("#88aaa4", 5, 1, 10, 1);
+        this.palette9b = tenPaletter("#606b69", 5, 1, 10, 1);
+        this.palette10b = tenPaletter("#5e707c", 5, 1, 10, 1);
 
         this.paletteHorizon1 = tenPaletter("#3b3f47", 5, 1, 10, 1); // triadicCreator("#e4eef7", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = tenPaletter("#5b5d66", 5, 1, 10, 1); // triadicCreator("#bcc7cc", 0, -13, -5, 0, 0, 5, 0, 13, 5);
@@ -784,7 +784,7 @@ class Grid2 {
                         noiseValueB: this.boxes[i].noiseValue6,
                         vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
                         strokeWeighty: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 0.4, 1), //0.2,
-                        angleMin: 2 * PI / 12 * 9,
+                        angleMin: 2 * PI / 12 * 7,
                         angleMax: 2 * PI / 12 * 11,
                         revert: true,
                         blendNoises: 0,
@@ -808,7 +808,7 @@ class Grid2 {
                         vertexLength: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 5, 15),
                         strokeWeighty: map(this.boxes[i].noiseValue5, this.noiseValue5Min, this.noiseValue5Max, 0.4, 1), //0.2,
                         angleMin: 2 * PI / 12 * 0,
-                        angleMax: 2 * PI / 12 * 2,
+                        angleMax: 2 * PI / 12 * 5,
                         revert: true,
                         blendNoises: 0,
                         cutOutValue: 0.75,
