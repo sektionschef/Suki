@@ -36,13 +36,13 @@ class Grid2 {
         this.palette5b = tenPaletter("#8aac92", 10, 5, 5, 5);
         this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
-        this.palette7a = tenPaletter("#677e91", 10, 1, 10, 1);
-        this.palette8a = tenPaletter("#8ba382", 10, 1, 10, 1);
-        this.palette7b = tenPaletter("#6a7a60", 10, 1, 10, 1);
-        this.palette8b = tenPaletter("#707a7c", 10, 1, 10, 1);
+        this.palette7a = tenPaletter("#93a9bb", 10, 1, 10, 1);
+        this.palette8a = tenPaletter("#aec0a8", 10, 1, 10, 1);
+        this.palette7b = tenPaletter("#5a5f57", 10, 1, 10, 1);
+        this.palette8b = tenPaletter("#91a2a5", 10, 1, 10, 1);
 
-        this.palette9a = tenPaletter("#789cb3", 5, 1, 10, 1);
-        this.palette10a = tenPaletter("#88aaa4", 5, 1, 10, 1);
+        this.palette9a = tenPaletter("#8398a5", 5, 1, 10, 1);
+        this.palette10a = tenPaletter("#869e9a", 5, 1, 10, 1);
         this.palette9b = tenPaletter("#606b69", 5, 1, 10, 1);
         this.palette10b = tenPaletter("#5e707c", 5, 1, 10, 1);
 
@@ -1275,7 +1275,7 @@ class Grid2 {
         let angleMin = data.angleMin;
         let angleMax = data.angleMax;
         let loopCount = data.loopCount;
-        let vertexColorDistort = 0;  // may lead to errors
+        let vertexColorDistort = 10;  // may lead to errors
         let blendNoises = data.blendNoises; // 0.5
         let normIt = data.normIt;
 
@@ -1329,7 +1329,7 @@ class Grid2 {
 
             let oldAdder = center;
             let newAdder = oldAdder;
-            let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10);
+            let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10); // 
             this.buffer.vertex(oldAdder.x, oldAdder.y)
 
             for (var i = 0; i < loopCount; i++) {

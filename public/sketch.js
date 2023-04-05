@@ -152,7 +152,7 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#dfe7eb"));
+  background(color("#e8ecee"));
 
   grid2.show()
 
@@ -165,6 +165,15 @@ function draw() {
   //   if (BULK) {
   //     exportCanvas(canvas);
   //   }
+
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+  if (today.getHours() > 22) {
+    console.log("yes");
+  }
+  console.log(time);
+
 }
 
 function mousePressed() {
