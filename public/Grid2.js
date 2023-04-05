@@ -143,6 +143,7 @@ class Grid2 {
         // this.drawBackdrop();
 
         this.drawFirstLoop();
+
         // this.drawShape();
 
         this.drawSecondLoop();
@@ -202,7 +203,12 @@ class Grid2 {
         let loff10 = 0;
         let zoff10 = 0;
 
-        for (var l = 0; l < (this.heightBoxCount); l++) {
+        // console.log(this.heightBoxCount);
+        // console.log(this.widthBoxCount);
+
+        // h = long, w = short
+
+        for (var h = 0; h < (this.heightBoxCount); h++) {
             let soff1 = 0;
             let soff2 = 0;
             let soff3 = 0;
@@ -213,12 +219,12 @@ class Grid2 {
             let soff8 = 0;
             let soff9 = 0;
             let soff10 = 0;
-            for (var s = 0; s < (this.widthBoxCount); s++) {
+            for (var w = 0; w < (this.widthBoxCount); w++) {
 
-                var center = createVector(this.widthMargin + s * this.boxSize + this.boxSize / 2, this.heightMargin + l * this.boxSize + this.boxSize / 2);
+                var center = createVector(this.widthMargin + w * this.boxSize + this.boxSize / 2, this.heightMargin + h * this.boxSize + this.boxSize / 2);
 
                 // corners of the box
-                var A = createVector(this.widthMargin + s * this.boxSize, this.heightMargin + l * this.boxSize);
+                var A = createVector(this.widthMargin + w * this.boxSize, this.heightMargin + h * this.boxSize);
                 var B = p5.Vector.add(A, createVector(this.boxSize, 0));
                 var C = p5.Vector.add(A, createVector(this.boxSize, this.boxSize));
                 var D = p5.Vector.add(A, createVector(0, this.boxSize));
@@ -236,8 +242,9 @@ class Grid2 {
 
                 var polygonA = insidePolygon([center.x, center.y], polyPoints);
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
-                var horizon = l == this.horizonRow;
-                var aboveHorizon = l <= this.horizonRow;
+
+                var horizon = h == this.horizonRow;
+                var aboveHorizon = h <= this.horizonRow;
 
                 if (noiseValue1 > this.noiseValue1Max) {
                     this.noiseValue1Max = noiseValue1;
@@ -307,8 +314,8 @@ class Grid2 {
                     "B": B,
                     "C": C,
                     "D": D,
-                    "long": l,
-                    "short": s,
+                    "height": h,
+                    "width": w,
                     "index": index,
                     "mask": false,
                     "noiseValue1": noiseValue1,
@@ -373,12 +380,23 @@ class Grid2 {
 
         for (var i = 0; i < this.boxes.length; i++) {
             this.buffer.rect(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].C.x, this.boxes[i].C.y);
+            // this.buffer.point(this.boxes[i].center.x, this.boxes[i].center.y);
         }
         this.buffer.pop();
     }
 
     drawSkipMargin(box) {
-        return box.long < (this.marginBoxCount) || box.short < (this.marginBoxCount) || box.short >= (this.shortBoxCount - this.marginBoxCount) || box.long >= (this.longBoxCount - this.marginBoxCount);
+        if (width < height) {
+            return box.height < (this.marginBoxCount) ||
+                box.width < (this.marginBoxCount) ||
+                box.width >= (this.shortBoxCount - this.marginBoxCount) ||
+                box.height >= (this.longBoxCount - this.marginBoxCount);
+        } else {
+            return box.height < (this.marginBoxCount) ||
+                box.width < (this.marginBoxCount) ||
+                box.width >= (this.longBoxCount - this.marginBoxCount) ||
+                box.height >= (this.shortBoxCount - this.marginBoxCount);
+        }
     }
 
     // for DEBUGGING Noise
@@ -404,6 +422,8 @@ class Grid2 {
 
             // console.log(noiseValueColor);
             this.buffer.fill(noiseValueColor);
+
+            // this.buffer.fill("red");
             this.buffer.rect(this.boxes[i].A.x, this.boxes[i].A.y, this.boxes[i].C.x, this.boxes[i].C.y);
         }
         this.buffer.pop();

@@ -63,44 +63,14 @@ function setup() {
 
   canvasFormats = [
     // {
-    //   "name": "4:3",
-    //   "canvasWidth": 4000,
-    //   "canvasHeight": 3000,
-    // },
-    // {
-    //   "name": "3:4",
-    //   "canvasWidth": 3000,
-    //   "canvasHeight": 4000,
-    // },
-    // {
-    //   "name": "16:9",
-    //   "canvasWidth": 3840,
-    //   "canvasHeight": 2160,
-    // },
-    // {
-    //   "name": "9:16",
-    //   "canvasWidth": 2160,
-    //   "canvasHeight": 3840,
-    // },
-    // {
     //   "name": "1:1",
-    //   "canvasWidth": 4000,
-    //   "canvasHeight": 4000,
+    //   "canvasWidth": 800,
+    //   "canvasHeight": 800,
     // },
-    // {
-    //   "name": "3:2",
-    //   "canvasWidth": 3000,
-    //   "canvasHeight": 2000,
-    // },
-    // {
-    //   "name": "2:3",
-    //   "canvasWidth": 2000,
-    //   "canvasHeight": 3000,
-    // }
     {
-      "name": "1:1",
-      "canvasWidth": 800,
-      "canvasHeight": 800,
+      "name": "16:9",
+      "canvasWidth": 1600,
+      "canvasHeight": 900,
     },
   ]
 
@@ -117,7 +87,7 @@ function setup() {
     SHORTSIDE = rescaling_height;
     LONGSIDE = rescaling_width;
   }
-  TOTALPIXEL = rescaling_width * rescaling_height;
+  // TOTALPIXEL = rescaling_width * rescaling_height;
 
   // canvas = createCanvas(rescaling_width, rescaling_height);
   canvas = createCanvas(rescaling_width, rescaling_height, SVG);
@@ -144,21 +114,9 @@ function setup() {
     [0, height]
   ];
 
-  gridProfile = {
-    // stripeOrientation: getRandomFromList(["x", "y"]),
-    // countColumnOrRow: getRandomFromList([1, 2, 3, 4]),
-    // bezierFactor: getRandomFromList([0.001, 0.005, 0.007]),
-    // thickness: 1,
-    // spacing: getRandomFromList([1, 2, 3]),
-    // // pattern: new BrushstrokeSystem(patternProfileX),
-    // // pattern2: new BrushstrokeSystem(patternProfileY),
-    // backgroundNoise: new Noise(),
-    // whichLoopLevel: getRandomFromList(["last", "secondlast", "thirdlast"]),
-  }
 
-  // grid = new Grid(gridProfile);
   grid2 = new Grid2({
-    marginBoxCount: 5,
+    marginBoxCount: 5,  // 5
     shortBoxCount: 80,
     DEBUG: false,
   });
@@ -195,22 +153,8 @@ function draw() {
   }
 
   background(color("#dfe7eb"));
-  // background(color("#4f8aa8"));
 
-  // STRIPES
-  // push();
-  // strokeWeight(0.5);
-  // stroke(color("#4e4e4e"));
-  // let disty = 10
-  // for (var s = 0; s < (width / disty + 1); s++) {
-  //   line(s * disty, 0, s * disty, height);
-  // }
-  // pop();
-
-
-  // grid.show();
   grid2.show()
-
 
   //   // DEBUG
   //   // showFxhashFeatures();
