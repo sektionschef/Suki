@@ -18,36 +18,61 @@ class Grid2 {
 
         this.shapeColor = color("#617580");
 
-        // cool but strong colors
-        // this.palette1a = tenPaletter("#6dc5dd", 10, 5, 5, 0);
-        // this.palette2a = tenPaletter("#a0cae2", 10, 5, 10, 0);
-        this.palette1a = tenPaletter("#b0bcc2", 20, 0, 2, 3);
-        this.palette2a = tenPaletter("#86a4b8", 20, 0, 2, 3);
-        this.palette1b = tenPaletter("#abbeb0", 20, 0, 2, 3);
-        this.palette2b = tenPaletter("#80a191", 20, 0, 2, 3);
+        // this.palette1a = tenPaletter("#b0bcc2", 20, 0, 2, 3);
+        // this.palette2a = tenPaletter("#86a4b8", 20, 0, 2, 3);
+        // this.palette1b = tenPaletter("#abbeb0", 20, 0, 2, 3);
+        // this.palette2b = tenPaletter("#80a191", 20, 0, 2, 3);
 
-        this.palette3a = tenPaletter("#9cc1ce", 10, 5, 5, 5);
-        this.palette4a = tenPaletter("#8da8b8", 10, 5, 5, 5);
-        this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
-        this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
+        // this.palette3a = tenPaletter("#9cc1ce", 10, 5, 5, 5);
+        // this.palette4a = tenPaletter("#8da8b8", 10, 5, 5, 5);
+        // this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
+        // this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
 
-        this.palette5a = tenPaletter("#95aeb9", 10, 5, 5, 5);
-        this.palette6a = tenPaletter("#acc0d1", 10, 5, 5, 5);
-        this.palette5b = tenPaletter("#8aac92", 10, 5, 5, 5);
-        this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
+        // this.palette5a = tenPaletter("#95aeb9", 10, 5, 5, 5);
+        // this.palette6a = tenPaletter("#acc0d1", 10, 5, 5, 5);
+        // this.palette5b = tenPaletter("#8aac92", 10, 5, 5, 5);
+        // this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
-        this.palette7a = tenPaletter("#7996ad", 10, 1, 10, 1);
-        this.palette8a = tenPaletter("#778674", 10, 1, 10, 1);
-        this.palette7b = tenPaletter("#d4ddce", 10, 1, 10, 1);
-        this.palette8b = tenPaletter("#cce9ee", 10, 1, 10, 1);
+        // this.palette7a = tenPaletter("#7996ad", 10, 1, 10, 1);
+        // this.palette8a = tenPaletter("#778674", 10, 1, 10, 1);
+        // this.palette7b = tenPaletter("#d4ddce", 10, 1, 10, 1);
+        // this.palette8b = tenPaletter("#cce9ee", 10, 1, 10, 1);
 
-        this.palette9a = tenPaletter("#bedbec", 5, 1, 10, 1);
-        this.palette10a = tenPaletter("#8b9795", 5, 1, 10, 1);
-        this.palette9b = tenPaletter("#7d8886", 5, 1, 10, 1);
-        this.palette10b = tenPaletter("#95aab8", 5, 1, 10, 1);
+        // this.palette9a = tenPaletter("#bedbec", 5, 1, 10, 1);
+        // this.palette10a = tenPaletter("#8b9795", 5, 1, 10, 1);
+        // this.palette9b = tenPaletter("#7d8886", 5, 1, 10, 1);
+        // this.palette10b = tenPaletter("#95aab8", 5, 1, 10, 1);
+
+        this.palette1a = tenPaletter("#c2b2b0", 20, 0, 2, 3);
+        this.palette2a = tenPaletter("#b89086", 20, 0, 2, 3);
+        this.palette1b = tenPaletter("#beb9ab", 20, 0, 2, 3);
+        this.palette2b = tenPaletter("#a19e80", 20, 0, 2, 3);
+
+        this.palette3a = tenPaletter("#cea29c", 10, 5, 5, 5);
+        this.palette4a = tenPaletter("#b88e8d", 10, 5, 5, 5);
+        this.palette3b = tenPaletter("#dfd2a7", 10, 5, 5, 5);
+        this.palette4b = tenPaletter("#b8b192", 10, 5, 5, 5);
+
+        this.palette5a = tenPaletter("#b99595", 10, 5, 5, 5);
+        this.palette6a = tenPaletter("#d1acac", 10, 5, 5, 5);
+        this.palette5b = tenPaletter("#aca78a", 10, 5, 5, 5);
+        this.palette6b = tenPaletter("#cfbda6", 10, 5, 5, 5);
+
+        this.palette7a = tenPaletter("#ad7979", 10, 1, 10, 1);
+        this.palette8a = tenPaletter("#867474", 10, 1, 10, 1);
+        this.palette7b = tenPaletter("#ddd4ce", 10, 1, 10, 1);
+        this.palette8b = tenPaletter("#eee8cc", 10, 1, 10, 1);
+
+        this.palette9a = tenPaletter("#ecbebe", 5, 1, 10, 1);
+        this.palette10a = tenPaletter("#97948b", 5, 1, 10, 1);
+        this.palette9b = tenPaletter("#88857d", 5, 1, 10, 1);
+        this.palette10b = tenPaletter("#b89c95", 5, 1, 10, 1);
 
         this.paletteHorizon1 = tenPaletter("#636569", 10, 0, 1, 1); // triadicCreator("#e4eef7", 0, -13, -5, 0, 0, 0, 0, 13, 5);
         this.paletteHorizon2 = tenPaletter("#575a64", 10, 0, 1, 1); // triadicCreator("#bcc7cc", 0, -13, -5, 0, 0, 5, 0, 13, 5);
+
+        this.noise1 = new Noise(0.3, 0.5, 0);
+
 
         this.sInc1 = 0.3;
         this.lInc1 = 0.5;
@@ -145,17 +170,17 @@ class Grid2 {
 
         // LAYER
         this.drawFirstLoop();
-        this.drawSecondLoop();
-        this.drawThirdLoop();
-        this.drawFourthLoop();
-        this.drawFifthLoop();
-        this.drawSixthLoop();
+        // this.drawSecondLoop();
+        // this.drawThirdLoop();
+        // this.drawFourthLoop();
+        // this.drawFifthLoop();
+        // this.drawSixthLoop();
     }
 
     createBoxes() {
 
-        this.noiseValue1Max = 0;
-        this.noiseValue1Min = 1;
+        // this.noiseValue1Max = 0;
+        // this.noiseValue1Min = 1;
         this.noiseValue2Max = 0;
         this.noiseValue2Min = 1;
         this.noiseValue3Max = 0;
@@ -177,8 +202,8 @@ class Grid2 {
 
         var index = 0;
 
-        let loff1 = 0;
-        let zoff1 = 0;
+        // let loff1 = 0;
+        // let zoff1 = 0;
         let loff2 = 0;
         let zoff2 = 0;
 
@@ -208,7 +233,8 @@ class Grid2 {
         // h = long, w = short
 
         for (var h = 0; h < (this.heightBoxCount); h++) {
-            let soff1 = 0;
+            this.noise1.resetSoff();
+            // let soff1 = 0;
             let soff2 = 0;
             let soff3 = 0;
             let soff4 = 0;
@@ -228,7 +254,9 @@ class Grid2 {
                 var C = p5.Vector.add(A, createVector(this.boxSize, this.boxSize));
                 var D = p5.Vector.add(A, createVector(0, this.boxSize));
 
-                var noiseValue1 = noise(soff1, loff1, zoff1);
+                var noiseValue1 = this.noise1.createNoiseValue();
+
+                // var noiseValue1 = noise(soff1, loff1, zoff1);
                 var noiseValue2 = noise(soff2, loff2, zoff2);
                 var noiseValue3 = noise(soff3, loff3, zoff3);
                 var noiseValue4 = noise(soff4, loff4, zoff4);
@@ -245,12 +273,12 @@ class Grid2 {
                 var horizon = h == this.horizonRow;
                 var aboveHorizon = h <= this.horizonRow;
 
-                if (noiseValue1 > this.noiseValue1Max) {
-                    this.noiseValue1Max = noiseValue1;
-                }
-                if (noiseValue1 < this.noiseValue1Min) {
-                    this.noiseValue1Min = noiseValue1;
-                }
+                // if (noiseValue1 > this.noiseValue1Max) {
+                //     this.noiseValue1Max = noiseValue1;
+                // }
+                // if (noiseValue1 < this.noiseValue1Min) {
+                //     this.noiseValue1Min = noiseValue1;
+                // }
                 if (noiseValue2 > this.noiseValue2Max) {
                     this.noiseValue2Max = noiseValue2;
                 }
@@ -333,7 +361,7 @@ class Grid2 {
                     "aboveHorizon": aboveHorizon,
                 })
                 index += 1;
-                soff1 += this.sInc1;
+                // soff1 += this.sInc1;
                 soff2 += this.sInc2;
                 soff3 += this.sInc3;
                 soff4 += this.sInc4;
@@ -343,9 +371,12 @@ class Grid2 {
                 soff8 += this.sInc8;
                 soff9 += this.sInc9;
                 soff10 += this.sInc10;
+                this.noise1.updateSoff();
             }
-            loff1 += this.lInc1;
-            zoff1 += this.zInc1;
+            this.noise1.updateLoff();
+            this.noise1.updateZoff();
+            // loff1 += this.lInc1;
+            // zoff1 += this.zInc1;
             loff2 += this.lInc2;
             zoff2 += this.zInc2;
             loff3 += this.lInc3;
@@ -466,6 +497,7 @@ class Grid2 {
                 continue;
             }
 
+
             if (this.boxes[i].horizon) {
                 this.digndag2(
                     {
@@ -475,7 +507,8 @@ class Grid2 {
                         noiseNumberB: 4,
                         noiseValueA: this.boxes[i].noiseValue3,
                         noiseValueB: this.boxes[i].noiseValue4,
-                        vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 20, 50), // 15,
+                        // vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 20, 50), // 15,
+                        vertexLength: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 20, 50), // 15,
                         strokeWeighty: 2,
                         angleMin: 2 * PI / 12 * 8.5,
                         angleMax: 2 * PI / 12 * 9.5,
@@ -498,8 +531,8 @@ class Grid2 {
                         noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1,
                         noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 20, 50), // 15,
-                        strokeWeighty: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 1, 2), // 1,
+                        vertexLength: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 20, 50), // 15,
+                        strokeWeighty: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 1, 2), // 1,
                         // angleMin: 0,
                         // angleMax: 2 * PI,
                         angleMin: 2 * PI / 12 * 11.5,
@@ -523,8 +556,8 @@ class Grid2 {
                         noiseNumberB: 2,
                         noiseValueA: this.boxes[i].noiseValue1,
                         noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 20, 50), // 15,
-                        strokeWeighty: map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 1, 2), // 1,
+                        vertexLength: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 20, 50), // 15,
+                        strokeWeighty: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 1, 2), // 1,
                         angleMin: 2 * PI / 12 * 11.5,
                         angleMax: 2 * PI / 12 * 12.5,
                         // angleMin: 0,
@@ -1491,8 +1524,10 @@ class Grid2 {
 
         if (number == 1) {
             noiseValueName = "noiseValue1";
-            noiseValueMin = this.noiseValue1Min;
-            noiseValueMax = this.noiseValue1Max;
+            // noiseValueMin = this.noiseValue1Min;
+            // noiseValueMax = this.noiseValue1Max;
+            noiseValueMin = this.noise1.noiseValueMin; // noiseValue1Min;
+            noiseValueMax = this.noise1.noiseValueMax; // this.noiseValue1Max;
         } else if (number == 2) {
             noiseValueName = "noiseValue2";
             noiseValueMin = this.noiseValue2Min;
@@ -1532,4 +1567,52 @@ class Grid2 {
             noiseValueMax: noiseValueMax,
         }
     }
+}
+
+class Noise {
+    constructor(sInc, lInc, zInc) {
+        this.sInc = sInc;
+        this.lInc = lInc;
+        this.zInc = zInc;
+
+        // make sure lowest default for max and highest default for min
+        this.noiseValueMax = 0;
+        this.noiseValueMin = 1;
+
+        this.loff = 0;
+        this.zoff = 0;
+
+        this.soff = 0;
+    }
+
+    resetSoff() {
+        this.soff = 0;
+    }
+
+    createNoiseValue() {
+        this.noiseValue = noise(this.soff, this.loff, this.zoff);
+
+        if (this.noiseValue > this.noiseValueMax) {
+            this.noiseValueMax = this.noiseValue;
+        }
+        if (this.noiseValue < this.noiseValueMin) {
+            this.noiseValueMin = this.noiseValue;
+        }
+
+        return this.noiseValue;
+    }
+
+    updateSoff() {
+        this.soff += this.sInc;
+    }
+
+    updateLoff() {
+        this.loff += this.lInc;
+    }
+
+    updateZoff() {
+        this.zoff += this.zInc;
+    }
+
+
 }
