@@ -147,53 +147,7 @@ class Grid2 {
 
     createBoxes() {
 
-        // this.noiseValue1Max = 0;
-        // this.noiseValue1Min = 1;
-        // this.noiseValue2Max = 0;
-        // this.noiseValue2Min = 1;
-        // this.noiseValue3Max = 0;
-        // this.noiseValue3Min = 1;
-        // this.noiseValue4Max = 0;
-        // this.noiseValue4Min = 1;
-        // this.noiseValue5Max = 0;
-        // this.noiseValue5Min = 1;
-        // this.noiseValue6Max = 0;
-        // this.noiseValue6Min = 1;
-        // this.noiseValue7Max = 0;
-        // this.noiseValue7Min = 1;
-        // this.noiseValue8Max = 0;
-        // this.noiseValue8Min = 1;
-        // this.noiseValue9Max = 0;
-        // this.noiseValue9Min = 1;
-        // this.noiseValue10Max = 0;
-        // this.noiseValue10Min = 1;
-
         var index = 0;
-
-        // let loff1 = 0;
-        // let zoff1 = 0;
-        // let loff2 = 0;
-        // let zoff2 = 0;
-
-        // let loff3 = 0;
-        // let zoff3 = 0;
-        // let loff4 = 0;
-        // let zoff4 = 0;
-
-        // let loff5 = 0;
-        // let zoff5 = 0;
-        // let loff6 = 0;
-        // let zoff6 = 0;
-
-        // let loff7 = 0;
-        // let zoff7 = 0;
-        // let loff8 = 0;
-        // let zoff8 = 0;
-
-        // let loff9 = 0;
-        // let zoff9 = 0;
-        // let loff10 = 0;
-        // let zoff10 = 0;
 
         // console.log(this.heightBoxCount);
         // console.log(this.widthBoxCount);
@@ -212,16 +166,6 @@ class Grid2 {
             this.noise9.resetSoff();
             this.noise10.resetSoff();
 
-            // let soff1 = 0;
-            // let soff2 = 0;
-            // let soff3 = 0;
-            // let soff4 = 0;
-            // let soff5 = 0;
-            // let soff6 = 0;
-            // let soff7 = 0;
-            // let soff8 = 0;
-            // let soff9 = 0;
-            // let soff10 = 0;
             for (var w = 0; w < (this.widthBoxCount); w++) {
 
                 var center = createVector(this.widthMargin + w * this.boxSize + this.boxSize / 2, this.heightMargin + h * this.boxSize + this.boxSize / 2);
@@ -243,83 +187,11 @@ class Grid2 {
                 var noiseValue9 = this.noise9.createNoiseValue();
                 var noiseValue10 = this.noise10.createNoiseValue();
 
-                // var noiseValue1 = noise(soff1, loff1, zoff1);
-                // var noiseValue2 = noise(soff2, loff2, zoff2);
-                // var noiseValue3 = noise(soff3, loff3, zoff3);
-                // var noiseValue4 = noise(soff4, loff4, zoff4);
-                // var noiseValue5 = noise(soff5, loff5, zoff5);
-                // var noiseValue6 = noise(soff6, loff6, zoff6);
-                // var noiseValue7 = noise(soff7, loff7, zoff7);
-                // var noiseValue8 = noise(soff8, loff8, zoff8);
-                // var noiseValue9 = noise(soff9, loff9, zoff9);
-                // var noiseValue10 = noise(soff10, loff10, zoff10);
-
                 var polygonA = insidePolygon([center.x, center.y], polyPoints);
                 var polygonLeft = insidePolygon([center.x, center.y], polyPointsLeft);
 
                 var horizon = h == this.horizonRow;
                 var aboveHorizon = h <= this.horizonRow;
-
-                // if (noiseValue1 > this.noiseValue1Max) {
-                //     this.noiseValue1Max = noiseValue1;
-                // }
-                // if (noiseValue1 < this.noiseValue1Min) {
-                //     this.noiseValue1Min = noiseValue1;
-                // }
-                // if (noiseValue2 > this.noiseValue2Max) {
-                //     this.noiseValue2Max = noiseValue2;
-                // }
-                // if (noiseValue2 < this.noiseValue2Min) {
-                //     this.noiseValue2Min = noiseValue2;
-                // }
-                // if (noiseValue3 > this.noiseValue3Max) {
-                //     this.noiseValue3Max = noiseValue3;
-                // }
-                // if (noiseValue3 < this.noiseValue3Min) {
-                //     this.noiseValue3Min = noiseValue3;
-                // }
-                // if (noiseValue4 > this.noiseValue4Max) {
-                //     this.noiseValue4Max = noiseValue4;
-                // }
-                // if (noiseValue4 < this.noiseValue4Min) {
-                //     this.noiseValue4Min = noiseValue4;
-                // }
-                // if (noiseValue5 > this.noiseValue5Max) {
-                //     this.noiseValue5Max = noiseValue5;
-                // }
-                // if (noiseValue5 < this.noiseValue5Min) {
-                //     this.noiseValue5Min = noiseValue5;
-                // }
-                // if (noiseValue6 > this.noiseValue6Max) {
-                //     this.noiseValue6Max = noiseValue6;
-                // }
-                // if (noiseValue6 < this.noiseValue6Min) {
-                //     this.noiseValue6Min = noiseValue6;
-                // }
-                // if (noiseValue7 > this.noiseValue7Max) {
-                //     this.noiseValue7Max = noiseValue7;
-                // }
-                // if (noiseValue7 < this.noiseValue7Min) {
-                //     this.noiseValue7Min = noiseValue7;
-                // }
-                // if (noiseValue8 > this.noiseValue8Max) {
-                //     this.noiseValue8Max = noiseValue8;
-                // }
-                // if (noiseValue8 < this.noiseValue8Min) {
-                //     this.noiseValue8Min = noiseValue8;
-                // }
-                // if (noiseValue9 > this.noiseValue9Max) {
-                //     this.noiseValue9Max = noiseValue9;
-                // }
-                // if (noiseValue9 < this.noiseValue9Min) {
-                //     this.noiseValue9Min = noiseValue9;
-                // }
-                // if (noiseValue10 > this.noiseValue10Max) {
-                //     this.noiseValue10Max = noiseValue10;
-                // }
-                // if (noiseValue10 < this.noiseValue10Min) {
-                //     this.noiseValue10Min = noiseValue10;
-                // }
 
                 this.boxes.push({
                     "center": center,
@@ -348,16 +220,6 @@ class Grid2 {
                     "aboveHorizon": aboveHorizon,
                 })
                 index += 1;
-                // soff1 += this.sInc1;
-                // soff2 += this.sInc2;
-                // soff3 += this.sInc3;
-                // soff4 += this.sInc4;
-                // soff5 += this.sInc5;
-                // soff6 += this.sInc6;
-                // soff7 += this.sInc7;
-                // soff8 += this.sInc8;
-                // soff9 += this.sInc9;
-                // soff10 += this.sInc10;
 
                 this.noise1.updateSoff();
                 this.noise2.updateSoff();
@@ -390,31 +252,8 @@ class Grid2 {
             this.noise9.updateZoff();
             this.noise10.updateLoff();
             this.noise10.updateZoff();
-
-            // loff1 += this.lInc1;
-            // zoff1 += this.zInc1;
-            // loff2 += this.lInc2;
-            // zoff2 += this.zInc2;
-            // loff3 += this.lInc3;
-            // zoff3 += this.zInc3;
-            // loff4 += this.lInc4;
-            // zoff4 += this.zInc4;
-            // loff5 += this.lInc5;
-            // zoff5 += this.zInc5;
-            // loff6 += this.lInc6;
-            // zoff6 += this.zInc6;
-            // loff7 += this.lInc7;
-            // zoff7 += this.zInc7;
-            // loff8 += this.lInc8;
-            // zoff8 += this.zInc8;
-            // loff9 += this.lInc9;
-            // zoff9 += this.zInc9;
-            // loff10 += this.lInc10;
-            // zoff10 += this.zInc10;
         }
 
-        // console.log(this.noiseValue1Max);
-        // console.log(this.noiseValue1Min);
     }
 
     showDebug() {
@@ -1593,52 +1432,4 @@ class Grid2 {
             noiseValueMax: noiseValueMax,
         }
     }
-}
-
-class Noise {
-    constructor(sInc, lInc, zInc) {
-        this.sInc = sInc;
-        this.lInc = lInc;
-        this.zInc = zInc;
-
-        // make sure lowest default for max and highest default for min
-        this.noiseValueMax = 0;
-        this.noiseValueMin = 1;
-
-        this.loff = 0;
-        this.zoff = 0;
-
-        this.soff = 0;
-    }
-
-    resetSoff() {
-        this.soff = 0;
-    }
-
-    createNoiseValue() {
-        this.noiseValue = noise(this.soff, this.loff, this.zoff);
-
-        if (this.noiseValue > this.noiseValueMax) {
-            this.noiseValueMax = this.noiseValue;
-        }
-        if (this.noiseValue < this.noiseValueMin) {
-            this.noiseValueMin = this.noiseValue;
-        }
-
-        return this.noiseValue;
-    }
-
-    updateSoff() {
-        this.soff += this.sInc;
-    }
-
-    updateLoff() {
-        this.loff += this.lInc;
-    }
-
-    updateZoff() {
-        this.zoff += this.zInc;
-    }
-
-
 }
