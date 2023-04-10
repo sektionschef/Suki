@@ -152,9 +152,9 @@ function draw() {
     pixelDensity(CURRENTPIXELDENS);
   }
 
-  background(color("#e8ecee"));
+  // background(color("#e8ecee"));
+  background(color("#ffffff"));
 
-  grid2.draw();
   grid2.show();
 
   //   // DEBUG
@@ -188,6 +188,9 @@ function timeFunc() {
 
   if (today.getHours() > 22) {
     console.log("yes");
+  } else {
+    console.log("nos")
   }
+
   console.log(time);
 }

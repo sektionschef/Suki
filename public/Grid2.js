@@ -33,25 +33,25 @@ class Grid2 {
             this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
             this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
 
-            this.palette5a = tenPaletter("#95aeb9", 10, 5, 5, 5);
+            this.palette5a = tenPaletter("#7a95a0", 10, 5, 5, 5);
             this.palette6a = tenPaletter("#acc0d1", 10, 5, 5, 5);
-            this.palette5b = tenPaletter("#8aac92", 10, 5, 5, 5);
+            this.palette5b = tenPaletter("#72947a", 10, 5, 5, 5);
             this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
-            this.palette7a = tenPaletter("#7996ad", 10, 1, 10, 1);
-            this.palette8a = tenPaletter("#778674", 10, 1, 10, 1);
-            this.palette7b = tenPaletter("#d4ddce", 10, 1, 10, 1);
-            this.palette8b = tenPaletter("#cce9ee", 10, 1, 10, 1);
+            this.palette7a = tenPaletter("#949da5", 10, 1, 10, 1);
+            this.palette8a = tenPaletter("#70828a", 10, 1, 10, 1);
+            this.palette7b = tenPaletter("#aab9a0", 10, 1, 10, 1);
+            this.palette8b = tenPaletter("#778674", 10, 1, 10, 1);
 
-            this.palette9a = tenPaletter("#bedbec", 5, 1, 10, 1);
-            this.palette10a = tenPaletter("#8b9795", 5, 1, 10, 1);
-            this.palette9b = tenPaletter("#7d8886", 5, 1, 10, 1);
-            this.palette10b = tenPaletter("#95aab8", 5, 1, 10, 1);
+            this.palette9a = tenPaletter("#878f94", 10, 1, 10, 1);
+            this.palette10a = tenPaletter("#a9adac", 10, 1, 10, 1);
+            this.palette9b = tenPaletter("#96a19f", 10, 1, 10, 1);
+            this.palette10b = tenPaletter("#8c9196", 10, 1, 10, 1);
 
-            this.palette11a = tenPaletter("#e6eef8", 5, 1, 10, 1);
-            this.palette12a = tenPaletter("#e1eaf5", 5, 1, 10, 1);
-            this.palette11b = tenPaletter("#5c5c5e", 5, 1, 10, 1);
-            this.palette12b = tenPaletter("#4d555a", 5, 1, 10, 1);
+            this.palette11a = tenPaletter("#9cc6fa", 5, 1, 10, 1);
+            this.palette12a = tenPaletter("#cdd0d3", 5, 1, 10, 1);
+            this.palette11b = tenPaletter("#709e6a", 5, 1, 10, 1);
+            this.palette12b = tenPaletter("#4e534d", 5, 1, 10, 1);
         } else {
 
             this.palette1a = tenPaletter("#c2b2b0", 20, 0, 2, 3);
@@ -136,6 +136,19 @@ class Grid2 {
         this.buffer = createGraphics(width, height, SVG);
         this.bufferNoise = createGraphics(width, height, SVG);
 
+        this.buffer1 = createGraphics(width, height, SVG);
+        this.buffer2 = createGraphics(width, height, SVG);
+        this.buffer3 = createGraphics(width, height, SVG);
+        this.buffer4 = createGraphics(width, height, SVG);
+        this.buffer5 = createGraphics(width, height, SVG);
+        this.buffer6 = createGraphics(width, height, SVG);
+        this.buffer7 = createGraphics(width, height, SVG);
+        this.buffer8 = createGraphics(width, height, SVG);
+        this.buffer9 = createGraphics(width, height, SVG);
+        this.buffer10 = createGraphics(width, height, SVG);
+        this.buffer11 = createGraphics(width, height, SVG);
+        this.buffer12 = createGraphics(width, height, SVG);
+
         this.createBoxes();
         if (this.DEBUG) {
             this.showDebug();
@@ -155,6 +168,8 @@ class Grid2 {
 
         // this.drawNoise(11);
         // this.drawNoise(12);
+
+        this.draw();
     }
 
     createBoxes() {
@@ -398,6 +413,7 @@ class Grid2 {
                         colorListB: this.paletteHorizon2,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer1,
                     }
                 );
             } else if (this.boxes[i].aboveHorizon) {
@@ -418,11 +434,12 @@ class Grid2 {
                         revert: true,
                         blendNoises: 0.5,
                         cutOutValue: 0,
-                        loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 10, 30), // 20,
+                        loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 10, 20), // 20,
                         colorListA: this.palette1a,
                         colorListB: this.palette2a,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer1,
                     }
                 );
             } else {
@@ -443,11 +460,12 @@ class Grid2 {
                         revert: true,
                         blendNoises: 0.5,
                         cutOutValue: 0,
-                        loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 10, 30), // 20,
+                        loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 10, 20), // 20,
                         colorListA: this.palette1b,
                         colorListB: this.palette2b,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer1,
                     }
                 );
             }
@@ -455,6 +473,78 @@ class Grid2 {
     }
 
     drawSecondLoop() {
+        let randomIndex = getRandomIndex(this.boxes.length);
+
+        let i = 0;
+
+        for (var v = 0; v < randomIndex.length; v++) {
+
+            i = randomIndex[v];
+
+            if (this.drawSkipMargin(this.boxes[i])) {
+                continue;
+            }
+
+            // big but sparse
+            if (this.boxes[i].aboveHorizon) {
+
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 9,
+                        noiseNumberB: 10,
+                        noiseValueA: this.boxes[i].noiseValue9,
+                        noiseValueB: this.boxes[i].noiseValue10,
+                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 35),
+                        strokeWeighty: 0.5, //map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 0.3, 1),//0.5,
+                        // angleMin: 2 * PI / 12 * 9,
+                        // angleMax: 2 * PI / 12 * 11,
+                        angleMin: 2 * PI / 12 * 0,
+                        angleMax: 2 * PI / 12 * 2,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.7,
+                        loopCount: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 45), // 10,
+                        colorListA: this.palette9a,  // 5
+                        colorListB: this.palette10a, // 6
+                        noiseAngle: false,
+                        normIt: true,
+                        buffer: this.buffer2,
+                    }
+                );
+            } else {
+                this.digndag2(
+                    {
+                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                        noiseNumberA: 9,
+                        noiseNumberB: 10,
+                        noiseValueA: this.boxes[i].noiseValue9,
+                        noiseValueB: this.boxes[i].noiseValue10,
+                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 35),
+                        strokeWeighty: 0.5, // map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 0.3, 1), //0.5,
+                        // angleMin: 2 * PI / 12 * 9,
+                        // angleMax: 2 * PI / 12 * 11,
+                        angleMin: 2 * PI / 12 * 0,
+                        angleMax: 2 * PI / 12 * 2,
+                        revert: true,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.7,
+                        loopCount: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 45), // 10,
+                        colorListA: this.palette9b,
+                        colorListB: this.palette10b,
+                        noiseAngle: false,
+                        normIt: true,
+                        buffer: this.buffer2,
+                    }
+                );
+            }
+        }
+
+    }
+
+    drawThirdLoop() {
 
 
         let randomIndex = getRandomIndex(this.boxes.length);
@@ -496,6 +586,7 @@ class Grid2 {
                         colorListB: this.paletteHorizon2,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer3,
                     }
                 );
 
@@ -525,6 +616,7 @@ class Grid2 {
                         colorListB: this.palette2a,  // 4
                         noiseAngle: true,
                         normIt: true,
+                        buffer: this.buffer3,
                     }
                 );
 
@@ -552,79 +644,13 @@ class Grid2 {
                         colorListB: this.palette2b,
                         noiseAngle: true,
                         normIt: true,
+                        buffer: this.buffer3,
                     }
                 );
             }
 
         }
     }
-
-    drawThirdLoop() {
-        let randomIndex = getRandomIndex(this.boxes.length);
-
-        let i = 0;
-
-        for (var v = 0; v < randomIndex.length; v++) {
-
-            i = randomIndex[v];
-
-            if (this.drawSkipMargin(this.boxes[i])) {
-                continue;
-            }
-
-            // big but sparse
-            if (this.boxes[i].aboveHorizon) {
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 9,
-                        noiseNumberB: 10,
-                        noiseValueA: this.boxes[i].noiseValue9,
-                        noiseValueB: this.boxes[i].noiseValue10,
-                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 15),
-                        strokeWeighty: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 0.3, 1),//0.5,
-                        angleMin: 2 * PI / 12 * 9,
-                        angleMax: 2 * PI / 12 * 11,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.6,
-                        loopCount: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 15), // 10,
-                        colorListA: this.palette9a,  // 5
-                        colorListB: this.palette10a, // 6
-                        noiseAngle: true,
-                        normIt: false,
-                    }
-                );
-            } else {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 9,
-                        noiseNumberB: 10,
-                        noiseValueA: this.boxes[i].noiseValue9,
-                        noiseValueB: this.boxes[i].noiseValue10,
-                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 15),
-                        strokeWeighty: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 0.3, 1), //0.5,
-                        angleMin: 2 * PI / 12 * 9,
-                        angleMax: 2 * PI / 12 * 11,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.6,
-                        loopCount: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 1, 15), // 10,
-                        colorListA: this.palette9b,
-                        colorListB: this.palette10b,
-                        noiseAngle: true,
-                        normIt: false,
-                    }
-                );
-            }
-        }
-
-    }
-
 
     drawFourthLoop() {
         let randomIndex = getRandomIndex(this.boxes.length);
@@ -651,17 +677,18 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue10,
                         noiseValueB: this.boxes[i].noiseValue9,
                         vertexLength: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 15),
-                        strokeWeighty: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 1.3),// 0.5,
+                        strokeWeighty: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 0.5),// 0.5,
                         angleMin: 2 * PI / 12 * 1,
                         angleMax: 2 * PI / 12 * 3,
                         revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.6,
-                        loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 15), // 10,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.7,
+                        loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 45), // 10,
                         colorListA: this.palette10a,  // 5
                         colorListB: this.palette9a, // 6
-                        noiseAngle: true,
-                        normIt: false,
+                        noiseAngle: false,
+                        normIt: true,
+                        buffer: this.buffer4,
                     }
                 );
             } else {
@@ -674,17 +701,18 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue10,
                         noiseValueB: this.boxes[i].noiseValue9,
                         vertexLength: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 15),
-                        strokeWeighty: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 1.3), // 0.5,
+                        strokeWeighty: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 0.5), // 0.5,
                         angleMin: 2 * PI / 12 * 1,
                         angleMax: 2 * PI / 12 * 3,
                         revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.6,
-                        loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 15), // 10,
+                        blendNoises: 0.5,
+                        cutOutValue: 0.7,
+                        loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 45), // 10,
                         colorListA: this.palette10b,  // 5
                         colorListB: this.palette9b, // 6
-                        noiseAngle: true,
-                        normIt: false,
+                        noiseAngle: false,
+                        normIt: true,
+                        buffer: this.buffer4,
                     }
                 );
             }
@@ -734,6 +762,7 @@ class Grid2 {
                         colorListB: this.paletteHorizon2,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer5,
                     }
                 );
 
@@ -753,12 +782,13 @@ class Grid2 {
                         angleMax: 2 * PI / 12 * 11,
                         revert: true,
                         blendNoises: 0,
-                        cutOutValue: 0.75,
+                        cutOutValue: 0.8,
                         loopCount: 10,
                         colorListA: this.palette5a,  // 5
                         colorListB: this.palette6a, // 6
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer5,
                     }
                 );
             } else {
@@ -776,12 +806,13 @@ class Grid2 {
                         angleMax: 2 * PI / 12 * 5,
                         revert: true,
                         blendNoises: 0,
-                        cutOutValue: 0.75,
+                        cutOutValue: 0.8,
                         loopCount: 10,
                         colorListA: this.palette5b,
                         colorListB: this.palette6b,
                         noiseAngle: false,
                         normIt: true,
+                        buffer: this.buffer5,
                     }
                 );
             }
@@ -814,7 +845,7 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue7,
                         noiseValueB: this.boxes[i].noiseValue8,
                         vertexLength: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 5, 25),
-                        strokeWeighty: 0.3, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
+                        strokeWeighty: 0.4, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
                         angleMin: 2 * PI / 12 * 5,
                         angleMax: 2 * PI / 12 * 6,
                         // angleMin: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 0, 2 * PI),
@@ -827,6 +858,7 @@ class Grid2 {
                         colorListB: this.palette8a,
                         noiseAngle: true,
                         normIt: true,
+                        buffer: this.buffer6,
                     }
                 );
             } else {
@@ -839,7 +871,7 @@ class Grid2 {
                         noiseValueA: this.boxes[i].noiseValue7,
                         noiseValueB: this.boxes[i].noiseValue8,
                         vertexLength: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 5, 25),
-                        strokeWeighty: 0.3, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
+                        strokeWeighty: 0.4, // map(this.boxes[i].noiseValue7, 0, 1, 0.1, 0.2), //0.1,
                         angleMin: 2 * PI / 12 * 5,
                         angleMax: 2 * PI / 12 * 6,
                         // angleMin: map(this.boxes[i].noiseValue7, 0, 1, -PI, -PI * 1),
@@ -852,6 +884,7 @@ class Grid2 {
                         colorListB: this.palette8b,
                         noiseAngle: true,
                         normIt: true,
+                        buffer: this.buffer6,
                     }
                 );
             }
@@ -882,20 +915,21 @@ class Grid2 {
                         noiseNumberB: 12,
                         noiseValueA: this.boxes[i].noiseValue11,
                         noiseValueB: this.boxes[i].noiseValue12,
-                        vertexLength: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 5, 25),
-                        strokeWeighty: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 0.5, 1),
+                        vertexLength: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 5, 8),
+                        strokeWeighty: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 0.3, 0.6),
                         angleMin: 2 * PI / 12 * 9,
                         angleMax: 2 * PI / 12 * 10,
                         // angleMin: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 0, 2 * PI),
                         // angleMax: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 0, 2 * PI),
                         revert: true,
                         blendNoises: 0.5,
-                        cutOutValue: 0.5,
-                        loopCount: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 10, 30),
+                        cutOutValue: 0.3,
+                        loopCount: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 4, 7),
                         colorListA: this.palette11a,
                         colorListB: this.palette12a,
                         noiseAngle: true,
                         normIt: true,
+                        buffer: this.buffer7,
                     }
                 );
             } else {
@@ -907,324 +941,21 @@ class Grid2 {
                         noiseNumberB: 12,
                         noiseValueA: this.boxes[i].noiseValue11,
                         noiseValueB: this.boxes[i].noiseValue12,
-                        vertexLength: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 5, 25),
-                        strokeWeighty: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 0.5, 1),
+                        vertexLength: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 5, 8),
+                        strokeWeighty: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 0.3, 0.6),
                         angleMin: 2 * PI / 12 * 9,
                         angleMax: 2 * PI / 12 * 10,
                         // angleMin: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 0, 2 * PI),
                         // angleMax: map(this.boxes[i].noiseValue7, this.noise7.noiseValueMin, this.noise7.noiseValueMax, 0, 2 * PI),
                         revert: true,
                         blendNoises: 0.5,
-                        cutOutValue: 0.5,
-                        loopCount: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 10, 30),
+                        cutOutValue: 0.3,
+                        loopCount: map(this.boxes[i].noiseValue11, this.noise11.noiseValueMin, this.noise11.noiseValueMax, 4, 7),
                         colorListA: this.palette11b,
                         colorListB: this.palette12b,
                         noiseAngle: true,
                         normIt: true,
-                    }
-                );
-            }
-        }
-    }
-
-    drawBigLoop() {
-
-        let randomIndex = getRandomIndex(this.boxes.length);
-
-        for (var i = 0; i < randomIndex.length; i++) {
-
-            // let offset = getRandomFromInterval(-10, 10);
-
-            // if (i == showTrigger) {
-            // this.drawShape();
-            // }
-
-            if (this.drawSkipMargin(this.boxes[i])) {
-                continue;
-            }
-
-            // FIRST LOOP
-            if (this.boxes[i].aboveHorizon) {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 1,
-                        noiseNumberB: 2,
-                        noiseValueA: this.boxes[i].noiseValue1,
-                        noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15), // 15,
-                        strokeWeighty: 1,
-                        // angleMin: 0,
-                        // angleMax: 2 * PI,
-                        angleMin: -PI / 12,
-                        angleMax: PI / 12,
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0,
-                        loopCount: 10,
-                        colorListA: this.palette1a,
-                        colorListB: this.palette2a,
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-            } else {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 1,
-                        noiseNumberB: 2,
-                        noiseValueA: this.boxes[i].noiseValue1,
-                        noiseValueB: this.boxes[i].noiseValue2,
-                        vertexLength: 20, // map(this.boxes[i].noiseValue1, this.noiseValue1Min, this.noiseValue1Max, 5, 15),
-                        strokeWeighty: 1,
-                        angleMin: -PI / 12,
-                        angleMax: PI / 12,
-                        // angleMin: 0,
-                        // angleMax: 2 * PI,
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0,
-                        loopCount: 10,
-                        colorListA: this.palette1b,
-                        colorListB: this.palette2b,
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-            }
-
-
-            if (this.boxes[i].horizon) {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 3,
-                        noiseNumberB: 4,
-                        noiseValueA: this.boxes[i].noiseValue3,
-                        noiseValueB: this.boxes[i].noiseValue4,
-                        vertexLength: 25, // 15,
-                        strokeWeighty: 2,
-                        angleMin: 2 * PI / 12 * 0,
-                        angleMax: 2 * PI / 12 * 1,
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0,
-                        loopCount: 10,
-                        colorListA: this.paletteHorizon1,
-                        colorListB: this.paletteHorizon2,
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-
-            } else if (this.boxes[i].aboveHorizon) {
-
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 3,
-                        noiseNumberB: 4,
-                        noiseValueA: this.boxes[i].noiseValue3,
-                        noiseValueB: this.boxes[i].noiseValue4,
-                        // vertexLength: 5,
-                        vertexLength: map(this.boxes[i].noiseValue3, this.noise3.noiseValueMin, this.noise3.noiseValueMax, 3, 15),
-                        strokeWeighty: 1,
-                        angleMin: 2 * PI / 16 * 4,
-                        angleMax: 2 * PI / 16 * 8,
-                        // angleMin: map(this.boxes[i].noiseValue5, 0, 1, 0, -PI),
-                        // angleMax: map(this.boxes[i].noiseValue5, 0, 1, 0, PI),
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0,
-                        loopCount: 10,
-                        colorListA: this.palette1a, // 3
-                        colorListB: this.palette2a,  // 4
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-
-            } else {
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 3,
-                        noiseNumberB: 4,
-                        noiseValueA: this.boxes[i].noiseValue3,
-                        noiseValueB: this.boxes[i].noiseValue4,
-                        vertexLength: map(this.boxes[i].noiseValue3, this.noise3.noiseValueMin, this.noise3.noiseValueMax, 3, 15),
-                        strokeWeighty: 1,
-                        angleMin: PI / 6 * 4,
-                        angleMin: 2 * PI / 16 * 4,
-                        angleMax: 2 * PI / 16 * 8,
-                        // angleMin: map(this.boxes[i].noiseValue5, 0, 1, 0, -PI),
-                        // angleMax: map(this.boxes[i].noiseValue5, 0, 1, 0, PI),
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0,
-                        loopCount: 10,
-                        colorListA: this.palette1b,
-                        colorListB: this.palette2b,
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-            }
-
-            // big but sparse
-            if (this.boxes[i].aboveHorizon) {
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 9,
-                        noiseNumberB: 10,
-                        noiseValueA: this.boxes[i].noiseValue9,
-                        noiseValueB: this.boxes[i].noiseValue10,
-                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 3,
-                        angleMax: 2 * PI / 12 * 4,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.5,
-                        loopCount: 40,
-                        colorListA: this.palette9a,  // 5
-                        colorListB: this.palette10a, // 6
-                        noiseAngle: false,
-                        normIt: false,
-                    }
-                );
-            } else {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 9,
-                        noiseNumberB: 10,
-                        noiseValueA: this.boxes[i].noiseValue9,
-                        noiseValueB: this.boxes[i].noiseValue10,
-                        vertexLength: map(this.boxes[i].noiseValue9, this.noise9.noiseValueMin, this.noise9.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 3,
-                        angleMax: 2 * PI / 12 * 4,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.5,
-                        loopCount: 40,
-                        colorListA: this.palette9b,
-                        colorListB: this.palette10b,
-                        noiseAngle: false,
-                        normIt: false,
-                    }
-                );
-            }
-
-            // big but sparse number 2
-            if (this.boxes[i].aboveHorizon) {
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 10,
-                        noiseNumberB: 9,
-                        noiseValueA: this.boxes[i].noiseValue10,
-                        noiseValueB: this.boxes[i].noiseValue9,
-                        vertexLength: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 8,
-                        angleMax: 2 * PI / 12 * 9,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.5,
-                        loopCount: 20,
-                        colorListA: this.palette10a,  // 5
-                        colorListB: this.palette9a, // 6
-                        noiseAngle: true,
-                        normIt: false,
-                    }
-                );
-            } else {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 10,
-                        noiseNumberB: 9,
-                        noiseValueA: this.boxes[i].noiseValue10,
-                        noiseValueB: this.boxes[i].noiseValue9,
-                        vertexLength: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 8,
-                        angleMax: 2 * PI / 12 * 9,
-                        revert: true,
-                        blendNoises: 0,
-                        cutOutValue: 0.5,
-                        loopCount: 20,
-                        colorListA: this.palette10b,  // 5
-                        colorListB: this.palette9b, // 6
-                        noiseAngle: true,
-                        normIt: false,
-                    }
-                );
-            }
-
-            // THIRD LOOP
-            if (this.boxes[i].aboveHorizon) {
-
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 5,
-                        noiseNumberB: 6,
-                        noiseValueA: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 10,
-                        angleMax: 2 * PI / 12 * 12,
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0.5,
-                        loopCount: 10,
-                        colorListA: this.palette5a,  // 5
-                        colorListB: this.palette6a, // 6
-                        noiseAngle: false,
-                        normIt: true,
-                    }
-                );
-            } else {
-                this.digndag2(
-                    {
-                        centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
-                        centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
-                        noiseNumberA: 5,
-                        noiseNumberB: 6,
-                        noiseValueA: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
-                        vertexLength: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 5, 15),
-                        strokeWeighty: 0.5,
-                        angleMin: 2 * PI / 12 * 1,
-                        angleMax: 2 * PI / 12 * 4,
-                        revert: true,
-                        blendNoises: 0.5,
-                        cutOutValue: 0.5,
-                        loopCount: 10,
-                        colorListA: this.palette5b,
-                        colorListB: this.palette6b,
-                        noiseAngle: false,
-                        normIt: true,
+                        buffer: this.buffer7,
                     }
                 );
             }
@@ -1291,6 +1022,7 @@ class Grid2 {
         let vertexColorDistort = 10;  // may lead to errors
         let blendNoises = data.blendNoises; // 0.5
         let normIt = data.normIt;
+        let buffer = data.buffer;
 
         let noiseValue = 0;
         let noiseValueEff = 0;
@@ -1333,17 +1065,17 @@ class Grid2 {
             // console.log(colorList.length - 1);
             // console.log(colorSelect);
 
-            this.buffer.push();
-            this.buffer.noFill();
-            this.buffer.strokeWeight(strokeWeighty);
-            this.buffer.strokeCap(SQUARE);
+            buffer.push();
+            buffer.noFill();
+            buffer.strokeWeight(strokeWeighty);
+            buffer.strokeCap(SQUARE);
 
-            this.buffer.beginShape();
+            buffer.beginShape();
 
             let oldAdder = center;
             let newAdder = oldAdder;
             let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10); //
-            this.buffer.vertex(oldAdder.x, oldAdder.y)
+            buffer.vertex(oldAdder.x, oldAdder.y)
 
             for (var i = 0; i < loopCount; i++) {
                 oldAdder = newAdder;
@@ -1361,16 +1093,16 @@ class Grid2 {
                     }
                 }
 
-                let v = p5.Vector.fromAngle(angle, vertexLength);
+                let v = p5.Vector.fromAngle(angle, vertexLength * getRandomFromInterval(0.9, 1.1));
 
                 newAdder = p5.Vector.add(oldAdder, v);
                 strokeColor = distortColorSuperNew(colorList[colorSelect], vertexColorDistort);
-                this.buffer.stroke(strokeColor);
-                this.buffer.vertex(newAdder.x, newAdder.y);
+                buffer.stroke(strokeColor);
+                buffer.vertex(newAdder.x, newAdder.y);
             }
 
-            this.buffer.endShape();
-            this.buffer.pop();
+            buffer.endShape();
+            buffer.pop();
         }
     }
 
@@ -1463,51 +1195,56 @@ class Grid2 {
         // this.drawShape();
 
         // LAYER
-        if (frameCount == this.STARTFRAME + 10) {
-            console.log("1");
-            this.drawFirstLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 20) {
-            console.log("2");
-            this.drawSecondLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 30) {
-            console.log("3");
-            this.drawThirdLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 40) {
-            console.log("4");
-            this.drawFourthLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 50) {
-            console.log("5");
-            this.drawFifthLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 60) {
-            console.log("6");
-            this.drawSixthLoop();
-        }
-
-        if (frameCount == this.STARTFRAME + 70) {
-            console.log("7");
-            // this.drawSeventhLoop();
-        }
-
-        if (frameCount >= this.STARTFRAME + 80) {
-            this.finished = true;
-        }
+        this.drawFirstLoop();
+        this.drawSecondLoop();
+        this.drawThirdLoop();
+        this.drawFourthLoop();
+        this.drawFifthLoop();
+        this.drawSixthLoop();
+        this.drawSeventhLoop();
 
     }
 
     show() {
         push();
         // blendMode(OVERLAY);
+
+        // DEBUG BUFFER
         image(this.buffer, 0, 0);
+
+        // LAYER
+        if (frameCount >= this.STARTFRAME + 10) {
+            image(this.buffer1, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 11) {
+            image(this.buffer2, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 12) {
+            image(this.buffer3, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 13) {
+            image(this.buffer4, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 14) {
+            image(this.buffer5, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 15) {
+            image(this.buffer6, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 16) {
+            image(this.buffer7, 0, 0);
+        }
+
+        if (frameCount >= this.STARTFRAME + 17) {
+            this.finished = true;
+        }
+
         pop();
     }
 
@@ -1540,7 +1277,7 @@ class Grid2 {
         } else if (number == 5) {
             noiseValueName = "noiseValue5";
             noiseValueMin = this.noise5.noiseValueMin;
-            noiseValueMax = this.noise65noiseValueMax;
+            noiseValueMax = this.noise5.noiseValueMax;
         } else if (number == 6) {
             noiseValueName = "noiseValue6";
             noiseValueMin = this.noise6.noiseValueMin;
