@@ -154,25 +154,23 @@ function draw() {
 
   background(color("#e8ecee"));
 
-  grid2.show()
+  grid2.draw();
+  grid2.show();
 
   //   // DEBUG
   //   // showFxhashFeatures();
 
-  fxpreview();
-  noLoop();
+  if (grid2.finished) {
+    console.log("finished");
+    fxpreview();
+    noLoop();
+  }
 
   //   if (BULK) {
   //     exportCanvas(canvas);
   //   }
 
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-  if (today.getHours() > 22) {
-    console.log("yes");
-  }
-  console.log(time);
+  // timeFunc();
 
 }
 
@@ -182,4 +180,14 @@ function mousePressed() {
 
 if (BULK) {
   setTimeout(reloader, 30000)
+}
+
+function timeFunc() {
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+  if (today.getHours() > 22) {
+    console.log("yes");
+  }
+  console.log(time);
 }
