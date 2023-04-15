@@ -458,6 +458,28 @@ class Grid2 {
                     }
                 );
             }
+
+            this.zigzag2(
+                {
+                    centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
+                    centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
+                    noiseNumber: 1,
+                    noiseValue: this.boxes[i].noiseValue1,
+                    vertexLength: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 10, 20), // 15,
+                    strokeWeighty: 0.4, // map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 1, 2), // 1,
+                    // angleMin: 2 * PI / 12 * 11.5,
+                    // angleMax: 2 * PI / 12 * 12.5,
+                    angleMin: 0,
+                    angleMax: PI,
+                    revert: true,
+                    cutOutValue: 0,
+                    loopCount: map(this.boxes[i].noiseValue1, this.noise1.noiseValueMin, this.noise1.noiseValueMax, 10, 20),
+                    colorList: ["#a0a0a0"],
+                    noiseAngle: false,
+                    normIt: true,
+                    buffer: this.buffer1,
+                }
+            );
         }
     }
 
@@ -1046,51 +1068,70 @@ class Grid2 {
         }
     }
 
-
-    zigzag(centerX, centerY, noiseValueA, noiseValueB, loopCountParam, vertexLength, strokeSize, angleMin, angleMax, colorListA, colorListB) {
+    zigzag2(data) {
+        let center = createVector(data.centerX, data.centerY);
+        let vertexLength = data.vertexLength;
+        let strokeWeighty = data.strokeWeighty;
+        let angleMin = data.angleMin;
+        let angleMax = data.angleMax;
+        let loopCount = data.loopCount;
+        let vertexColorDistort = 10;  // may lead to errors
+        let normIt = data.normIt;
+        let buffer = data.buffer;
 
         let noiseValue = 0;
+        let noiseValueEff = 0;
+        let angle = 0;
         let colorList = [];
+        let noiseVars = {};
 
-        if (noiseValueA >= 0.5 && fxrand() > 0.2) {
-            noiseValue = noiseValueA;
-            colorList = colorList;
+        noiseVars = this.getNoiseVars(data.noiseNumber);
+        noiseValue = data.noiseValue;
+        colorList = data.colorList;
+
+        if (normIt) {
+            noiseValueEff = map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, 1);
         } else {
-            noiseValue = noiseValueB;
-            colorList = colorListB;
+            noiseValueEff = noiseValue;
         }
 
-        let center = createVector(centerX, centerY);
+        if (noiseValueEff > data.cutOutValue) {
 
-        this.buffer.push();
-        this.buffer.noFill();
-        this.buffer.strokeWeight(strokeSize);
-
-        let colorSelect = Math.floor(noiseValue * (colorList.length));
-        this.buffer.beginShape();
-
-        for (var i = 0; i < noiseValue * loopCountParam; i++) {
-            // for (var i = 0; i < loopCountParam; i++) {
-
-            let strokeColor = distortColorSuperNew(colorList[colorSelect], 10);
-            this.buffer.stroke(strokeColor);
-
-            // let angle = 0;
-            // if (fxrand() > 0.5) {
-            let angle = getRandomFromInterval(angleMin, angleMax);
-            // } else {
-            // angle = getRandomFromInterval(0, PI * 2 * noiseValue);;
+            // if (loopSensitive) {
+            // loopCount = map(noiseValue, 0, 1, 5, 30);
             // }
+            // loopCount = 10;
 
-            let v = p5.Vector.fromAngle(angle);
-            v.setMag(noiseValue * vertexLength);
+            let colorSelect = constrain(Math.round(map(noiseValue, noiseVars.noiseValueMin, noiseVars.noiseValueMax, 0, (colorList.length - 1))), 0, (colorList.length - 1));
+            // console.log(noiseVars.noiseValueMin);
+            // console.log(noiseVars.noiseValueMax);
+            // console.log(colorList.length - 1);
+            // console.log(colorSelect);
 
-            let adder = p5.Vector.add(center, v);
-            this.buffer.vertex(adder.x, adder.y);
+            buffer.push();
+            buffer.noFill();
+            buffer.strokeWeight(strokeWeighty);
+            buffer.strokeCap(SQUARE);
+
+            buffer.beginShape();
+
+            let strokeColor = colorList[colorSelect]; // distortColorSuperNew(colorList[colorSelect], 10); //
+
+            for (var i = 0; i < loopCount; i++) {
+
+                angle = getRandomFromInterval(angleMin, angleMax);
+
+                let v = p5.Vector.fromAngle(angle, vertexLength * getRandomFromInterval(0.9, 1.1));
+
+                strokeColor = distortColorSuperNew(colorList[colorSelect], vertexColorDistort);
+                buffer.stroke(strokeColor);
+                let adder = p5.Vector.add(center, v);
+                this.buffer.vertex(adder.x, adder.y);
+            }
+
+            buffer.endShape();
+            buffer.pop();
         }
-
-        this.buffer.endShape();
-        this.buffer.pop();
     }
 
     drawShape() {
