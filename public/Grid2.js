@@ -25,22 +25,20 @@ class Grid2 {
         if (this.OK = true) {
             this.paletteFullGrounda = tenPaletter("#bfdff0", 10, 1, 4, 2);
             this.paletteFullGroundb = tenPaletter("#95c9a3", 10, 1, 4, 2);
-            this.palette2a = tenPaletter("#86a4b8", 10, 1, 2, 1);
-            this.palette2b = tenPaletter("#80a191", 10, 1, 2, 1);
 
             this.palette3a = tenPaletter("#9cc1ce", 10, 5, 5, 5);
             this.palette4a = tenPaletter("#8da8b8", 10, 5, 5, 5);
             this.palette3b = tenPaletter("#a7d7df", 10, 5, 5, 5);
             this.palette4b = tenPaletter("#92a7b8", 10, 5, 5, 5);
 
-            this.palette5a = tenPaletter("#7a95a0", 10, 5, 5, 5);
+            this.paletteCutOutClouds2a = tenPaletter("#7a95a0", 10, 5, 5, 5);
             this.palette6a = tenPaletter("#acc0d1", 10, 5, 5, 5);
-            this.palette5b = tenPaletter("#72947a", 10, 5, 5, 5);
+            this.paletteCutOutClouds2b = tenPaletter("#72947a", 10, 5, 5, 5);
             this.palette6b = tenPaletter("#a6cfb7", 10, 5, 5, 5);
 
-            this.palette7a = tenPaletter("#9aa9b6", 10, 1, 10, 1);
+            this.paletteCutOutClouds3a = tenPaletter("#9aa9b6", 10, 1, 10, 1);
             this.palette8a = tenPaletter("#70828a", 10, 1, 10, 1);
-            this.palette7b = tenPaletter("#aab9a0", 10, 1, 10, 1);
+            this.paletteCutOutClouds3b = tenPaletter("#aab9a0", 10, 1, 10, 1);
             this.palette8b = tenPaletter("#738a6e", 10, 1, 10, 1);
 
             this.paletteCutOutCloudsa = tenPaletter("#aec8d4", 10, 1, 2, 1);
@@ -119,8 +117,8 @@ class Grid2 {
         this.bufferCutOutClouds = createGraphics(width, height, SVG);
         this.bufferEverywhereSome1 = createGraphics(width, height, SVG);
         this.bufferSection = createGraphics(width, height, SVG);
-        this.buffer5 = createGraphics(width, height, SVG);
-        this.buffer6 = createGraphics(width, height, SVG);
+        this.bufferCutOutClouds2 = createGraphics(width, height, SVG);
+        this.bufferCutOutClouds3 = createGraphics(width, height, SVG);
         this.bufferCutOutCloudsV = createGraphics(width, height, SVG);
         this.buffer8 = createGraphics(width, height, SVG);
         this.buffer9 = createGraphics(width, height, SVG);
@@ -806,7 +804,7 @@ class Grid2 {
 
 
 
-    drawFifthLoop() {
+    drawCutOutClouds2() {
 
         let randomIndex = getRandomIndex(this.boxes.length);
         // let showTrigger = randomIndex.length / 4 * 3;
@@ -833,7 +831,6 @@ class Grid2 {
                         centerX: this.boxes[i].A.x + this.boxes[i].offset.x,
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
                         noiseNumber: 3,
-                        noiseNumberB: 4,
                         noiseValue: this.boxes[i].noiseValue3,
                         vertexLength: map(this.boxes[i].noiseValue3, this.noise3.noiseValueMin, this.noise3.noiseValueMax, 5, 15),
                         strokeWeighty: 1, // 0.8,
@@ -845,7 +842,7 @@ class Grid2 {
                         colorList: this.paletteHorizon1,
                         noiseAngle: false,
                         normIt: true,
-                        buffer: this.buffer5,
+                        buffer: this.bufferCutOutClouds2,
                     }
                 );
 
@@ -857,7 +854,6 @@ class Grid2 {
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
                         noiseNumber: 5,
                         noiseValue: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
                         vertexLength: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 5, 15),
                         strokeWeighty: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 0.4, 1.2), //0.2,
                         angleMin: 2 * PI / 12 * 7,
@@ -865,10 +861,10 @@ class Grid2 {
                         revert: true,
                         cutOutValue: 0.8,
                         loopCount: 10,
-                        colorList: this.palette5a,  // 5
+                        colorList: this.paletteCutOutClouds2a,  // 5
                         noiseAngle: false,
                         normIt: true,
-                        buffer: this.buffer5,
+                        buffer: this.bufferCutOutClouds2,
                     }
                 );
             } else {
@@ -878,7 +874,6 @@ class Grid2 {
                         centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
                         noiseNumber: 5,
                         noiseValue: this.boxes[i].noiseValue5,
-                        noiseValueB: this.boxes[i].noiseValue6,
                         vertexLength: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 5, 15),
                         strokeWeighty: map(this.boxes[i].noiseValue5, this.noise5.noiseValueMin, this.noise5.noiseValueMax, 0.4, 1.2), //0.2,
                         angleMin: 2 * PI / 12 * 0,
@@ -886,10 +881,10 @@ class Grid2 {
                         revert: true,
                         cutOutValue: 0.8,
                         loopCount: 10,
-                        colorList: this.palette5b,
+                        colorList: this.paletteCutOutClouds2b,
                         noiseAngle: false,
                         normIt: true,
-                        buffer: this.buffer5,
+                        buffer: this.bufferCutOutClouds2,
                     }
                 );
             }
@@ -897,7 +892,7 @@ class Grid2 {
         }
     }
 
-    drawSixthLoop() {
+    drawCutOutClouds3() {
 
         let randomIndex = getRandomIndex(this.boxes.length);
 
@@ -929,10 +924,10 @@ class Grid2 {
                         revert: true,
                         cutOutValue: 0.5,
                         loopCount: 5,
-                        colorList: this.palette7a,
+                        colorList: this.paletteCutOutClouds3a,
                         noiseAngle: true,
                         normIt: true,
-                        buffer: this.buffer6,
+                        buffer: this.bufferCutOutClouds3,
                     }
                 );
             } else {
@@ -952,10 +947,10 @@ class Grid2 {
                         revert: true,
                         cutOutValue: 0.5,
                         loopCount: 5,
-                        colorList: this.palette7b,
+                        colorList: this.paletteCutOutClouds3b,
                         noiseAngle: true,
                         normIt: true,
-                        buffer: this.buffer6,
+                        buffer: this.bufferCutOutClouds3,
                     }
                 );
             }
@@ -1270,14 +1265,13 @@ class Grid2 {
 
         // LAYER
         this.drawfullGround();
-        this.drawCutOutClouds();
-        this.drawCutOutCloudsV();
-        this.drawEverywhereSome1();
-        this.drawSection();
-        this.drawZigZag();
-
-        // this.drawFifthLoop();
-        // this.drawSixthLoop();
+        // this.drawCutOutClouds();
+        // this.drawCutOutCloudsV();
+        // this.drawEverywhereSome1();
+        // this.drawSection();
+        // this.drawZigZag();
+        // this.drawCutOutClouds2();
+        // this.drawCutOutClouds3();
 
 
     }
@@ -1303,24 +1297,24 @@ class Grid2 {
         }
 
         if (frameCount >= this.STARTFRAME + 13) {
-            image(this.bufferZigZag, 0, 0);
             image(this.bufferCutOutCloudsV, 0, 0);
         }
 
         if (frameCount >= this.STARTFRAME + 14) {
-            image(this.bufferEverywhereSome1, 0, 0);
+            // image(this.bufferZigZag, 0, 0);
         }
 
         if (frameCount >= this.STARTFRAME + 15) {
-            image(this.buffer5, 0, 0);
+            image(this.bufferCutOutClouds2, 0, 0);
         }
 
         if (frameCount >= this.STARTFRAME + 16) {
-            image(this.buffer6, 0, 0);
+            image(this.bufferCutOutClouds3, 0, 0);
         }
 
         if (frameCount >= this.STARTFRAME + 17) {
-            // image(this.bufferCutOutCloudsV, 0, 0);
+            image(this.bufferEverywhereSome1, 0, 0);
+            image(this.bufferZigZag, 0, 0);
 
         }
 
