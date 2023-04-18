@@ -223,7 +223,7 @@ function reloader() {
   }
 }
 
-function mousePressed() {
+function triggerDings() {
   console.log("trigger");
 
   grid2 = new Grid2({
@@ -235,3 +235,5 @@ function mousePressed() {
   // grid2.finished = false;
   loop();
 }
+
+setInterval(triggerDings, 1000 * 60 * 2);
