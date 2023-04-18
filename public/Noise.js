@@ -8,10 +8,10 @@ class Noise {
         this.noiseValueMax = 0;
         this.noiseValueMin = 1;
 
-        this.loff = 0;
-        this.zoff = 0;
+        this.loff = getRandomFromInterval(0, 1000);
+        this.zoff = getRandomFromInterval(0, 1000);
 
-        this.soff = 0;
+        this.soff = getRandomFromInterval(0, 1000);
     }
 
     resetSoff() {

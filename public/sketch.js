@@ -170,7 +170,7 @@ function draw() {
   //     exportCanvas(canvas);
   //   }
 
-  // timeFunc();
+  timeFunc();
 
 }
 
@@ -183,14 +183,17 @@ if (BULK) {
 }
 
 function timeFunc() {
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-  if (today.getHours() > 22) {
+  let switchHour = 21;
+  let switchMinute = 18;
+
+  var today = new Date();
+  // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  // console.log(time);
+
+  if (today.getHours() >= switchHour && today.getMinutes() >= switchMinute) {
     console.log("yes");
   } else {
-    console.log("nos")
+    console.log("no")
   }
-
-  console.log(time);
 }
