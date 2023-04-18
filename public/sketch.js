@@ -16,7 +16,8 @@ let YEAR = "2023";
 let PRICE = "ꜩ 4";
 let EDITIONS = "100 editions";
 
-
+let STATE = "cool";
+let SWITCH = false;
 
 let CURRENTPIXELDENS = 1;
 
@@ -143,6 +144,10 @@ function setup() {
 
   //   console.log(window.$fxhashFeatures);
 
+  // reloader();
+
+  // DUMMY
+  // oida = 1;
 }
 
 
@@ -157,24 +162,29 @@ function draw() {
 
   grid2.show();
 
-  //   // DEBUG
-  //   // showFxhashFeatures();
-
   if (grid2.finished) {
     console.log("finished");
     fxpreview();
     noLoop();
   }
 
+  // DUMMY
+  // ellipse(oida, 50, 30);
+  // oida += 10;
+
+  //   // DEBUG
+  //   // showFxhashFeatures();
+
+  // if (grid2.finished) {
+  //   console.log("finished");
+  //   fxpreview();
+  //   noLoop();
+  // }
+
   //   if (BULK) {
   //     exportCanvas(canvas);
   //   }
 
-  timeFunc();
-
-}
-
-function mousePressed() {
 }
 
 
@@ -182,7 +192,7 @@ if (BULK) {
   setTimeout(reloader, 30000)
 }
 
-function timeFunc() {
+function timeChecker() {
 
   let switchHour = 21;
   let switchMinute = 18;
@@ -192,8 +202,36 @@ function timeFunc() {
   // console.log(time);
 
   if (today.getHours() >= switchHour && today.getMinutes() >= switchMinute) {
-    console.log("yes");
+    // return true;
+    if (STATE == "cool") {
+      STATE = "hot";
+      grid2.finished = false;
+      loop();
+    }
   } else {
-    console.log("no")
+    if (STATE == "hot") {
+      STATE = "cool";
+      grid2.finished = false;
+      loop();
+    }
   }
+}
+
+function reloader() {
+  while (true) {
+    timeChecker();
+  }
+}
+
+function mousePressed() {
+  console.log("trigger");
+
+  grid2 = new Grid2({
+    marginBoxCount: 5,  // 5
+    shortBoxCount: 80,
+    DEBUG: false,
+  });
+
+  // grid2.finished = false;
+  loop();
 }

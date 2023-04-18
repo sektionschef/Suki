@@ -1252,13 +1252,13 @@ class Grid2 {
 
         // LAYER
         this.drawfullGround();
-        this.drawCutOutCloudsV();
-        this.drawEverywhereSome1();
-        this.drawSection();
-        this.drawZigZag();
-        this.drawCutOutClouds();
-        this.drawCutOutClouds2();
-        this.drawCutOutClouds3();
+        // this.drawCutOutCloudsV();
+        // this.drawEverywhereSome1();
+        // this.drawSection();
+        // this.drawZigZag();
+        // this.drawCutOutClouds();
+        // this.drawCutOutClouds2();
+        // this.drawCutOutClouds3();
     }
 
     show() {
