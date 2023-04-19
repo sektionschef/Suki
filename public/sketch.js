@@ -17,7 +17,6 @@ let PRICE = "ꜩ 4";
 let EDITIONS = "100 editions";
 
 let STATE = "cool";
-let SWITCH = false;
 
 let CURRENTPIXELDENS = 1;
 
@@ -144,10 +143,6 @@ function setup() {
 
   //   console.log(window.$fxhashFeatures);
 
-  // reloader();
-
-  // DUMMY
-  // oida = 1;
 }
 
 
@@ -167,10 +162,6 @@ function draw() {
     fxpreview();
     noLoop();
   }
-
-  // DUMMY
-  // ellipse(oida, 50, 30);
-  // oida += 10;
 
   //   // DEBUG
   //   // showFxhashFeatures();
@@ -192,6 +183,23 @@ if (BULK) {
   setTimeout(reloader, 30000)
 }
 
+
+function triggerDings() {
+  console.log("trigger initiated");
+
+  // MAYBE CLEAR EVERYTHING ON CANVAS
+
+  grid2 = new Grid2({
+    marginBoxCount: 5,  // 5
+    shortBoxCount: 80,
+    DEBUG: false,
+  });
+
+  // restart loop
+  loop();
+}
+
+
 function timeChecker() {
 
   let switchHour = 21;
@@ -205,35 +213,14 @@ function timeChecker() {
     // return true;
     if (STATE == "cool") {
       STATE = "hot";
-      grid2.finished = false;
-      loop();
+      triggerDings();
     }
   } else {
     if (STATE == "hot") {
       STATE = "cool";
-      grid2.finished = false;
-      loop();
+      triggerDings();
     }
   }
 }
 
-function reloader() {
-  while (true) {
-    timeChecker();
-  }
-}
-
-function triggerDings() {
-  console.log("trigger");
-
-  grid2 = new Grid2({
-    marginBoxCount: 5,  // 5
-    shortBoxCount: 80,
-    DEBUG: false,
-  });
-
-  // grid2.finished = false;
-  loop();
-}
-
-setInterval(triggerDings, 1000 * 60 * 2);
+setInterval(timeChecker, 1000 * 60 * 1); // every minute check
