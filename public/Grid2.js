@@ -56,7 +56,7 @@ class Grid2 {
 
         this.noise1 = new Noise(0.01, 0.1, 0);
         // this.noise2 = new Noise(0.01, 0.2, 0);
-        this.noise2 = new Noise(0.01, 0.02, 0);
+        this.noise2 = new Noise(0.06, 0.03, 0);
         this.noise3 = new Noise(0.6, 0.4, 0);
         this.noise4 = new Noise(0.7, 0.8, 0);
         this.noise5 = new Noise(0.01, 0.03, 0);
@@ -356,15 +356,15 @@ class Grid2 {
                     centerY: this.boxes[i].A.y + this.boxes[i].offset.y,
                     noiseNumber: 1,
                     noiseValue: this.boxes[i].noiseValue2,
-                    vertexLength: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 1, 15), // 15,
-                    strokeWeighty: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 0.1, 0.3), // 1,
+                    vertexLength: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 1, 20), // 15,
+                    strokeWeighty: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 0.05, 0.3), // 1,
                     // angleMin: 2 * PI / 12 * 11.5,
                     // angleMax: 2 * PI / 12 * 12.5,
                     angleMin: 0,
                     angleMax: PI,
                     revert: true,
                     cutOutValue: 0.35,
-                    loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 1, 15),
+                    loopCount: map(this.boxes[i].noiseValue2, this.noise2.noiseValueMin, this.noise2.noiseValueMax, 1, 10),
                     colorList: this.paletteZigZag,
                     noiseAngle: false,
                     normIt: true,
@@ -1252,13 +1252,13 @@ class Grid2 {
 
         // LAYER
         this.drawfullGround();
-        // this.drawCutOutCloudsV();
-        // this.drawEverywhereSome1();
-        // this.drawSection();
-        // this.drawZigZag();
-        // this.drawCutOutClouds();
-        // this.drawCutOutClouds2();
-        // this.drawCutOutClouds3();
+        this.drawCutOutCloudsV();
+        this.drawEverywhereSome1();
+        this.drawSection();
+        this.drawZigZag();
+        this.drawCutOutClouds();
+        this.drawCutOutClouds2();
+        this.drawCutOutClouds3();
     }
 
     show() {

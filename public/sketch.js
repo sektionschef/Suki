@@ -223,4 +223,4 @@ function timeChecker() {
   }
 }
 
-setInterval(timeChecker, 1000 * 60 * 1); // every minute check
+// setInterval(timeChecker, 1000 * 60 * 1); // every minute check
