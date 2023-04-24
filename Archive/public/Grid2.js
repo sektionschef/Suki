@@ -38,7 +38,7 @@ class Grid2 {
             this.paletteSectiona1 = tenPaletter("#8595aa", 10, 1, 2, 1);
             this.paletteSectiona2 = tenPaletter("#3e6070", 10, 1, 2, 1);
             this.paletteSectiona3 = tenPaletter("#4b4e52", 10, 1, 2, 1);
-            this.paletteSectionb1 = tenPaletter("#98b4a1", 10, 1, 2, 1);
+            this.paletteSectionb1 = tenPaletter("#7aa186", 10, 1, 2, 1);
             this.paletteSectionb2 = tenPaletter("#7ca16b", 10, 1, 2, 1);
             this.paletteSectionb3 = tenPaletter("#313b34", 10, 1, 2, 1);
 
@@ -751,7 +751,7 @@ class Grid2 {
                         angleMin: 2 * PI / 12 * 6.5,
                         angleMax: 2 * PI / 12 * 8.5,
                         revert: true,
-                        cutOutValue: 0,
+                        cutOutValue: 0.3,
                         loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 10, 90), // 10,
                         colorList: this.paletteSectionb3,  // 5
                         noiseAngle: true,
@@ -773,7 +773,7 @@ class Grid2 {
                         angleMin: 2 * PI / 12 * 0.5,
                         angleMax: 2 * PI / 12 * 4.5,
                         revert: true,
-                        cutOutValue: 0,
+                        cutOutValue: 0.3,
                         loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 10, 90), // 10,
                         colorList: this.paletteSectiona3,  // 5
                         noiseAngle: true,
@@ -839,7 +839,7 @@ class Grid2 {
                         angleMin: 2 * PI / 12 * 0.5,
                         angleMax: 2 * PI / 12 * 2.5,
                         revert: true,
-                        cutOutValue: 0.5,
+                        cutOutValue: 0.6,
                         loopCount: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 10, 30), // 10,
                         colorList: this.paletteSectiona1,  // 5
                         noiseAngle: true,
@@ -857,7 +857,7 @@ class Grid2 {
                         noiseValue: this.boxes[i].noiseValue10,
                         noiseValueB: this.boxes[i].noiseValue9,
                         vertexLength: map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 1, 45),
-                        strokeWeighty: 0.4, // map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 0.5),// 0.5,
+                        strokeWeighty: 0.6, // map(this.boxes[i].noiseValue10, this.noise10.noiseValueMin, this.noise10.noiseValueMax, 0.3, 0.5),// 0.5,
                         angleMin: 2 * PI / 12 * 4.5,
                         angleMax: 2 * PI / 12 * 6.5,
                         revert: true,
